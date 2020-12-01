@@ -30,8 +30,8 @@ let result = (collection, n) => {
       }
 
       if (j > 0) {
+        indices[j]++;
         while (j > 0) {
-          indices[j]++;
           indices[j - 1] = indices[j] + 1;
           j--;
         }
