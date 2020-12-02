@@ -1,8 +1,6 @@
 const _ = require('lodash');
 const fs = require('file-system');
-
-let input = [];
-const inputLines = fs.readFileSync('Puzzles/Day-2/input.txt', 'utf8').split('\r\n');
+const inputFile = 'Puzzles/Day-2/input.txt';
 
 let parseInput = i => {
   let parts = i.split(' ');
@@ -20,10 +18,10 @@ let partOneFilter = r => {
 };
 
 let partTwoFilter = r => {
-  let letters = [...r.password];
-  return ((letters[r.firstNum - 1] === r.letter ? 1 : 0) + (letters[r.lastNum - 1] === r.letter ? 1 : 0)) === 1;
+  return [...r.password][r.firstNum - 1] === r.letter ^ [...r.password][r.lastNum - 1] === r.letter;
 };
 
-inputLines.forEach(d => input.push(parseInput(d)));
+let input = [];
+fs.readFileSync(inputFile, 'utf8').split('\r\n').forEach(d => input.push(parseInput(d)));
 console.log('First part answer: ' + _.filter(input, partOneFilter).length);
 console.log('Second part answer: ' + _.filter(input, partTwoFilter).length);
