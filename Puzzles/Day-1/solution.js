@@ -23,25 +23,22 @@ let result = (collection, t, n) => {
       return product(sorted, indices);
     }
 
-    let i = 0;
-    do {
-      // determine how many rollovers we have
-      let j = 0;
-      while (indices[j] === (collection.length - j)) {
-        j++;
-      }
+    // determine how many rollovers we have
+    let j = 0;
+    while (indices[j] === (collection.length - j)) {
+      j++;
+    }
 
-      if (j > 0) {
-        indices[j]++;
-        while (j > 0) {
-          indices[j - 1] = indices[j] + 1;
-          j--;
-        }
+    if (j > 0) {
+      indices[j]++;
+      while (j > 0) {
+        indices[j - 1] = indices[j] + 1;
+        j--;
       }
-      else {
-        indices[0]++;
-      }
-    } while (i < n && indices[i - 1] === indices[i] + 1);
+    }
+    else {
+      indices[0]++;
+    }
   } while (indices[n - 1] < (sorted.length - n));
 
   throw ('No solution.');
