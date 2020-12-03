@@ -6,8 +6,8 @@ const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run
 
 let calculateCollisions = (map, config) => {
   let positions = [];
-  for (let yPos = 0, xPos = 0; yPos < map.length; yPos += config.rise, xPos = (xPos + config.run) % map[0].length) {
-    positions.push([xPos, yPos]);
+  for (let y = 0, x = 0; y < map.length; y += config.rise, x = (x + config.run) % map[0].length) {
+    positions.push([x, y]);
   }
 
   return _.filter(positions, p => map[p[1]][p[0]] === '#').length;
