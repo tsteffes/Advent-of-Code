@@ -5,12 +5,12 @@ const partOneConfigs = [ { rise: 1, run: 3 } ];
 const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run: 5 }, { rise: 1, run: 7 }, { rise: 2, run: 1 }];
 
 let calculateCollisions = (map, rise, run) => {
-  let treeCount = 0;
+  let positions = [];
   for (let yPos = 0, xPos = 0; yPos < map.length; yPos += rise, xPos = (xPos + run) % map[0].length) {
-    treeCount += map[yPos][xPos] === '#' ? 1: 0;
+    positions.push([xPos, yPos]);
   }
 
-  return treeCount;
+  return _.filter(positions, p => map[p[1]][p[0]] === '#').length;
 };
 
 let getSolution = (map, configs) => {
