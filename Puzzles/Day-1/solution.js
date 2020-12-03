@@ -1,8 +1,9 @@
 const _ = require('lodash');
-const fs = require('file-system');
+const io = require('../../Helpers/io');
+const inputFile = 'Puzzles/Day-1/input.txt';
 
 let input = [];
-fs.readFileSync('Puzzles/Day-1/input.txt', 'utf8').split('\r\n').forEach(d => input.push(parseInt(d, 10)));
+io.readLines(inputFile).forEach(d => input.push(parseInt(d, 10)));
 
 const target = 2020;
 const numberOfOperands = 3;

@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const fs = require('file-system');
+const io = require('../../Helpers/io');
 const inputFile = 'Puzzles/Day-3/input.txt';
 const partOneConfigs = [ { rise: 1, run: 3 } ];
 const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run: 5 }, { rise: 1, run: 7 }, { rise: 2, run: 1 }];
@@ -22,6 +22,6 @@ let getSolution = (map, configs) => {
   return result;
 };
 
-let map = fs.readFileSync(inputFile, 'utf8').split('\r\n');
+let map = io.readLines(inputFile);
 console.log('Part one solution: ' + getSolution(map, partOneConfigs));
 console.log('Part two solution: ' + getSolution(map, partTwoConfigs));

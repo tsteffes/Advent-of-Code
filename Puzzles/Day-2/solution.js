@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const fs = require('file-system');
+const io = require('../../Helpers/io');
 const inputFile = 'Puzzles/Day-2/input.txt';
 
 let parseInput = i => {
@@ -22,6 +22,6 @@ let partTwoFilter = r => {
 };
 
 let input = [];
-fs.readFileSync(inputFile, 'utf8').split('\r\n').forEach(d => input.push(parseInput(d)));
+io.readLines(inputFile).forEach(d => input.push(parseInput(d)));
 console.log('First part answer: ' + _.filter(input, partOneFilter).length);
 console.log('Second part answer: ' + _.filter(input, partTwoFilter).length);
