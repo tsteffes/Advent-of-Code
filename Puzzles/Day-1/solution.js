@@ -1,20 +1,8 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
 const inputFile = 'Puzzles/Day-1/input.txt';
-
-let input = [];
-io.readLines(inputFile).forEach(d => input.push(parseInt(d, 10)));
-
 const target = 2020;
-const numberOfOperands = 3;
 
-/*
-This solution works by creating a collection of n integers which represent the
-indices of the numbers in the collection that are being evaluated in a given iteration.
-Until the solution is found, the indices are incremented similarly to an analog rollover counter.
-This could be made more efficient by initiating a rollover as soon as the sum exceeds the target,
-since we are indexing a sorted collection.
- */
 let result = (collection, t, n) => {
   const sorted = _.sortBy(collection);
   let indices = _.reverse([...Array(n).keys()]);
@@ -57,4 +45,7 @@ let product = (collection, indices) => {
   return result;
 };
 
-console.log(result(input, target, numberOfOperands));
+let input = [];
+io.readLines(inputFile).forEach(d => input.push(parseInt(d, 10)));
+console.log('Part one solution: ' + result(input, target, 2));
+console.log('Part two solution: ' + result(input, target, 3));

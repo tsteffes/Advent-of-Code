@@ -2,8 +2,7 @@ const _ = require('lodash');
 const io = require('../../Helpers/io');
 const inputFile = 'Puzzles/Day-2/input.txt';
 
-let parseInput = i => {
-  let parts = i.split(' ');
+let parseInput = parts => {
   return {
     firstNum: parseInt(parts[0].split('-')[0]),
     lastNum: parseInt(parts[0].split('-')[1]),
@@ -22,6 +21,6 @@ let partTwoFilter = r => {
 };
 
 let input = [];
-io.readLines(inputFile).forEach(d => input.push(parseInput(d)));
-console.log('First part answer: ' + _.filter(input, partOneFilter).length);
-console.log('Second part answer: ' + _.filter(input, partTwoFilter).length);
+io.readLines(inputFile).forEach(d => input.push(parseInput(d.split(' '))));
+console.log('First part solution: ' + _.filter(input, partOneFilter).length);
+console.log('Second part solution: ' + _.filter(input, partTwoFilter).length);
