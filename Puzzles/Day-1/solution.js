@@ -1,23 +1,22 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
-const logger = require('../../Helpers/logger');
+const Solver = require('../../Helpers/solver');
 const inputFile = 'Puzzles/Day-1/input.txt';
 const target = 2020;
 
 let getInput = () => _.map(io.readLines(inputFile), d => parseInt(d, 10));
 
-let result = (collection, t, n) => {
-  const sorted = _.sortBy(collection);
-  let indices = _.reverse([...Array(n).keys()]);
+let getSolution = (input, config) => {
+  const sorted = _.sortBy(input);
+  let indices = _.reverse([...Array(config.operands).keys()]);
 
   do {
-    if (_.map(indices, i => sorted[i]).reduce((a, b) => a + b) === t) {
+    if (_.map(indices, i => sorted[i]).reduce((a, b) => a + b) === config.target) {
       return _.map(indices, i => sorted[i]).reduce((a, b) => a * b, 1);
     }
 
-    // determine how many rollovers we have
     let j = 0;
-    while (indices[j] === (collection.length - j)) {
+    while (indices[j] === (input.length - j)) {
       j++;
     }
 
@@ -31,13 +30,11 @@ let result = (collection, t, n) => {
     else {
       indices[0]++;
     }
-  } while (indices[n - 1] < (sorted.length - n));
-
-  throw ('No solution.');
+  } while (indices[config.operands - 1] < (sorted.length - config.operands));
 };
 
-let input = getInput();
-logger.log([result(input, target, 2), result(input, target, 3)]);
+let solver = new Solver.Solver(getInput, getSolution, [{ target, operands: 2 }, { target, operands: 3 }]);
+solver.solve();
 
 // Part 1 solution: 910539
 // Part 2 solution: 116724144

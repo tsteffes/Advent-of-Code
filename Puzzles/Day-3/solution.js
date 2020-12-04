@@ -1,9 +1,11 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
-const logger = require('../../Helpers/logger');
+const Solver = require('../../Helpers/solver');
 const inputFile = 'Puzzles/Day-3/input.txt';
-const partOneConfigs = [ { rise: 1, run: 3 } ];
+const partOneConfigs = [{ rise: 1, run: 3 }];
 const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run: 5 }, { rise: 1, run: 7 }, { rise: 2, run: 1 }];
+
+let getInput = () => io.readLines(inputFile);
 
 let calculateCollisions = (map, config) => {
   let positions = [];
@@ -14,8 +16,12 @@ let calculateCollisions = (map, config) => {
   return _.filter(positions, p => map[p[1]][p[0]] === '#').length;
 };
 
-let map = io.readLines(inputFile);
-logger.log([partOneConfigs.reduce((a, b) => a * calculateCollisions(map, b), 1), partTwoConfigs.reduce((a, b) => a * calculateCollisions(map, b), 1)]);
+let getSolution = (input, config) => {
+  return config.configs.reduce((a, b) => a * calculateCollisions(input, b), 1)
+};
+
+let solver = new Solver.Solver(getInput, getSolution, [{ configs: partOneConfigs }, { configs: partTwoConfigs }]);
+solver.solve();
 
 // Part 1 solution: 228
 // Part 2 solution: 6818112000
