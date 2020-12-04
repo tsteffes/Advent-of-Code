@@ -14,17 +14,8 @@ let calculateCollisions = (map, config) => {
   return _.filter(positions, p => map[p[1]][p[0]] === '#').length;
 };
 
-let getSolution = (map, configs) => {
-  let result = 1;
-  _.forEach(configs, c => {
-    result *= calculateCollisions(map, c);
-  });
-
-  return result;
-};
-
 let map = io.readLines(inputFile);
-logger.log([getSolution(map, partOneConfigs), getSolution(map, partTwoConfigs)]);
+logger.log([partOneConfigs.reduce((a, b) => a * calculateCollisions(map, b), 1), partTwoConfigs.reduce((a, b) => a * calculateCollisions(map, b), 1)]);
 
 // Part 1 solution: 228
 // Part 2 solution: 6818112000
