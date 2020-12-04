@@ -8,32 +8,28 @@ let getInput = () => _.map(io.readLines(inputFile), d => parseInt(d, 10));
 
 let getSolution = (input, config) => {
   const sorted = _.sortBy(input);
-  let indices = _.reverse([...Array(config.operands).keys()]);
+  let indices = new Array(config.operands).fill(0);
 
-  do {
-    if (_.map(indices, i => sorted[i]).reduce((a, b) => a + b) === config.target) {
-      return _.map(indices, i => sorted[i]).reduce((a, b) => a * b, 1);
+  while (indices[config.operands - 1] <= input.length) {
+    let nums = _.map(indices, i => sorted[i]);
+    if (_.sum(nums) === config.target) {
+      return nums.reduce((a, b) => a * b);
     }
 
+    // loop without repeating any combinations
     let j = 0;
-    while (indices[j] === (input.length - j)) {
+    while (indices[j] === input.length - j - 1) {
       j++;
     }
 
-    if (j > 0) {
-      indices[j]++;
-      while (j > 0) {
-        indices[j - 1] = indices[j] + 1;
-        j--;
-      }
+    indices[j]++;
+    while (j > 0) {
+      indices[j - 1] = indices[j--] + 1;
     }
-    else {
-      indices[0]++;
-    }
-  } while (indices[config.operands - 1] < (sorted.length - config.operands));
+  }
 };
 
-let solver = new Solver.Solver(getInput, getSolution, [{ target, operands: 2 }, { target, operands: 3 }]);
+let solver = new Solver.Solver(getInput, getSolution, [{ target, operands: 2 }, { target, operands: 3}]);
 solver.solve();
 
 // Part 1 solution: 910539

@@ -1,10 +1,8 @@
-const _ = require('lodash');
-
 class NumberLengthValidator {
   constructor(digits) {
     this.digits = digits;
     this.validate = val => {
-      return parseInt(val) && val.length === this.digits;
+      return /^\d{9}$/.test(val);
     };
   }
 }
@@ -35,19 +33,20 @@ class RangeValidator {
 };
 
 class HexCodeValidator {
-  constructor() { }
-  validate = val => {
-    return val[0] === '#' && val.length === 7 && /[0-9a-f]{6}/.test(val.substring(1, 7));
+  constructor() {
+    this.validate = val => {
+      return /^#[0-9a-f]{6}$/.test(val);
+    }
   }
 };
 
 class ValueValidator {
   constructor(vals) {
     this.vals = vals;
+    this.validate = val => {
+      return this.vals.indexOf(val) > -1;
+    };
   }
-  validate = val => {
-    return !!_.find(this.vals, v => v === val);
-  };
 };
 
 exports.ValueValidator = ValueValidator;

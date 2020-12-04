@@ -17,7 +17,7 @@ let calculateCollisions = (map, config) => {
 };
 
 let getSolution = (input, config) => {
-  return config.configs.reduce((a, b) => a * calculateCollisions(input, b), 1)
+  return config.configs.reduce((a, b) => a * calculateCollisions(input, b), 1);
 };
 
 let solver = new Solver.Solver(getInput, getSolution, [{ configs: partOneConfigs }, { configs: partTwoConfigs }]);
