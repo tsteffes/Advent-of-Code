@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
-const inputFile = 'Puzzles/Day-3/input.txt';
+const inputFile = 'src/Puzzles/Day-3/input.txt';
 const partOneConfigs = [{ rise: 1, run: 3 }];
 const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run: 5 }, { rise: 1, run: 7 }, { rise: 2, run: 1 }];
 

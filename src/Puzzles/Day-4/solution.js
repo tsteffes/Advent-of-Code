@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
 const fields = require('./fields');
-const inputFile = 'Puzzles/Day-4/input.txt';
+const inputFile = 'src/Puzzles/Day-4/input.txt';
 const requiredFields = 7;
 
 let getInput = () => _.map(_.map(io.readLines(inputFile, '\r\n\r\n'), i => i.split(/\s+/)), mapPassport);

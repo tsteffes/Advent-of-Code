@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
-const inputFile = 'Puzzles/Day-2/input.txt';
+const inputFile = 'src/Puzzles/Day-2/input.txt';
 
 let getInput = () => _.map(io.readLines(inputFile), d => parseInput(d.split(' ')));
 

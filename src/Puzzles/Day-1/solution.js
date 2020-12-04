@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
-const inputFile = 'Puzzles/Day-1/input.txt';
+const inputFile = 'src/Puzzles/Day-1/input.txt';
 const target = 2020;
 
 let getInput = () => _.map(io.readLines(inputFile), d => parseInt(d, 10));
