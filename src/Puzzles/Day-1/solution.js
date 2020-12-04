@@ -8,9 +8,9 @@ let getInput = () => _.map(io.readLines(inputFile), d => parseInt(d, 10));
 
 let getSolution = (input, config) => {
   const sorted = _.sortBy(input);
-  let indices = new Array(config.operands).fill(0);
+  let indices = _.reverse([...Array(config.operands).keys()]);
 
-  while (indices[config.operands - 1] <= input.length) {
+  while (indices[config.operands - 1] <= sorted.length - config.operands) {
     let nums = _.map(indices, i => sorted[i]);
     if (_.sum(nums) === config.target) {
       return nums.reduce((a, b) => a * b);
@@ -18,7 +18,7 @@ let getSolution = (input, config) => {
 
     // loop without repeating any combinations
     let j = 0;
-    while (indices[j] === input.length - j - 1) {
+    while (indices[j] === sorted.length - j - 1) {
       j++;
     }
 
