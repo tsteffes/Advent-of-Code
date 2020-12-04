@@ -1,6 +1,9 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
+const logger = require('../../Helpers/logger');
 const inputFile = 'Puzzles/Day-2/input.txt';
+
+let getInput = () => _.map(io.readLines(inputFile), d => parseInput(d.split(' ')));
 
 let parseInput = parts => {
   return {
@@ -20,7 +23,8 @@ let partTwoFilter = r => {
   return [...r.password][r.firstNum - 1] === r.letter ^ [...r.password][r.lastNum - 1] === r.letter;
 };
 
-let input = [];
-io.readLines(inputFile).forEach(d => input.push(parseInput(d.split(' '))));
-console.log('First part solution: ' + _.filter(input, partOneFilter).length);
-console.log('Second part solution: ' + _.filter(input, partTwoFilter).length);
+let input = getInput();
+logger.log([_.filter(input, partOneFilter).length, _.filter(input, partTwoFilter).length]);
+
+// Part 1 solution: 418
+// Part 2 solution: 616

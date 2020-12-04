@@ -1,21 +1,15 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
-const validators = require('./validation');
+const logger = require('../../Helpers/logger');
+const fields = require('./fields');
 const inputFile = 'Puzzles/Day-4/input.txt';
 const requiredFields = 7;
-const fields = [
-  { name: 'byr', validator: new validators.RangeValidator(1920, 2002) },
-  { name: 'iyr', validator: new validators.RangeValidator(2010, 2020) },
-  { name: 'eyr', validator: new validators.RangeValidator(2020, 2030) },
-  { name: 'hgt', validator: new validators.HeightValidator(150, 193, 59, 76) },
-  { name: 'hcl', validator: new validators.HexCodeValidator() },
-  { name: 'ecl', validator: new validators.ValueValidator(['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']) },
-  { name: 'pid', validator: new validators.NumberLengthValidator(9) },
-];
 
-let mapObject = (input) => {
+let getInput = () => _.map(_.map(io.readLines(inputFile, '\r\n\r\n'), i => i.split(/\s+/)), mapPassport);
+
+let mapPassport = (collection) => {
   let result = {};
-  _.forEach(input, i => result[i.split(':')[0]] = i.split(':')[1]);
+  _.forEach(collection, i => result[i.split(':')[0]] = i.split(':')[1]);
   return result;
 };
 
@@ -28,7 +22,8 @@ let getSolution = (passports, runValidation) => {
   }).length;
 };
 
-let inputLines = io.readLines(inputFile, '\r\n\r\n');
-let passports = _.map(_.map(inputLines, i => i.split(/\s+/)), mapObject);
-console.log('Part one solution: ' + getSolution(passports, false));
-console.log('Part two solution: ' + getSolution(passports, true));
+let passports = getInput();
+logger.log([getSolution(passports, false), getSolution(passports, true)]);
+
+// Part 1 solution: 254
+// Part 2 solution: 184

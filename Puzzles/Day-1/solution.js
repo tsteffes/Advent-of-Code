@@ -1,15 +1,18 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
+const logger = require('../../Helpers/logger');
 const inputFile = 'Puzzles/Day-1/input.txt';
 const target = 2020;
+
+let getInput = () => _.map(io.readLines(inputFile), d => parseInt(d, 10));
 
 let result = (collection, t, n) => {
   const sorted = _.sortBy(collection);
   let indices = _.reverse([...Array(n).keys()]);
 
   do {
-    if (sum(sorted, indices) === t) {
-      return product(sorted, indices);
+    if (_.map(indices, i => sorted[i]).reduce((a, b) => a + b) === t) {
+      return _.map(indices, i => sorted[i]).reduce((a, b) => a * b, 1);
     }
 
     // determine how many rollovers we have
@@ -33,19 +36,8 @@ let result = (collection, t, n) => {
   throw ('No solution.');
 };
 
-let sum = (collection, indices) => {
-  let result = 0;
-  indices.forEach(i => result += collection[i]);
-  return result;
-}
+let input = getInput();
+logger.log([result(input, target, 2), result(input, target, 3)]);
 
-let product = (collection, indices) => {
-  let result = 1;
-  indices.forEach(i => result *= collection[i]);
-  return result;
-};
-
-let input = [];
-io.readLines(inputFile).forEach(d => input.push(parseInt(d, 10)));
-console.log('Part one solution: ' + result(input, target, 2));
-console.log('Part two solution: ' + result(input, target, 3));
+// Part 1 solution: 910539
+// Part 2 solution: 116724144

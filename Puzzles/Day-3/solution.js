@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
+const logger = require('../../Helpers/logger');
 const inputFile = 'Puzzles/Day-3/input.txt';
 const partOneConfigs = [ { rise: 1, run: 3 } ];
 const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run: 5 }, { rise: 1, run: 7 }, { rise: 2, run: 1 }];
@@ -23,5 +24,7 @@ let getSolution = (map, configs) => {
 };
 
 let map = io.readLines(inputFile);
-console.log('Part one solution: ' + getSolution(map, partOneConfigs));
-console.log('Part two solution: ' + getSolution(map, partTwoConfigs));
+logger.log([getSolution(map, partOneConfigs), getSolution(map, partTwoConfigs)]);
+
+// Part 1 solution: 228
+// Part 2 solution: 6818112000
