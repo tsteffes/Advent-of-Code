@@ -7,26 +7,22 @@ let getInput = () => io.readLines(inputFile);
 
 let getValues = (input) => {
   return _.map(input, i => {
-    let sum = 0;
-    for (var j = 0; j < 10; j++) {
-      sum += i[j] === 'B' || i[j] === 'R' ? Math.pow(2, 9-j) : 0;
-    }
-
-    return sum;
+    return _.sum([...Array(10).keys()].map(j => i[j] === 'B' || i[j] === 'R' ? Math.pow(2, 9-j) : 0));
   });
 }
 
 let getSolution = (input, config) => {
-  let vals = getValues(input);
-  if (config.firstPuzzle) {
-    return _.max(vals);
+  let v = getValues(input);
+  if (config.first) {
+    return _.max(v);
   }
   else {
-    return _.filter(_.intersection(_.map(vals, s => s + 1), _.map(vals, s => s - 1)), s => vals.indexOf(s) == -1)[0];
+    let min = _.min(v);
+    return _.find([...Array(_.max(v) - min).keys()], i => v.indexOf(i + min) === -1) + min;
   }
 };
 
-let solver = new Solver.Solver(getInput, getSolution, [{ firstPuzzle: true }, { firstPuzzle: false }]);
+let solver = new Solver.Solver(getInput, getSolution, [{ first: true }, { }]);
 solver.solve();
 
 // Part 1 solution: 888
