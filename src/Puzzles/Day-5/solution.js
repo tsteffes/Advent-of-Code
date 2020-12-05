@@ -7,17 +7,12 @@ let getInput = () => io.readLines(inputFile);
 
 let getValues = (input) => {
   return _.map(input, i => {
-    let row = 0;
-    let col = 0;
-    for (var j = 0; j < 7; j++) {
-      row += i[j] === 'B' ? Math.pow(2, 6-j) : 0;
+    let sum = 0;
+    for (var j = 0; j < 10; j++) {
+      sum += i[j] === 'B' || i[j] === 'R' ? Math.pow(2, 9-j) : 0;
     }
 
-    for (var k = 0; k < 3; k++) {
-      col += i[k+7] === 'R' ? Math.pow(2, 2-k) : 0;
-    }
-
-    return row * 8 + col;
+    return sum;
   });
 }
 
@@ -27,8 +22,7 @@ let getSolution = (input, config) => {
     return _.max(vals);
   }
   else {
-    let sorted = _.sortBy(vals);
-    return _.filter(_.intersection(_.map(sorted, s => s + 1), _.map(sorted, s => s - 1)), s => sorted.indexOf(s) == -1);
+    return _.filter(_.intersection(_.map(vals, s => s + 1), _.map(vals, s => s - 1)), s => vals.indexOf(s) == -1)[0];
   }
 };
 
