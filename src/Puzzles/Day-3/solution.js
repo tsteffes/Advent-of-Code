@@ -6,17 +6,13 @@ const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run
 
 let getInput = (inputFile) => io.readLines(inputFile);
 
-let calculateCollisions = (map, config) => {
-  let positions = [];
-  for (let y = 0, x = 0; y < map.length; y += config.rise, x = (x + config.run) % map[0].length) {
-    positions.push([x, y]);
-  }
-
-  return _.filter(positions, p => map[p[1]][p[0]] === '#').length;
+let countTrees = (map, config) => {
+  let positions = _.map([...Array(map.length).keys()], y => [(y * config.run) % map[0].length, (y * config.rise)]);
+  return _.filter(_.filter(positions, p => p[1] < map.length), p => map[p[1]][p[0]] === '#').length;
 };
 
 let getSolution = (input, config) => {
-  return config.configs.reduce((a, b) => a * calculateCollisions(input, b), 1);
+  return config.configs.reduce((a, b) => a * countTrees(input, b), 1);
 };
 
 let solver = new Solver.Solver(3, getInput, getSolution, [{ configs: partOneConfigs }, { configs: partTwoConfigs }]);
