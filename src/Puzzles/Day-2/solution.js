@@ -1,9 +1,8 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
-const inputFile = 'src/Puzzles/Day-2/input.txt';
 
-let getInput = () => _.map(io.readLines(inputFile), d => parseInput(d.split(' ')));
+let getInput = (inputFile) => _.map(io.readLines(inputFile), d => parseInput(d.split(' ')));
 
 let parseInput = parts => {
   return {
@@ -27,7 +26,7 @@ let getSolution = (input, config) => {
   return _.filter(input, config.filter).length;
 };
 
-let solver = new Solver.Solver(getInput, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]);
+let solver = new Solver.Solver(2, getInput, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]);
 solver.solve();
 
 // Part 1 solution: 418

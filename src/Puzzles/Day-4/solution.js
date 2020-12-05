@@ -2,10 +2,9 @@ const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
 const fields = require('./fields');
-const inputFile = 'src/Puzzles/Day-4/input.txt';
 const requiredFields = 7;
 
-let getInput = () => _.map(_.map(io.readLines(inputFile, '\r\n\r\n'), i => i.split(/\s+/)), mapPassport);
+let getInput = (inputFile) => _.map(_.map(io.readLines(inputFile, '\r\n\r\n'), i => i.split(/\s+/)), mapPassport);
 
 let mapPassport = (collection) => {
   let result = {};
@@ -22,7 +21,7 @@ let getSolution = (input, config) => {
   }).length;
 };
 
-let solver = new Solver.Solver(getInput, getSolution, [{ validate: false }, { validate: true }]);
+let solver = new Solver.Solver(4, getInput, getSolution, [{ validate: false }, { validate: true }]);
 solver.solve();
 
 // Part 1 solution: 254

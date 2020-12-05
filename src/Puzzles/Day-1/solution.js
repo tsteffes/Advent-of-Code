@@ -1,10 +1,9 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
-const inputFile = 'src/Puzzles/Day-1/input.txt';
 const target = 2020;
 
-let getInput = () => _.map(io.readLines(inputFile), d => parseInt(d, 10));
+let getInput = (inputFile) => _.map(io.readLines(inputFile), d => parseInt(d, 10));
 
 let getSolution = (input, config) => {
   const sorted = _.sortBy(input);
@@ -29,7 +28,7 @@ let getSolution = (input, config) => {
   }
 };
 
-let solver = new Solver.Solver(getInput, getSolution, [{ target, operands: 2 }, { target, operands: 3}]);
+let solver = new Solver.Solver(1, getInput, getSolution, [{ target, operands: 2 }, { target, operands: 3}]);
 solver.solve();
 
 // Part 1 solution: 910539

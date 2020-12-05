@@ -1,8 +1,9 @@
 const logger = require('./logger');
 
 class Solver {
-  constructor(inputter, method, configs) {
-    this.input = inputter();
+  constructor(day, inputter, method, configs) {
+    let fileName = `src/Puzzles/Day-${day}/input.txt`;
+    this.input = inputter(fileName);
     this.method = method;
     this.configs = configs;
   }

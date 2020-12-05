@@ -1,9 +1,8 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
-const inputFile = 'src/Puzzles/Day-5/input.txt';
 
-let getInput = () => io.readLines(inputFile);
+let getInput = (inputFile) => io.readLines(inputFile);
 
 let getValues = (input) => {
   return _.map(input, i => {
@@ -22,7 +21,7 @@ let getSolution = (input, config) => {
   }
 };
 
-let solver = new Solver.Solver(getInput, getSolution, [{ first: true }, { }]);
+let solver = new Solver.Solver(5, getInput, getSolution, [{ first: true }, { }]);
 solver.solve();
 
 // Part 1 solution: 888
