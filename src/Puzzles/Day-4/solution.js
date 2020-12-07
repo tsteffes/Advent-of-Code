@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver');
+const Solver = require('../../Helpers/solver').Solver;
 const fields = require('./fields');
 const requiredFields = 7;
 
@@ -21,8 +21,7 @@ let getSolution = (values, config) => {
   }).length;
 };
 
-let solver = new Solver.Solver(4, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ validate: false }, { validate: true }]);
-solver.solve();
+new Solver(4, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ validate: false }, { validate: true }]).solve();
 
 // Part 1 solution: 254
 // Part 2 solution: 184

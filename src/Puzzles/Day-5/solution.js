@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver');
+const Solver = require('../../Helpers/solver').Solver;
 
 let getValues = input => {
   return _.map(input, i => {
@@ -18,8 +18,7 @@ let getSolution = (v, config, part) => {
   }
 };
 
-let solver = new Solver.Solver(5, io.readLines, getValues, getSolution, [{ }, { }]);
-solver.solve();
+new Solver(5, io.readLines, getValues, getSolution, [{ }, { }]).solve();
 
 // Part 1 solution: 888
 // Part 2 solution: 522

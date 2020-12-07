@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver');
+const Solver = require('../../Helpers/solver').Solver;
 
 let getValues = input => _.map(input, d => parseInput(d.split(' ')));
 
@@ -26,8 +26,7 @@ let getSolution = (values, config) => {
   return _.filter(values, config.filter).length;
 };
 
-let solver = new Solver.Solver(2, io.readLines, getValues, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]);
-solver.solve();
+new Solver(2, io.readLines, getValues, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]).solve();
 
 // Part 1 solution: 418
 // Part 2 solution: 616

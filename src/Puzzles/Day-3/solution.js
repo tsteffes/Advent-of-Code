@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver');
+const Solver = require('../../Helpers/solver').Solver;
 const partOneConfigs = [{ rise: 1, run: 3 }];
 const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run: 5 }, { rise: 1, run: 7 }, { rise: 2, run: 1 }];
 
@@ -13,8 +13,7 @@ let getSolution = (values, config) => {
   return config.configs.reduce((a, b) => a * countTrees(values, b), 1);
 };
 
-let solver = new Solver.Solver(3, io.readLines, i => i, getSolution, [{ configs: partOneConfigs }, { configs: partTwoConfigs }]);
-solver.solve();
+new Solver(3, io.readLines, i => i, getSolution, [{ configs: partOneConfigs }, { configs: partTwoConfigs }]).solve();
 
 // Part 1 solution: 228
 // Part 2 solution: 6818112000
