@@ -2,9 +2,7 @@ const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
 
-let getInput = (inputFile) => io.readLines(inputFile, '\r\n\r\n');
-
-let getValues = (input) => {
+let getValues = input => {
   return _.map(input, i => {
     return {
       num: i.split('\r\n').length,
@@ -13,9 +11,8 @@ let getValues = (input) => {
   });
 }
 
-let getSolution = (input, config) => {
-  let values = getValues(input);
-  if (config.partOne){
+let getSolution = (values, config, part) => {
+  if (part === 1){
     return _.sum(_.map(values, v => _.uniq(v.answers).length));
   }
 
@@ -26,7 +23,7 @@ let getSolution = (input, config) => {
   }));
 };
 
-let solver = new Solver.Solver(6, getInput, getSolution, [{ partOne: true }, { }]);
+let solver = new Solver.Solver(6, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ }, { }]);
 solver.solve();
 
 // Part 1 solution: 6911

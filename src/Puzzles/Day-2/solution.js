@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
 
-let getInput = (inputFile) => _.map(io.readLines(inputFile), d => parseInput(d.split(' ')));
+let getValues = input => _.map(input, d => parseInput(d.split(' ')));
 
 let parseInput = parts => {
   return {
@@ -22,11 +22,11 @@ let partTwoFilter = r => {
   return [...r.password][r.firstNum - 1] === r.letter ^ [...r.password][r.lastNum - 1] === r.letter;
 };
 
-let getSolution = (input, config) => {
-  return _.filter(input, config.filter).length;
+let getSolution = (values, config) => {
+  return _.filter(values, config.filter).length;
 };
 
-let solver = new Solver.Solver(2, getInput, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]);
+let solver = new Solver.Solver(2, io.readLines, getValues, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]);
 solver.solve();
 
 // Part 1 solution: 418

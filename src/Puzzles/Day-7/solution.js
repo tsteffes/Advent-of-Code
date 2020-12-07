@@ -3,9 +3,7 @@ const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
 const targetBag = 'shiny gold';
 
-let getInput = (inputFile) => io.readLines(inputFile);
-
-let getValues = (input) => {
+let getValues = input => {
   return _.map(input, i => {
     let parsed = i.match(/(?<d>.*)( bags contain )(?<c>.*)\.$/);
     let contents = parsed.groups.c === 'no other bags' ? [] :
@@ -28,8 +26,7 @@ let countContents = (allBags, bag) => {
   }));
 }
 
-let getSolution = (input, config) => {
-  let values = getValues(input);
+let getSolution = (values, config) => {
   if (config.partOne) {
     return _.filter(values, v => v.desc !== targetBag && containsBag(values, v)).length;
   }
@@ -38,7 +35,7 @@ let getSolution = (input, config) => {
   }
 };
 
-let solver = new Solver.Solver(7, getInput, getSolution, [{ partOne: true }, { }]);
+let solver = new Solver.Solver(7, io.readLines, getValues, getSolution, [{ partOne: true }, { }]);
 solver.solve();
 
 // Part 1 solution: 268

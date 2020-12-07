@@ -4,16 +4,16 @@ const Solver = require('../../Helpers/solver');
 const fields = require('./fields');
 const requiredFields = 7;
 
-let getInput = (inputFile) => _.map(_.map(io.readLines(inputFile, '\r\n\r\n'), i => i.split(/\s+/)), mapPassport);
+let getValues = input => _.map(_.map(input, i => i.split(/\s+/)), mapPassport);
 
-let mapPassport = (collection) => {
+let mapPassport = collection => {
   let result = {};
   _.forEach(collection, i => result[i.split(':')[0]] = i.split(':')[1]);
   return result;
 };
 
-let getSolution = (input, config) => {
-  return _.filter(input, passport => {
+let getSolution = (values, config) => {
+  return _.filter(values, passport => {
     return _.filter(Object.keys(passport), key => {
       let field = _.find(fields, f => f.name === key);
       return !!field && (!config.validate || field.validator.validate(passport[key]));
@@ -21,7 +21,7 @@ let getSolution = (input, config) => {
   }).length;
 };
 
-let solver = new Solver.Solver(4, getInput, getSolution, [{ validate: false }, { validate: true }]);
+let solver = new Solver.Solver(4, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ validate: false }, { validate: true }]);
 solver.solve();
 
 // Part 1 solution: 254

@@ -2,17 +2,14 @@ const _ = require('lodash');
 const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
 
-let getInput = (inputFile) => io.readLines(inputFile);
-
-let getValues = (input) => {
+let getValues = input => {
   return _.map(input, i => {
     return _.sum([...Array(10).keys()].map(j => i[j] === 'B' || i[j] === 'R' ? Math.pow(2, 9-j) : 0));
   });
 }
 
-let getSolution = (input, config) => {
-  let v = getValues(input);
-  if (config.first) {
+let getSolution = (v, config, part) => {
+  if (part === 1) {
     return _.max(v);
   }
   else {
@@ -21,7 +18,7 @@ let getSolution = (input, config) => {
   }
 };
 
-let solver = new Solver.Solver(5, getInput, getSolution, [{ first: true }, { }]);
+let solver = new Solver.Solver(5, io.readLines, getValues, getSolution, [{ }, { }]);
 solver.solve();
 
 // Part 1 solution: 888

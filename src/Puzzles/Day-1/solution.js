@@ -3,15 +3,15 @@ const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver');
 const target = 2020;
 
-let getInput = (inputFile) => _.map(io.readLines(inputFile), d => parseInt(d, 10));
+let getValues = input => _.map(input, d => parseInt(d, 10));
 
-let getSolution = (input, config) => {
-  const sorted = _.sortBy(input);
+let getSolution = (values, config) => {
+  const sorted = _.sortBy(values);
   let indices = _.reverse([...Array(config.operands).keys()]);
 
   while (indices[config.operands - 1] <= sorted.length - config.operands) {
     let nums = _.map(indices, i => sorted[i]);
-    if (_.sum(nums) === config.target) {
+    if (_.sum(nums) === target) {
       return nums.reduce((a, b) => a * b);
     }
 
@@ -28,7 +28,7 @@ let getSolution = (input, config) => {
   }
 };
 
-let solver = new Solver.Solver(1, getInput, getSolution, [{ target, operands: 2 }, { target, operands: 3}]);
+let solver = new Solver.Solver(1, io.readLines, getValues, getSolution, [{ operands: 2 }, { operands: 3}]);
 solver.solve();
 
 // Part 1 solution: 910539
