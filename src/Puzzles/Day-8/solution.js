@@ -3,44 +3,36 @@ const io = require('../../Helpers/io');
 const Solver = require('../../Helpers/solver').Solver;
 
 let getValues = input => {
-  return _.map(input, i => i.match(/(?<op>\w+)\s(?<sign>[\-\+])(?<num>\d+)/).groups);
+  let res = _.map(input, i => i.match(/(?<op>\w+)\s(?<num>[\-\+\d]+)/).groups);
+  res.forEach(j => j.num = parseInt(j.num));
+  return res;
 }
 
-let execute = (values, index, result) => {
-  if (result.visited.indexOf(index) > -1) {
-    return;
+let execute = (values, state) => {
+  let op = values[state.nextIndex];
+  state.visited.push(state.nextIndex);
+  state.sum += op.op === 'acc' ? op.num : 0;
+  state.nextIndex += op.op === 'jmp' ? op.num : 1;
+  if (state.nextIndex < values.length && state.visited.indexOf(state.nextIndex) === -1) {
+    execute(values, state);
   }
-
-  result.visited.push(index);
-
-  if (index >= values.length) {
-    return;
-  }
-
-  let val = values[index].op === 'acc' ? values[index].sign === '-' ? -1 * parseInt(values[index].num) : parseInt(values[index].num) : 0;
-  index += values[index].op === 'jmp' ? values[index].sign === '-' ? -1 * parseInt(values[index].num) : parseInt(values[index].num) : 1;
-  result.sum += val;
-  execute(values, index, result);
 }
 
 let getSolution = (values, config, part) => {
-  let result = { sum: 0, visited: [] };
   if (part === 1) {
-    execute(values, 0, result);
-    return result.sum;
+    let state = { sum: 0, visited: [], nextIndex: 0 };
+    execute(values, state);
+    return state.sum;
   }
 
-  return _.filter([...Array(values.length).keys()].map(a => {
-    let originalOp = values[a].op;
+  return _.sum(_.map([...Array(values.length).keys()], a => {
+    let op = values[a].op;
     values[a].op = values[a].op === 'jmp' ? 'nop' : values[a].op === 'nop' ? 'jmp' : values[a].op;
-    let result = { sum: 0, visited: [] };
-    execute(values, 0, result);
-    if (result.visited[result.visited.length - 1] >= values.length) {
-      return result.sum;
-    }
-
-    values[a].op = originalOp;
-  }), i => i > -1)[0];
+    let state = { sum: 0, visited: [], nextIndex: 0 };
+    execute(values, state);
+    values[a].op = op;
+    return state.nextIndex >= values.length ? state.sum : 0;
+  }));
 };
 
 new Solver(8, io.readLines, getValues, getSolution, [{ }, { }]).solve();
