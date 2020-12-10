@@ -12,10 +12,9 @@ let getSolution = (v, config, part) => {
   if (part === 1) {
     return _.max(v);
   }
-  else {
-    let min = _.min(v);
-    return _.find([...Array(_.max(v) - min).keys()], i => v.indexOf(i + min) === -1) + min;
-  }
+
+  let min = _.min(v);
+  return _.find([...Array(_.max(v) - min).keys()], i => !_.includes(v, i + min)) + min;
 };
 
 new Solver(5, io.readLines, getValues, getSolution, [{ }, { }]).solve();

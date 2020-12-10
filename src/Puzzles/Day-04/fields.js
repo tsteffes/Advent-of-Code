@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 class NumberLengthValidator {
   constructor(digits) {
     this.digits = digits;
@@ -44,7 +46,7 @@ class ValueValidator {
   constructor(vals) {
     this.vals = vals;
     this.validate = val => {
-      return this.vals.indexOf(val) > -1;
+      return _.includes(vals, val);
     };
   }
 };

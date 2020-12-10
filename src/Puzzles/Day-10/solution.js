@@ -14,7 +14,7 @@ let getPathCount = values => {
   let pathAccum = Array(max).fill(0);
   pathAccum[max] = 1;
   for (let i = max - 1; i >= 0; i--) {
-    if (values.indexOf(i) !== -1) {
+    if (_.includes(values, i)) {
       pathAccum[i] = _.sum([pathAccum[i + 1], pathAccum[i + 2], pathAccum[i + 3]]);
     }
   }
@@ -25,7 +25,7 @@ let getPathCount = values => {
 let getSolution = (values, config, part) => {
   if (part === 1) {
     let m = values.map((v, i) => i == 0 ? v : v - values[i-1]);
-    return (d => (_.filter(d, v1 => v1 == 3).length) * _.filter(d, v2 => v2 == 1).length)(m);
+    return (d => _.filter(d, v1 => v1 == 3).length * _.filter(d, v2 => v2 == 1).length)(m);
   }
 
   return getPathCount(values);

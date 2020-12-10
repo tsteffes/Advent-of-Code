@@ -2,7 +2,7 @@ const logger = require('./logger');
 
 class Solver {
   constructor(day, inputter, mapper, method, configs) {
-    let fileName = `src/Puzzles/Day-${day}/input.txt`;
+    let fileName = `src/Puzzles/Day-${day < 10 ? '0' : ''}${day}/input.txt`;
     this.day = day;
     this.values = mapper(inputter(fileName));
     this.method = method;

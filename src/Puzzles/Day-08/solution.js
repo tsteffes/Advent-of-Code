@@ -13,7 +13,7 @@ let execute = (values, state) => {
   state.visited.push(state.nextIndex);
   state.sum += op.op === 'acc' ? op.num : 0;
   state.nextIndex += op.op === 'jmp' ? op.num : 1;
-  if (state.nextIndex < values.length && state.visited.indexOf(state.nextIndex) === -1) {
+  if (state.nextIndex < values.length && !_.includes(state.visited, state.nextIndex)) {
     execute(values, state);
   }
 }
