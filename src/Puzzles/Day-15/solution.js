@@ -9,10 +9,10 @@ let getSolution = (input, config, part) => {
   let indexes = new HashMap(32768);
   input.slice(0, input.length - 1).forEach(i => indexes.set(i, input.lastIndexOf(i)));
   let num = input[input.length - 1];
-  for (let i = input.length; i < config.target; i++) {
+  for (let i = input.length - 1; i < config.target - 1; i++) {
     let prev = indexes.get(num);
-    indexes.set(num, i - 1);
-    num = prev >= 0 ? i - 1 - prev : 0;
+    indexes.set(num, i);
+    num = prev >= 0 ? i - prev : 0;
   }
 
   return num;
