@@ -22,16 +22,15 @@ let filterColumns = (rules, col) => {
 }
 
 let getSolution = (input, config, part) => {
-  let hasInvalidValue = v => !_.some(input.rules, r => checkRule(r, v));
+  let failsAllRules = v => !_.some(input.rules, r => checkRule(r, v));
   if (part === 1) {
-    return _.sum(_.map(input.others, other => _.sum(_.filter(other, hasInvalidValue))));
+    return _.sum(_.map(input.others, other => _.sum(_.filter(other, failsAllRules))));
   }
 
-  let remaining = _.filter(input.others, other => !_.some(other, hasInvalidValue));
+  let tickets = _.filter(input.others, other => !_.some(other, failsAllRules));
   for (let rule of input.rules) {
-    rule.possibleColumns = [];
     for (let i = 0; i < input.mine.length; i++) {
-      if (_.every(remaining, o => checkRule(rule, o[i]))) {
+      if (_.every(tickets, t => checkRule(rule, t[i]))) {
         rule.possibleColumns.push(i);
       }
     }
