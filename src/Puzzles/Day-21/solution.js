@@ -4,14 +4,10 @@ const Solver = require('../../Helpers/solver').Solver;
 
 let getValues = input => {
   return input.map(i => {
-    let m = i.match(/^(?<ingredients>[a-z\s,]+)\(contains (?<allergens>[a-z\s,]+)\)$/);
-    return { allergens: m.groups.allergens.replace(/\,/g, '').split(' '), ingredients: m.groups.ingredients.trim().split(' ') };
+    let m = i.match(/^([a-z\s,]+)\(contains ([a-z\s,]+)\)$/);
+    return { allergens: m[1].replace(/\,/g, '').split(' '), ingredients: m[2].trim().split(' ') };
   });
 };
-
-let filterActuals = (res, ingredient) => {
-  res.forEach(r => _.remove(r.possibles, i => i === ingredient));
-}
 
 let getSolution = (input, config, part) => {
   let results = [];
@@ -31,7 +27,7 @@ let getSolution = (input, config, part) => {
   while (_.some(results, r => r.possibles.length > 0)) {
     let r = _.find(results, r => r.possibles.length === 1);
     r.actual = r.possibles[0];
-    filterActuals(results, r.actual);
+    results.forEach(r => _.remove(r.possibles, i => i === r.actual));
   }
 
   if (part === 1) {
