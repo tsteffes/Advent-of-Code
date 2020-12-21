@@ -91,5 +91,5 @@ let getSolution = (input, config, part) => {
 
 new Solver(17, io.readLines, getValues, getSolution, [{ cycles: 6, d: 3 }, { cycles: 6, d: 4 }]).solve();
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 317
+// Part 2 solution: 1692

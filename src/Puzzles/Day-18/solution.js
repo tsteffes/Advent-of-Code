@@ -45,5 +45,5 @@ let getSolution = (input, config, part) => {
 
 new Solver(18, io.readLines, getValues, getSolution, [{ }, { }]).solve();
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 69490582260
+// Part 2 solution: 362464596624526
