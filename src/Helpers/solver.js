@@ -2,15 +2,16 @@ const logger = require('./logger');
 
 class Solver {
   constructor(day, inputter, mapper, method, configs) {
-    let fileName = `src/Puzzles/Day-${day < 10 ? '0' : ''}${day}/input.txt`;
+    this.fileName = `src/Puzzles/Day-${day < 10 ? '0' : ''}${day}/input.txt`;
+    this.mapper = mapper;
+    this.inputter = inputter;
     this.day = day;
-    this.values = mapper(inputter(fileName));
     this.method = method;
     this.configs = configs;
   }
 
   solve = () => {
-    logger.log(this.day, this.configs.map((c, i) => this.method(this.values, c, i + 1)));
+    logger.log(this.day, this.configs.map((c, i) => this.method(this.mapper(this.inputter(this.fileName)), c, i + 1)));
   };
 }
 
