@@ -5,7 +5,7 @@ const Solver = require('../../Helpers/solver').Solver;
 let getValues = input => {
   return input.map(i => {
     let m = i.match(/^([a-z\s,]+)\(contains ([a-z\s,]+)\)$/);
-    return { allergens: m[1].replace(/\,/g, '').split(' '), ingredients: m[2].trim().split(' ') };
+    return { allergens: m[2].replace(/,/g, '').split(' '), ingredients: m[1].trim().split(' ') };
   });
 };
 
@@ -27,7 +27,7 @@ let getSolution = (input, config, part) => {
   while (_.some(results, r => r.possibles.length > 0)) {
     let r = _.find(results, r => r.possibles.length === 1);
     r.actual = r.possibles[0];
-    results.forEach(r => _.remove(r.possibles, i => i === r.actual));
+    results.forEach(res => _.remove(res.possibles, i => i === r.actual));
   }
 
   if (part === 1) {
