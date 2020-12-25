@@ -18,7 +18,7 @@ let getValues = input => {
 
 let isEqual = (a, b) => a[0] === b[0] && a[1] === b[1];
 let takeStep = (prev, cur) => [prev[0] + moves[cur][0], prev[1] + moves[cur][1]];
-let getNeighbors = loc => Object.keys(moves).map(m => [loc[0] + moves[m][0], loc[1] + moves[m][1]]);
+let getNeighbors = loc => Object.values(moves).map(v => [loc[0] + v[0], loc[1] + v[1]]);
 
 let getSolution = (input, config, part) => {
   let result = input.map(i => i.reduce(takeStep, [0, 0]));
