@@ -26,6 +26,7 @@ let getLoopCount = (val, target) => {
   return loops;
 }
 
+// just adding a comment
 let getSolution = (input, config, part) => {
   input.cardLoopSize = getLoopCount(config.subject, input.cardPublicKey);
   input.doorLoopSize = getLoopCount(config.subject, input.doorPublicKey);
