@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-node ./src/Puzzles/Day-$1/solution.js
+node ./src/Puzzles/$1/Day-$2/solution.js
