@@ -75,5 +75,5 @@ let getSolution = (game, config) => {
 
 new Solver(2021, 4, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 38913
+// Part 2 solution: 16836
