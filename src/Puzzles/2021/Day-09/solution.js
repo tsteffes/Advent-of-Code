@@ -61,9 +61,7 @@ let getSolution = (values, config) => {
     basins.push(getBasinPoints(values, lowPoint[0], lowPoint[1], []));
   }
 
-  let y = basins.sort((a, b) => b.length - a.length);
-  let x = _.take(y, 3);
-  return x.reduce((cur, x) => cur * x.length, 1);
+  return _.take(basins.sort((a, b) => b.length - a.length), 3).reduce((cur, x) => cur * x.length, 1);
 };
 
 new Solver(2021, 9, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
