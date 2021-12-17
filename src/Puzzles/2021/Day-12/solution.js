@@ -49,37 +49,47 @@ let canVisit = (path, val, config) => {
     return !path.includes(val);
   }
 
-  let lower = path.filter(p => !isCap(p));
-  return !_.values(_.countBy(lower)).find(x => x > 1);
+  if (!path.includes(val)) {
+    return true;
+  }
+
+  return !_.values(_.countBy(path.filter(p => !isCap(p)))).find(x => x > 1);
 };
 
 let getSolution = (values, config) => {
   let paths = [];
+  let completePaths = [];
   paths.push(['start']);
-  for (let path of paths) {
-    let cur = path[path.length - 1];
-    if (cur === 'end') {
-      continue;
-    }
-
-    for (let neighbor of values[cur]) {
-      if (!canVisit(path, neighbor, config)) {
+  let newPaths;
+  do {
+    newPaths = [];
+    for (let path of paths) {
+      let cur = path[path.length - 1];
+      if (cur === 'end') {
+        completePaths.push(path);
         continue;
       }
 
-      let newer = _.cloneDeep(path);
-      newer.push(neighbor);
-      if (!checkDuplicate(paths, newer)) {
-        paths.push(newer);
+      for (let neighbor of values[cur]) {
+        if (!canVisit(path, neighbor, config)) {
+          continue;
+        }
+
+        let newer = _.cloneDeep(path);
+        newer.push(neighbor);
+        if (!checkDuplicate(paths, newer)) {
+          newPaths.push(newer);
+        }
       }
     }
-  }
 
-  let res = paths.filter(p => p[p.length - 1] === 'end');
-  return res.length;
+    paths = _.cloneDeep(newPaths);
+  } while (newPaths.length > 0)
+
+  return completePaths.length;
 };
 
 new Solver(2021, 12, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
 
 // Part 1 solution: 3679
-// Part 2 solution:
+// Part 2 solution: 107395

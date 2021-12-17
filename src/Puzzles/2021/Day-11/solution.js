@@ -68,4 +68,4 @@ let getSolution = (values, config) => {
 new Solver(2021, 11, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
 
 // Part 1 solution: 1634
-// Part 2 solution:
+// Part 2 solution: 210
