@@ -21,16 +21,10 @@ let getValues = input => {
 let getSolution = (input, config) => {
   let vals = {};
   for (let i = 0; i < input.template.length - 1; i++) {
-    vals[input.template[i] + input.template[i + 1]] = 1;
+    let key = input.template[i] + input.template[i + 1];
+    vals[key] = (vals[key] || 0) + 1;
   }
 
-  /*
-  Template:     NNCB
-  After step 1: NCNBCHB
-  After step 2: NBCCNBBBCBHCB
-  After step 3: NBBBCNCCNBBNBNBBCHBHHBCHB
-  After step 4: NBBNBNBBCCNBCNCCNBBNBBNBBBNBBNBBCBHCBHHNHCBBCBHCB
-  */
   for (let step = 0; step < config.steps; step++) {
     let deltas = {};
     for (let key of _.keys(vals)) {
@@ -53,11 +47,20 @@ let getSolution = (input, config) => {
     letters[key[1]] = (letters[key[1]] || 0) + vals[key];
   }
 
+  // bookend letters will have one too many counted
+  letters[input.template[0]]--;
+  letters[input.template[input.template.length - 1]]--;
+
+  // each letter will be double-counted
+  for (let letter of _.keys(letters)) {
+    letters[letter] = letters[letter] / 2;
+  }
+
   let sorted = _.values(letters).sort((a, b) => a - b);
   return sorted[sorted.length - 1] - sorted[0];
 };
 
 new Solver(2021, 14, io.readLines, getValues, getSolution, [{ part: 1, steps: 10 }, { part: 2, steps: 40 }]).solve();
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 2851
+// Part 2 solution: 10002813279338
