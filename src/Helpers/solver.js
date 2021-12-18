@@ -11,7 +11,7 @@ class Solver {
   }
 
   solve = () => {
-    logger.log(this.day, this.configs.map((c, i) => this.method(this.mapper(this.inputter(this.fileName)), c, i + 1)));
+    logger.log(this.day, this.configs.map((c, i) => this.method(this.mapper(this.inputter(this.fileName), c), c, i + 1)));
   };
 }
 
