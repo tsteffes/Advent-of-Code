@@ -5,7 +5,7 @@ const Solver = require('../../../Helpers/solver').Solver;
 let parseNode = (s, parent) => {
   let int = parseInt(s);
   let node = { parent: parent };
-  if (int) {
+  if (Number.isInteger(int)) {
     node.val = int;
     return node;
   }
@@ -43,7 +43,6 @@ let findSplitter = node => {
 };
 
 let split = node => {
-  console.log('split');
   let newNode = { };
   newNode.left = { val: Math.floor(node.val / 2), parent: newNode };
   newNode.right = { val: Math.ceil(node.val / 2), parent: newNode };
@@ -74,7 +73,6 @@ let findExploder = (node, depth) => {
 };
 
 let explode = (node, map) => {
-  console.log('explode');
   let i;
   for (i = 0; i < map.length; i++) {
     if (map[i] === node) {
@@ -154,16 +152,9 @@ let reduce = node => {
         split(splitter);
       }
     }
-
-    let map = mapTree(node);
-    let s = '';
-    for (let m of map) {
-      if (Number.isInteger(m.val)) {
-        s += m.val + ' ';
-      }
-    }
-    console.log(s);
   } while(exploder || splitter);
+
+  return node;
 };
 
 let getMagnitude = node => {
@@ -175,19 +166,39 @@ let getMagnitude = node => {
 };
 
 let getSolution = (values, config) => {
-  do {
-    let newNode = {
-      left: values.shift(),
-      right: values.shift()
-    };
-    newNode.left.parent = newNode;
-    newNode.right.parent = newNode;
-    values.unshift(reduce(newNode));
-  } while (values.length > 1)
-  return getMagnitude(values[0]);
+  if (config.part === 1) {
+    do {
+      let newNode = {
+        left: values.shift(),
+        right: values.shift()
+      };
+      newNode.left.parent = newNode;
+      newNode.right.parent = newNode;
+      newNode.parent = null;
+      values.unshift(reduce(newNode));
+    } while (values.length > 1);
+    return getMagnitude(values[0]);
+  }
+
+  let max = 0;
+  for (let i = 0; i < values.length; i++) {
+    for (let j = 0; j < values.length; j++) {
+      if (i !== j) {
+        let newNode = {
+          left: _.cloneDeep(values[i]),
+          right: _.cloneDeep(values[j])
+        };
+        newNode.parent = null;
+        let res = reduce(newNode);
+        max = Math.max(max, getMagnitude(res));
+      }
+    }
+  }
+
+  return max;
 };
 
-new Solver(2021, 18, io.readLines, getValues, getSolution, [{ part: 1 }]).solve();
+new Solver(2021, 18, io.readLines, getValues, getSolution, [{ part: 1}, { part: 2 }]).solve();
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 4137
+// Part 2 solution: 4573
