@@ -27,7 +27,7 @@ let getSolution = (input, config) => {
   }
 
   if (config.part === 1) {
-    return _.uniqBy(input.coords.map(v => v.x + ',' + v.y)).length;
+    return (new Set(input.coords.map(v => v.x + ',' + v.y))).size;
   }
 
   for (let j = 0; j <= _.max(input.coords.map(c => c.y)); j++) {
@@ -39,6 +39,8 @@ let getSolution = (input, config) => {
 
     console.log(line);
   }
+
+  return 'Read the output';
 };
 
 new Solver(2021, 13, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
