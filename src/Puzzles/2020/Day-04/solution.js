@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 const fields = require('./fields');
 const requiredFields = 7;
 

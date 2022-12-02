@@ -28,7 +28,7 @@ let getSolution = (values, config) => {
   return res;
 };
 
-new Solver(2021, 7, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
+new Solver(2021, 7, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 329389
 // Part 2 solution: 86397080

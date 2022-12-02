@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => input;
 
@@ -38,12 +38,12 @@ let calculate = (i, part) => {
   return i;
 };
 
-let getSolution = (input, config, part) => {
-  let results = input.map(i => parseInt(calculate(i.replace(/\s/g, ''), part)));
+let getSolution = (input, config) => {
+  let results = input.map(i => parseInt(calculate(i.replace(/\s/g, ''), config.part)));
   return _.sum(results);
 };
 
-new Solver(2020, 18, io.readLines, getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 18, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 69490582260
 // Part 2 solution: 362464596624526

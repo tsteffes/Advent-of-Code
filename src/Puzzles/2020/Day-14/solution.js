@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   return _.map(input, i => {
@@ -43,13 +43,13 @@ let runProgram = (input, memory, version) => {
   input.forEach(i => cmds[i.op](i));
 };
 
-let getSolution = (input, config, part) => {
+let getSolution = (input, config) => {
   let memory = {};
-  runProgram(input, memory, part);
+  runProgram(input, memory, config.part);
   return _.sum(_.map(Object.entries(memory), v => v[1]));
 };
 
-new Solver(2020, 14, io.readLines, getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 14, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 11884151942312
 // Part 2 solution: 2625449018811

@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   return input.map(i => {
@@ -19,7 +19,7 @@ let mapBorders = vals => {
   ];
 };
 
-let getSolution = (input, config, part) => {
+let getSolution = (input, config) => {
   input.forEach(i => {
     i.missing = _.filter(i.borders, b => !_.some(input, x => {
       return x.id !== i.id && _.some(x.borders, b2 => b2 === b || b2 === b.split('').reverse().join(''));

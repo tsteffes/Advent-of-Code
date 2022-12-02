@@ -53,7 +53,7 @@ let getSolution = (values, config) => {
   return convertToDecimal(ox) * convertToDecimal(co2);
 };
 
-new Solver(2021, 3, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
+new Solver(2021, 3, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 4001724
 // Part 2 solution: 587895

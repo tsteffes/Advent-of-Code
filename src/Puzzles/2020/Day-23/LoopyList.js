@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-class LoopyList {
+exports.LoopyList = class {
   constructor(input) {
     let refs = {};
     input.forEach(i => {
@@ -70,6 +70,4 @@ class LoopyList {
 
     return s;
   };
-}
-
-exports.LoopyList = LoopyList;
+};

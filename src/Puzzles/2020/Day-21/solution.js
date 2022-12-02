@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   return input.map(i => {
@@ -9,7 +9,7 @@ let getValues = input => {
   });
 };
 
-let getSolution = (input, config, part) => {
+let getSolution = (input, config) => {
   let results = [];
   input.forEach(i => {
     i.allergens.forEach(a => {
@@ -30,14 +30,14 @@ let getSolution = (input, config, part) => {
     results.forEach(res => _.remove(res.possibles, i => i === r.actual));
   }
 
-  if (part === 1) {
+  if (config.part === 1) {
     return _.sum(input.map(i => _.filter(i.ingredients, g => results.map(r => r.actual).indexOf(g) === -1).length));
   }
 
   return _.sortBy(results, r => r.name).map(r => r.actual).join(',');
 };
 
-new Solver(2020, 21, io.readLines, getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 21, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 2517
 // Part 2 solution: rhvbn,mmcpg,kjf,fvk,lbmt,jgtb,hcbdb,zrb

@@ -1,11 +1,11 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
-const HashMap = require('../../Helpers/hashMap').HashMap;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
+const HashMap = require('../../../Helpers/hashMap').HashMap;
 
 let getValues = input => _.map(input[0].split(','), i => parseInt(i));
 
-let getSolution = (input, config, part) => {
+let getSolution = (input, config) => {
   let indexes = new HashMap(32768);
   input.slice(0, input.length - 1).forEach(i => indexes.set(i, input.lastIndexOf(i)));
   let num = input[input.length - 1];

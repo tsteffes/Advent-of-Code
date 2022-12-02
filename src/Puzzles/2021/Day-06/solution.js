@@ -22,7 +22,7 @@ let getSolution = (values, config) => {
   return _.sum(values);
 };
 
-new Solver(2021, 6, io.readLines, getValues, getSolution, [{ part: 1, days: 80 }, { part: 2, days: 256 }]).solve();
+new Solver(2021, 6, io.readLines, getValues, getSolution, [{ days: 80 }, { days: 256 }]).solve();
 
 // Part 1 solution: 351188
 // Part 2 solution:

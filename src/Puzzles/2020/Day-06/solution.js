@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   return _.map(input, i => {
@@ -11,8 +11,8 @@ let getValues = input => {
   });
 }
 
-let getSolution = (values, config, part) => {
-  if (part === 1){
+let getSolution = (values, config) => {
+  if (config.part === 1) {
     return _.sum(_.map(values, v => _.uniq(v.answers).length));
   }
 
@@ -23,7 +23,7 @@ let getSolution = (values, config, part) => {
   }));
 };
 
-new Solver(2020, 6, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 6, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
 
 // Part 1 solution: 6911
 // Part 2 solution: 3473

@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 const targetBag = 'shiny gold';
 
 let getValues = input => {
@@ -26,8 +26,8 @@ let countContents = (allBags, bag) => {
   return 1 + _.sum(_.map(bag.contents, c => c.quantity * countContents(allBags, findBag(allBags, c.desc))));
 }
 
-let getSolution = (values, config, part) => {
-  if (part === 1) {
+let getSolution = (values, config) => {
+  if (config.part === 1) {
     return _.filter(values, v => v.desc !== targetBag && containsBag(values, v)).length;
   }
   else {
@@ -35,7 +35,7 @@ let getSolution = (values, config, part) => {
   }
 };
 
-new Solver(2020, 7, io.readLines, getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 7, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 268
 // Part 2 solution: 7867

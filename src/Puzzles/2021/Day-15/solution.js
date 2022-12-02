@@ -47,7 +47,7 @@ let getSolution = (map, config) => {
   return map[0][0].minPath;
 };
 
-new Solver(2021, 15, io.readLines, getValues, getSolution, [{ part: 1, multiplier: 1 }, { part: 2, multiplier: 5 }]).solve();
+new Solver(2021, 15, io.readLines, getValues, getSolution, [{ multiplier: 1 }, { multiplier: 5 }]).solve();
 
 // Part 1 solution: 393
 // Part 2 solution: 2823

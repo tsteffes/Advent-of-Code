@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   return input.map(i => {
@@ -36,8 +36,8 @@ let playRecursive = (players) => {
   return cheatWin || players[0].cards.length > 0 ? 0 : 1;
 };
 
-let getSolution = (players, config, part) => {
-  if (part === 1) {
+let getSolution = (players, config) => {
+  if (config.part === 1) {
     do {
       resolveGame(players, players[0].cards[0] > players[1].cards[0] ? 0 : 1);
     } while (!_.some(players, p => p.cards.length === 0));
@@ -49,7 +49,7 @@ let getSolution = (players, config, part) => {
   return _.sum(_.map(players, p => _.sum(_.map(p.cards, (c, i) => c * (p.cards.length - i)))));
 };
 
-new Solver(2020, 22, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 22, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
 
 // Part 1 solution: 32401
 // Part 2 solution: 31436

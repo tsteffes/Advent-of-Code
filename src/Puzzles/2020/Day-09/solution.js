@@ -1,7 +1,7 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const arrays = require('../../Helpers/arrays');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const arrays = require('../../../Helpers/arrays');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   return input.map(v => parseInt(v));
@@ -21,9 +21,9 @@ let findNonCompliant = (values, setSize) => {
   return _.find(values, (val, idx) => idx >= setSize && !findSum(values.slice(idx - setSize, idx), val));
 };
 
-let getSolution = (values, config, part) => {
+let getSolution = (values, config) => {
   let pt1 = findNonCompliant(values, config.setSize);
-  if (part === 1) {
+  if (config.part === 1) {
     return pt1;
   }
 

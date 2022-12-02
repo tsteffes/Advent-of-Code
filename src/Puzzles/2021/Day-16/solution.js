@@ -82,7 +82,7 @@ let getSolution = (input, config) => {
   return getValue(input.packet);
 };
 
-new Solver(2021, 16, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
+new Solver(2021, 16, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 999
 // Part 2 solution: 3408662834145

@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 const moves = { 'e': [2, 0], 'se': [1, -1], 'sw': [-1, -1], 'w': [-2, 0], 'nw': [-1, 1], 'ne': [1, 1] };
 
@@ -20,10 +20,10 @@ let isEqual = (a, b) => a[0] === b[0] && a[1] === b[1];
 let takeStep = (prev, cur) => [prev[0] + moves[cur][0], prev[1] + moves[cur][1]];
 let getNeighbors = loc => Object.values(moves).map(v => [loc[0] + v[0], loc[1] + v[1]]);
 
-let getSolution = (input, config, part) => {
+let getSolution = (input, config) => {
   let result = input.map(i => i.reduce(takeStep, [0, 0]));
   result = result.filter(r => (result.filter(t => isEqual(r, t)).length % 2) === 1);
-  if (part === 2) {
+  if (config.part === 2) {
     for (let i = 0; i < config.days; i++) {
       let neighbors = [];
       result.forEach(r => neighbors.push(...getNeighbors(r)));

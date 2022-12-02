@@ -40,7 +40,7 @@ let getSolution = (values, config) => {
   return cur[0] * cur[1];
 };
 
-new Solver(2021, 2, io.readLines, getValues, getSolution, [{ part: 1 }, { part: 2 }]).solve();
+new Solver(2021, 2, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 2120749
 // Part 2 solution: 2138382217

@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   let res = _.sortBy(input.map(v => parseInt(v)));
@@ -22,8 +22,8 @@ let getPathCount = values => {
   return pathAccum[0];
 }
 
-let getSolution = (values, config, part) => {
-  if (part === 1) {
+let getSolution = (values, config) => {
+  if (config.part === 1) {
     let m = values.map((v, i) => i == 0 ? v : v - values[i-1]);
     return (d => _.filter(d, v1 => v1 == 3).length * _.filter(d, v2 => v2 == 1).length)(m);
   }
@@ -31,7 +31,7 @@ let getSolution = (values, config, part) => {
   return getPathCount(values);
 };
 
-new Solver(2020, 10, io.readLines, getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 10, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 1917
 // Part 2 solution: 113387824750592

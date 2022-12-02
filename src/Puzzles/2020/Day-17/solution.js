@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => input;
 
@@ -62,7 +62,7 @@ let getCubeCount = state => {
   return count;
 };
 
-let getSolution = (input, config, part) => {
+let getSolution = (input, config) => {
   let size = { x: (config.cycles * 2) + input[0].length, y: (config.cycles * 2) + input.length, z: (config.cycles * 2) + 1, w: config.d === 4 ? (config.cycles * 2) + 1 : 1 };
   let state = getBlankState(size);
   for (let y = 0; y < input.length; y++) {

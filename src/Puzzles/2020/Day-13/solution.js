@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   return {
@@ -9,9 +9,9 @@ let getValues = input => {
   };
 };
 
-let getSolution = (input, config, part) => {
+let getSolution = (input, config) => {
   let schedule = input.schedule;
-  if (part === 1) {
+  if (config.part === 1) {
     schedule.forEach(v => v.wait = v.interval - (input.earliest % v.interval));
     return (v => v.wait * v.interval)(_.sortBy(schedule, v => v.wait)[0]);
   }
@@ -42,7 +42,7 @@ let getSolution = (input, config, part) => {
   // return schedule[0].interval * l;
 };
 
-new Solver(2020, 13, io.readLines, getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 13, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 3215
 // Part 2 solution:

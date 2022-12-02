@@ -60,7 +60,7 @@ let getSolution = (input, config) => {
   return sorted[sorted.length - 1] - sorted[0];
 };
 
-new Solver(2021, 14, io.readLines, getValues, getSolution, [{ part: 1, steps: 10 }, { part: 2, steps: 40 }]).solve();
+new Solver(2021, 14, io.readLines, getValues, getSolution, [{ steps: 10 }, { steps: 40 }]).solve();
 
 // Part 1 solution: 2851
 // Part 2 solution: 10002813279338

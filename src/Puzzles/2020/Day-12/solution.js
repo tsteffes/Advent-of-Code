@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../Helpers/io');
-const Solver = require('../../Helpers/solver').Solver;
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver').Solver;
 
 let getValues = input => {
   let res = _.map(input, i => i.match(/(?<cmd>[NSEWLRF])(?<val>\d+)/).groups);
@@ -54,12 +54,12 @@ getFinalState = (values, part) => {
   return state;
 };
 
-let getSolution = (values, config, part) => {
-  let finalState = getFinalState(values, part);
+let getSolution = (values, config) => {
+  let finalState = getFinalState(values, config.part);
   return Math.abs(finalState.pos[0]) + Math.abs(finalState.pos[1]);
 };
 
-new Solver(2020, 12, io.readLines, getValues, getSolution, [{ }, { }]).solve();
+new Solver(2020, 12, io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 2270
 // Part 2 solution: 138669
