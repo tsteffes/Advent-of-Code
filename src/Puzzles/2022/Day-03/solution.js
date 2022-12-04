@@ -1,13 +1,14 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
+const point = p => p > 96 ? p - 96 : p - 38;
 
-let getValues = (input, config) => {
+const getValues = (input, config) => {
   if (config.part === 1) {
     return _.map(input, i => [ i.substring(0, i.length / 2).split(''), i.substring(i.length / 2).split('') ]);
   }
 
-  let res = [];
+  const res = [];
   for (let i = 0; i < input.length; i += 3) {
      res.push([input[i].split(''), input[i + 1].split(''), input[i + 2].split('')]);
   }
@@ -15,12 +16,8 @@ let getValues = (input, config) => {
   return res;
 };
 
-let getSolution = values => {
-  let point = p => p > 96 ? p - 96 : p - 38;
-  return _.sum(_.map(values, v => point(_.intersection(...v)[0].charCodeAt(0))));
-};
-
-new Solver(io.readLines, getValues, getSolution).solve();
+const getSolution = values => _.sum(_.map(values, v => point(_.intersection(...v)[0].charCodeAt(0))));
+Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 7766
 // Part 2 solution: 2415

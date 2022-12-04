@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => {
   let results = { rules: [], mine: null, others: [] };
@@ -45,7 +45,7 @@ let getSolution = (input, config) => {
   return _.map(_.filter(input.rules, r => r.field.indexOf('departure') === 0), r => input.mine[r.column]).reduce((a, b) => a * b);
 };
 
-new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
+Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution);
 
 // Part 1 solution: 24021
 // Part 2 solution: 1289178686687

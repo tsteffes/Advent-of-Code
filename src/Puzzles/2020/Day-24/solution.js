@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 const moves = { 'e': [2, 0], 'se': [1, -1], 'sw': [-1, -1], 'w': [-2, 0], 'nw': [-1, 1], 'ne': [1, 1] };
 
@@ -36,7 +36,7 @@ let getSolution = (input, config) => {
   return result.length;
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ }, { days: 100 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ }, { days: 100 }]);
 
 // Part 1 solution: 427
 // Part 2 solution: 3837

@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 const maps = ['abcefg', 'cf', 'acdeg', 'acdfg', 'bcdf', 'abdfg', 'abdefg', 'acf', 'abcdefg', 'abcdfg'];
 /*
   a - 8 - unique letter between 3-digit and 2-digit
@@ -64,7 +64,7 @@ let getSolution = (values, config) => {
   }, 0);
 };
 
-new Solver(io.readLines, getValues, getSolution).solve();
+Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 519
 // Part 2 solution: 1027483

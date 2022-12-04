@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => {
   return input.map(i => {
@@ -29,7 +29,7 @@ let getSolution = (input, config) => {
   return _.filter(input, i => i.missing.length === 2).map(i => i.id).reduce((a, b) => a * b);
 };
 
-new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ }]).solve();
+Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ }]);
 
 // Part 1 solution: 15670959891893
 // Part 2 solution:

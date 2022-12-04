@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => _.map(input, d => parseInt(d, 10));
 
@@ -20,7 +20,7 @@ let getSolution = (values, config) => {
   return res;
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ window: 1 }, { window: 3 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ window: 1 }, { window: 3 }]);
 
 // Part 1 solution: 1752
 // Part 2 solution: 1781

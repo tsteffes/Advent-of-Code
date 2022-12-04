@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => input;
 
@@ -89,7 +89,7 @@ let getSolution = (input, config) => {
   return getCubeCount(state);
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ cycles: 6, d: 3 }, { cycles: 6, d: 4 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ cycles: 6, d: 3 }, { cycles: 6, d: 4 }]);
 
 // Part 1 solution: 317
 // Part 2 solution: 1692

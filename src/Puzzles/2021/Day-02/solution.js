@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 // [x, y] represents horizontal, vertical positions
 let getValues = input => _.map(input, d => {
@@ -40,7 +40,7 @@ let getSolution = (values, config) => {
   return cur[0] * cur[1];
 };
 
-new Solver(io.readLines, getValues, getSolution).solve();
+Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 2120749
 // Part 2 solution: 2138382217

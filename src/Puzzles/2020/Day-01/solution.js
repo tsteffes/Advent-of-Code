@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 const target = 2020;
 
 let getValues = input => _.map(input, d => parseInt(d, 10));
@@ -28,7 +28,7 @@ let getSolution = (values, config) => {
   }
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ operands: 2 }, { operands: 3}]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ operands: 2 }, { operands: 3}]);
 
 // Part 1 solution: 910539
 // Part 2 solution: 116724144

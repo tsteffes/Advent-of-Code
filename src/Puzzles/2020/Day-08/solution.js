@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => {
   let res = _.map(input, i => i.match(/(?<op>\w+)\s(?<num>[\-\+\d]+)/).groups);
@@ -35,7 +35,7 @@ let getSolution = (values, config) => {
   }));
 };
 
-new Solver(io.readLines, getValues, getSolution).solve();
+Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 1832
 // Part 2 solution: 662

@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => {
   let res = { map: { }, template: null };
@@ -60,7 +60,7 @@ let getSolution = (input, config) => {
   return sorted[sorted.length - 1] - sorted[0];
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ steps: 10 }, { steps: 40 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ steps: 10 }, { steps: 40 }]);
 
 // Part 1 solution: 2851
 // Part 2 solution: 10002813279338

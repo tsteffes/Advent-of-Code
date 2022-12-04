@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 const regex = /^target area: x=(?<xmin>[\d]+)\.\.(?<xmax>[\d]+), y=(?<ymin>-?[\d]+)\.\.(?<ymax>-?[\d]+)/;
 
 let getValues = input => {
@@ -50,7 +50,7 @@ let getSolution = (map, config) => {
   return validPaths.length;
 };
 
-new Solver(io.readLines, getValues, getSolution).solve();
+Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 9180
 // Part 2 solution: 3767

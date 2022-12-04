@@ -1,16 +1,10 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
-  return input.map(i => _.map(i.split('\r\n'), v => parseInt(v)));
-};
-
-let getSolution = (values, config) => {
-  return _.sum(_.take(_.reverse(_.sortBy(_.map(values, v => _.sum(v)))), config.top));
-};
-
-new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ top: 1 }, { top: 3 }]).solve();
+const getValues = input => input.map(i => _.map(i.split('\r\n'), v => parseInt(v)));
+const getSolution = (values, config) => _.sum(_.take(_.reverse(_.sortBy(_.map(values, v => _.sum(v)))), config.top));
+Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ top: 1 }, { top: 3 }]);
 
 // Part 1 solution: 69501
 // Part 2 solution: 202346

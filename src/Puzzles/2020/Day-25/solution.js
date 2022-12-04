@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => {
   return {
@@ -33,7 +33,7 @@ let getSolution = (input, config) => {
   return input.encryptionKey;
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ subject: 7 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ subject: 7 }]);
 
 // Part 1 solution: 15217943
 // Part 2 solution:

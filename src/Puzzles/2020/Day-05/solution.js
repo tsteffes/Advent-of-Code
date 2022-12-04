@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => {
   return _.map(input, i => {
@@ -17,7 +17,7 @@ let getSolution = (v, config) => {
   return _.find([...Array(_.max(v) - min).keys()], i => !_.includes(v, i + min)) + min;
 };
 
-new Solver(io.readLines, getValues, getSolution).solve();
+Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 888
 // Part 2 solution: 522

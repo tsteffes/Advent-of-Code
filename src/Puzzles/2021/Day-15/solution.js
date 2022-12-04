@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 const dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
 
 let getValues = (input, config) => {
@@ -47,7 +47,7 @@ let getSolution = (map, config) => {
   return map[0][0].minPath;
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ multiplier: 1 }, { multiplier: 5 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ multiplier: 1 }, { multiplier: 5 }]);
 
 // Part 1 solution: 393
 // Part 2 solution: 2823

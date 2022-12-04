@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 const regex = /^(?<version>[01]{3})(?<type>[01]{3})(?<rest>[01]*)/;
 const ops = {
   0: (vals) => _.sum(vals),
@@ -82,7 +82,7 @@ let getSolution = (input, config) => {
   return getValue(input.packet);
 };
 
-new Solver(io.readLines, getValues, getSolution).solve();
+Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 999
 // Part 2 solution: 3408662834145

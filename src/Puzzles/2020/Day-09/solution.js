@@ -1,7 +1,7 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const arrays = require('../../../Helpers/arrays');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const arrays = require('../../../helpers/arrays');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => {
   return input.map(v => parseInt(v));
@@ -30,7 +30,7 @@ let getSolution = (values, config) => {
   return (res => _.min(res) + _.max(res))(findContiguousSumSubset(values, pt1));
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ setSize: 25 }, { setSize: 25 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ setSize: 25 }, { setSize: 25 }]);
 
 // Part 1 solution: 25918798
 // Part 2 solution: 3340942

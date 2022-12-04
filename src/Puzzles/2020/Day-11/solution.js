@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => {
   return input.map(y => y.split(''));
@@ -56,7 +56,7 @@ let getSolution = (values, config) => {
   return _.sum(curState.map(c => _.filter(c, c1 => c1 === '#').length));
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ adjacentMin: 4, adjacentRule: 1 }, { adjacentMin: 5, adjacentRule: 2 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ adjacentMin: 4, adjacentRule: 1 }, { adjacentMin: 5, adjacentRule: 2 }]);
 
 // Part 1 solution: 2418
 // Part 2 solution: 2144

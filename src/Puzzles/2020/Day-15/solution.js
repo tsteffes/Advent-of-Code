@@ -1,7 +1,7 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
-const HashMap = require('../../../Helpers/hashMap').HashMap;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
+const HashMap = require('../../../helpers/hashMap').HashMap;
 
 let getValues = input => _.map(input[0].split(','), i => parseInt(i));
 
@@ -18,7 +18,7 @@ let getSolution = (input, config) => {
   return num;
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ target: 2020 }, { target: 30000000 }]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ target: 2020 }, { target: 30000000 }]);
 
 // Part 1 solution: 249
 // Part 2 solution: 41687

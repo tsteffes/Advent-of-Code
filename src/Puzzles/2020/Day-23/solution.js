@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 const LoopyList = require('./LoopyList').LoopyList;
 
 let getValues = input => input[0].split('').map(i => parseInt(i));
@@ -25,7 +25,7 @@ let getSolution = (input, config) => {
   return list.slice(2).reduce((a, b) => a.val * b.val);
 };
 
-new Solver(io.readLines, getValues, getSolution, [{ moves: 100, max: 9 }, { moves: 10000000, max: 1000000 } ]).solve();
+Solver.solve(io.readLines, getValues, getSolution, [{ moves: 100, max: 9 }, { moves: 10000000, max: 1000000 } ]);
 
 // Part 1 solution: 149725386
 // Part 2 solution: 538935646702

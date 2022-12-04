@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver').Solver;
+const io = require('../../../helpers/io');
+const Solver = require('../../../helpers/solver');
 
 let getValues = input => input;
 
@@ -43,9 +43,9 @@ let checkRule = (state) => {
     }
   }
   else {
-    let res1 = checkRule(message, rule.parts[0]);
-    if (res1.res)
-    let res2 = checkRule(message, rule.parts[1]);
+    // let res1 = checkRule(message, rule.parts[0]);
+    // if (res1.res)
+    // let res2 = checkRule(message, rule.parts[1]);
   }
 };
 
@@ -56,7 +56,7 @@ let getSolution = (input, config) => {
   return messages.filter(m => checkRule({ message: m, idx: 0, rule: 0, rules: rules })).length;
 };
 
-new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
+Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution);
 
 // Part 1 solution:
 // Part 2 solution:
