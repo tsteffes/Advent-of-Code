@@ -29,7 +29,7 @@ let getSolution = (input, config) => {
   return _.filter(input, i => i.missing.length === 2).map(i => i.id).reduce((a, b) => a * b);
 };
 
-new Solver(2020, 20, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ }]).solve();
+new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ }]).solve();
 
 // Part 1 solution: 15670959891893
 // Part 2 solution:

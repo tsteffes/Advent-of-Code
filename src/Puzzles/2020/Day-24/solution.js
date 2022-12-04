@@ -36,7 +36,7 @@ let getSolution = (input, config) => {
   return result.length;
 };
 
-new Solver(2020, 24, io.readLines, getValues, getSolution, [{ }, { days: 100 }]).solve();
+new Solver(io.readLines, getValues, getSolution, [{ }, { days: 100 }]).solve();
 
 // Part 1 solution: 427
 // Part 2 solution: 3837

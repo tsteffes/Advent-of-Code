@@ -20,7 +20,7 @@ let getSolution = (values, config) => {
   return res;
 };
 
-new Solver(2021, 1, io.readLines, getValues, getSolution, [{ window: 1 }, { window: 3 }]).solve();
+new Solver(io.readLines, getValues, getSolution, [{ window: 1 }, { window: 3 }]).solve();
 
 // Part 1 solution: 1752
 // Part 2 solution: 1781

@@ -23,7 +23,7 @@ let getSolution = (values, config) => {
   }));
 };
 
-new Solver(2020, 6, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
+new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
 
 // Part 1 solution: 6911
 // Part 2 solution: 3473

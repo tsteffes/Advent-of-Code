@@ -56,7 +56,7 @@ let getSolution = (input, config) => {
   return messages.filter(m => checkRule({ message: m, idx: 0, rule: 0, rules: rules })).length;
 };
 
-new Solver(2020, 19, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
+new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
 
 // Part 1 solution:
 // Part 2 solution:

@@ -13,7 +13,7 @@ let getSolution = (values, config) => {
   return config.configs.reduce((a, b) => a * countTrees(values, b), 1);
 };
 
-new Solver(2020, 3, io.readLines, i => i, getSolution, [{ configs: partOneConfigs }, { configs: partTwoConfigs }]).solve();
+new Solver(io.readLines, i => i, getSolution, [{ configs: partOneConfigs }, { configs: partTwoConfigs }]).solve();
 
 // Part 1 solution: 228
 // Part 2 solution: 6818112000

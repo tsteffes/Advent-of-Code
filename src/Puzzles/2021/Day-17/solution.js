@@ -50,7 +50,7 @@ let getSolution = (map, config) => {
   return validPaths.length;
 };
 
-new Solver(2021, 17, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 9180
 // Part 2 solution: 3767

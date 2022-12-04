@@ -28,7 +28,7 @@ let getSolution = (values, config) => {
   }
 };
 
-new Solver(2020, 1, io.readLines, getValues, getSolution, [{ operands: 2 }, { operands: 3}]).solve();
+new Solver(io.readLines, getValues, getSolution, [{ operands: 2 }, { operands: 3}]).solve();
 
 // Part 1 solution: 910539
 // Part 2 solution: 116724144

@@ -49,7 +49,7 @@ let getSolution = (players, config) => {
   return _.sum(_.map(players, p => _.sum(_.map(p.cards, (c, i) => c * (p.cards.length - i)))));
 };
 
-new Solver(2020, 22, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
+new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution).solve();
 
 // Part 1 solution: 32401
 // Part 2 solution: 31436

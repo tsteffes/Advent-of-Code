@@ -33,7 +33,7 @@ let getSolution = (input, config) => {
   return input.encryptionKey;
 };
 
-new Solver(2020, 25, io.readLines, getValues, getSolution, [{ subject: 7 }]).solve();
+new Solver(io.readLines, getValues, getSolution, [{ subject: 7 }]).solve();
 
 // Part 1 solution: 15217943
 // Part 2 solution:

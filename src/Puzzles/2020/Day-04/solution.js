@@ -21,7 +21,7 @@ let getSolution = (values, config) => {
   }).length;
 };
 
-new Solver(2020, 4, i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ validate: false }, { validate: true }]).solve();
+new Solver(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ validate: false }, { validate: true }]).solve();
 
 // Part 1 solution: 254
 // Part 2 solution: 184

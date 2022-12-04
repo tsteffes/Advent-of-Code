@@ -43,7 +43,7 @@ let getSolution = (input, config) => {
   return 'Read the output';
 };
 
-new Solver(2021, 13, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 669
 // Part 2 solution: UEFZCUCJ

@@ -42,7 +42,7 @@ let getSolution = (input, config) => {
   // return schedule[0].interval * l;
 };
 
-new Solver(2020, 13, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 3215
 // Part 2 solution:

@@ -71,7 +71,7 @@ let getSolution = (values, config) => {
   return valid.map(v => getScore(v)).sort((a, b) => a - b)[Math.floor(valid.length / 2)];
 };
 
-new Solver(2021, 10, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 318099
 // Part 2 solution: 2389738699

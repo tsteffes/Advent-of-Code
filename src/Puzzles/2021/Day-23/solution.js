@@ -9,7 +9,7 @@ let getSolution = (input, config) => {
   return
 };
 
-new Solver(2021, 23, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution:
 // Part 2 solution:

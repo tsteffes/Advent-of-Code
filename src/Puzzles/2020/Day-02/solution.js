@@ -26,7 +26,7 @@ let getSolution = (values, config) => {
   return _.filter(values, config.filter).length;
 };
 
-new Solver(2020, 2, io.readLines, getValues, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]).solve();
+new Solver(io.readLines, getValues, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]).solve();
 
 // Part 1 solution: 418
 // Part 2 solution: 616

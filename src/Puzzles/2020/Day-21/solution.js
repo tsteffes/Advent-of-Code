@@ -37,7 +37,7 @@ let getSolution = (input, config) => {
   return _.sortBy(results, r => r.name).map(r => r.actual).join(',');
 };
 
-new Solver(2020, 21, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 2517
 // Part 2 solution: rhvbn,mmcpg,kjf,fvk,lbmt,jgtb,hcbdb,zrb

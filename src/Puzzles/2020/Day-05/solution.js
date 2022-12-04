@@ -17,7 +17,7 @@ let getSolution = (v, config) => {
   return _.find([...Array(_.max(v) - min).keys()], i => !_.includes(v, i + min)) + min;
 };
 
-new Solver(2020, 5, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 888
 // Part 2 solution: 522

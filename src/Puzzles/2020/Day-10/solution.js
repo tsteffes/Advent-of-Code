@@ -31,7 +31,7 @@ let getSolution = (values, config) => {
   return getPathCount(values);
 };
 
-new Solver(2020, 10, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 1917
 // Part 2 solution: 113387824750592

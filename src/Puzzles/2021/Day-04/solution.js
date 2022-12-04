@@ -73,7 +73,7 @@ let getSolution = (game, config) => {
   return res;
 };
 
-new Solver(2021, 4, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 38913
 // Part 2 solution: 16836

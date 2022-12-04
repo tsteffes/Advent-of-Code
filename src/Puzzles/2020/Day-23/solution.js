@@ -25,7 +25,7 @@ let getSolution = (input, config) => {
   return list.slice(2).reduce((a, b) => a.val * b.val);
 };
 
-new Solver(2020, 23, io.readLines, getValues, getSolution, [{ moves: 100, max: 9 }, { moves: 10000000, max: 1000000 } ]).solve();
+new Solver(io.readLines, getValues, getSolution, [{ moves: 100, max: 9 }, { moves: 10000000, max: 1000000 } ]).solve();
 
 // Part 1 solution: 149725386
 // Part 2 solution: 538935646702

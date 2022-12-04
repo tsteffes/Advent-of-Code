@@ -43,7 +43,7 @@ let getSolution = (input, config) => {
   return _.sum(results);
 };
 
-new Solver(2020, 18, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 69490582260
 // Part 2 solution: 362464596624526

@@ -30,7 +30,7 @@ let getSolution = (values, config) => {
   return (res => _.min(res) + _.max(res))(findContiguousSumSubset(values, pt1));
 };
 
-new Solver(2020, 9, io.readLines, getValues, getSolution, [{ setSize: 25 }, { setSize: 25 }]).solve();
+new Solver(io.readLines, getValues, getSolution, [{ setSize: 25 }, { setSize: 25 }]).solve();
 
 // Part 1 solution: 25918798
 // Part 2 solution: 3340942

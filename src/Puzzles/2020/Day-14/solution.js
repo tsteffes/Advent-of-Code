@@ -49,7 +49,7 @@ let getSolution = (input, config) => {
   return _.sum(_.map(Object.entries(memory), v => v[1]));
 };
 
-new Solver(2020, 14, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 11884151942312
 // Part 2 solution: 2625449018811

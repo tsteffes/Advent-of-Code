@@ -20,7 +20,7 @@ let getSolution = values => {
   return _.sum(_.map(values, v => point(_.intersection(...v)[0].charCodeAt(0))));
 };
 
-new Solver(2022, 3, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 7766
 // Part 2 solution: 2415

@@ -198,7 +198,7 @@ let getSolution = (values, config) => {
   return max;
 };
 
-new Solver(2021, 18, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 4137
 // Part 2 solution: 4573

@@ -65,7 +65,7 @@ let getSolution = (values, config) => {
   return res;
 };
 
-new Solver(2021, 11, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 1634
 // Part 2 solution: 210

@@ -89,7 +89,7 @@ let getSolution = (values, config) => {
   return completePaths.length;
 };
 
-new Solver(2021, 12, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 3679
 // Part 2 solution: 107395

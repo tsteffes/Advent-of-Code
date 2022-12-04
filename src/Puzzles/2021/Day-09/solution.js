@@ -64,7 +64,7 @@ let getSolution = (values, config) => {
   return _.take(basins.sort((a, b) => b.length - a.length), 3).reduce((cur, x) => cur * x.length, 1);
 };
 
-new Solver(2021, 9, io.readLines, getValues, getSolution).solve();
+new Solver(io.readLines, getValues, getSolution).solve();
 
 // Part 1 solution: 550
 // Part 2 solution: 1100682

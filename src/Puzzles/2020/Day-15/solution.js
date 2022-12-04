@@ -18,7 +18,7 @@ let getSolution = (input, config) => {
   return num;
 };
 
-new Solver(2020, 15, io.readLines, getValues, getSolution, [{ target: 2020 }, { target: 30000000 }]).solve();
+new Solver(io.readLines, getValues, getSolution, [{ target: 2020 }, { target: 30000000 }]).solve();
 
 // Part 1 solution: 249
 // Part 2 solution: 41687
