@@ -2,14 +2,8 @@ const logger = require('./logger');
 
 exports.Solver = class {
   constructor(inputter, mapper, method, configs = []) {
-    this.folder = process.argv[1].match(/(?<folder>.*)solution\.js/).groups.folder;
-    this.mapper = mapper;
-    this.inputter = inputter;
-    this.method = method;
-    this.configs = [{ part: 1, ...configs[0] }, { part: 2, ...configs[1] }];
+    const folder = process.argv[1].match(/(?<folder>.*)solution\.js/).groups.folder;
+    configs = [{ part: 1, ...configs[0] }, { part: 2, ...configs[1] }];
+    this.solve = () => logger.log(configs.map(c => method(mapper(inputter(folder + 'input.txt'), c), c)));
   }
-
-  solve = () => {
-    logger.log(this.configs.map(c => this.method(this.mapper(this.inputter(this.folder + 'input.txt'), c), c)));
-  };
 };
