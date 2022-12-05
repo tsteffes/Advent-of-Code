@@ -2,6 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const arrays = require('../../../helpers/arrays');
 const Solver = require('../../../helpers/solver');
+const setSize = 25;
 
 let getValues = input => {
   return input.map(v => parseInt(v));
@@ -17,12 +18,12 @@ let findContiguousSumSubset = (set, total) => {
   return (s => set.slice(s[0], s[1]))(sets.find(s => _.sum(set.slice(s[0], s[1])) === total));
 };
 
-let findNonCompliant = (values, setSize) => {
+let findNonCompliant = (values) => {
   return _.find(values, (val, idx) => idx >= setSize && !findSum(values.slice(idx - setSize, idx), val));
 };
 
 let getSolution = (values, config) => {
-  let pt1 = findNonCompliant(values, config.setSize);
+  let pt1 = findNonCompliant(values);
   if (config.part === 1) {
     return pt1;
   }
@@ -30,7 +31,7 @@ let getSolution = (values, config) => {
   return (res => _.min(res) + _.max(res))(findContiguousSumSubset(values, pt1));
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ setSize: 25 }, { setSize: 25 }]);
+Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 25918798
 // Part 2 solution: 3340942

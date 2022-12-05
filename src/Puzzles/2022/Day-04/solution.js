@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
-const reg = /(?<min1>[\d]+)\-(?<max1>[\d]+),(?<min2>[\d]+)\-(?<max2>[\d]+)/;
+const reg = /(?<min1>\d+)-(?<max1>\d+),(?<min2>\d+)-(?<max2>\d+)/;
 const full = v => (v.min1 <= v.min2 && v.max1 >= v.max2) || (v.min2 <= v.min1 && v.max2 >= v.max1);
 const partial = v => (v.min1 <= v.min2 && v.max1 >= v.min2) || (v.min2 <= v.min1 && v.max2 >= v.min1);
 

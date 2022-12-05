@@ -33,7 +33,7 @@ const getSolution = (input, config) => {
       s.push(input.stacks[i.from - 1].pop());
     }
 
-    input.stacks[i.to - 1] = input.stacks[i.to - 1].concat(config.mutate(s));
+    input.stacks[i.to - 1].push(...config.mutate(s));
   });
 
   return input.stacks.map(s => s[s.length - 1]).join('');
