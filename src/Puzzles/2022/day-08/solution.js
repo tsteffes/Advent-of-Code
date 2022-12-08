@@ -20,7 +20,7 @@ const isVisible = (map, x, y) => {
 }
 
 const scenicScore = (map, x, y) => {
-  let v = [[0, 1], [0, -1], [1, 0], [-1, 0]].map(dir => {
+  return [[0, 1], [0, -1], [1, 0], [-1, 0]].map(dir => {
     let curX = x + dir[0], curY = y + dir[1], height = map[y][x];
     let score = 1;
     do {
@@ -32,12 +32,8 @@ const scenicScore = (map, x, y) => {
       curX += dir[0];
       curY += dir[1];
     } while (curX >= 0 && curX < map[0].length && curY >= 0 && curY < map.length);
-
     return --score;
-  });
-
-  let score = v.reduce((a, b) => a * b);
-  return score;
+  }).reduce((a, b) => a * b);
 }
 
 const getSolution = (input, config) => {
@@ -50,12 +46,10 @@ const getSolution = (input, config) => {
     }
   }
 
-  return config.part == 1 ?
-    vis + 2 * input.length + 2 * input[0].length - 4 :
-    scenicMax;
+  return config.part == 1 ? vis + 2 * input.length + 2 * input[0].length - 4 : scenicMax;
 };
 
 Solver.solve(io.readLines, getValues, getSolution);
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 1827
+// Part 2 solution: 335580
