@@ -5,7 +5,7 @@ const Solver = require('../../../helpers/solver');
 const getSize = dir => _.sum(dir.dirs.map(getSize)) + _.sum(dir.files.map(f => f.size));
 const getSolution = (input, config) => {
   const sys = { name: '/', dirs: [], files: [], parent: null };
-  const dirs = [sys];
+  const directories = [sys];
   let pwd;
   for (let i = 0; i < input.length && input[i].startsWith('$'); i++) {
     let instr = input[i];
@@ -19,7 +19,7 @@ const getSolution = (input, config) => {
       const dir = instr.match(/dir\s(?<name>.*)/);
       if (dir) {
         const d = { name: dir.groups.name, dirs: [], files: [], parent: pwd };
-        dirs.push(d);
+        directories.push(d);
         pwd.dirs.push(d);
       }
 
@@ -30,15 +30,14 @@ const getSolution = (input, config) => {
     }
   }
 
-  let sizes = dirs.map(getSize);
-  if (config.part === 1) {
-    return _.sum(sizes.filter(s => s < 100000));
-  }
-
-  return _.sortBy(sizes.filter(s => s > getSize(sys) - 40000000))[0];
+  return config.formula(directories.map(getSize), getSize(sys));
 };
 
-Solver.solve(io.readLines, i => i, getSolution);
+const config = [
+  { formula: sizes => _.sum(sizes.filter(s => s < 100000)) },
+  { formula: (sizes, sysSize) => _.sortBy(sizes.filter(s => s > sysSize - 40000000))[0] }
+];
+Solver.solve(io.readLines, i => i, getSolution, config);
 
 // Part 1 solution: 1084134
 // Part 2 solution: 6183184

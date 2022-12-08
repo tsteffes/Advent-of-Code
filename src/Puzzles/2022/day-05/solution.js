@@ -3,19 +3,12 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
 const getValues = input => {
-  const rows = _.reverse(input[0].split('\r\n'));
-  const len = _.ceil(rows[0].length / 4);
+  const rows = _.reverse(input[0].split('\r\n')).splice(1);
   const stacks = [];
-  for (let i = 0; i < len; i++) {
-    stacks.push([]);
-  }
-
-  _.forEach(rows.splice(1), r => {
-    for (let i = 0; i < len && (i * 4) <= r.length; i++) {
-      const l = r.substring(i * 4, i * 4 + 4).match(/\[(?<letter>[A-Z])\]\s?/);
-      if (l) {
-        stacks[i].push(l.groups.letter);
-      }
+  rows.forEach(r => {
+    for (let i = 0; (i * 4) <= r.length; i++) {
+      const letter = r.substring(i * 4).match(/^\[(?<letter>[A-Z])\]/);
+      letter ? (stacks[i] = stacks[i] || []).push(letter.groups.letter) : null;
     }
   });
 
