@@ -2,14 +2,14 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return input.map(i => {
     let m = i.match(/^([a-z\s,]+)\(contains ([a-z\s,]+)\)$/);
     return { allergens: m[2].replace(/,/g, '').split(' '), ingredients: m[1].trim().split(' ') };
   });
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let results = [];
   input.forEach(i => {
     i.allergens.forEach(a => {

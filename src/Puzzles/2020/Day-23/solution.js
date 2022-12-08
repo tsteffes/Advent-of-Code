@@ -3,9 +3,9 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 const LoopyList = require('./LoopyList').LoopyList;
 
-let getValues = input => input[0].split('').map(i => parseInt(i));
+const getValues = input => input[0].split('').map(i => parseInt(i));
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let count = input.length;
   [...Array(config.max - count).keys()].forEach(i => input.push(count + i + 1));
   let list = new LoopyList(input);

@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => _.map(input, d => d);
+const getValues = input => _.map(input, d => d);
 
 let convertToDecimal = v => {
   let res = 0;
@@ -13,7 +13,7 @@ let convertToDecimal = v => {
   return res;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let valCount = values.length;
   let len = values[0].length;
   let res = new Array(len).fill(0);

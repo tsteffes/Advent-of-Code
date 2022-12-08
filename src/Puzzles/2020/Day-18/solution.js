@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => input;
+const getValues = input => input;
 
 let calculate = (i, part) => {
   let val = i.match(/^\d+$/);
@@ -38,7 +38,7 @@ let calculate = (i, part) => {
   return i;
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let results = input.map(i => parseInt(calculate(i.replace(/\s/g, ''), config.part)));
   return _.sum(results);
 };

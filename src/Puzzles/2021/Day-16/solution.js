@@ -53,7 +53,7 @@ let parsePacket = bin => {
   return { packet: packet, rest: rest };
 };
 
-let getValues = input => {
+const getValues = input => {
   let bin = '';
   for (let hex of input[0]) {
     bin += parseInt(hex, 16).toString(2).padStart(4, '0');
@@ -74,7 +74,7 @@ let getValue = packet => {
   return ops[packet.type](packet.subPackets.map(getValue));
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   if (config.part === 1) {
     return sumVersions([input.packet]);
   }

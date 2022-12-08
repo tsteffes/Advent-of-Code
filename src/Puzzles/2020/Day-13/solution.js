@@ -2,14 +2,14 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return {
     earliest: parseInt(input[0]),
     schedule: _.filter(_.map(input[1].split(','), (v, i) => { return { interval: parseInt(v == 'x' ? -1 : v), index: i }; }), v => v.interval > 0)
   };
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let schedule = input.schedule;
   if (config.part === 1) {
     schedule.forEach(v => v.wait = v.interval - (input.earliest % v.interval));

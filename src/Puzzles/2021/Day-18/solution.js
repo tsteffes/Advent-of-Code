@@ -21,7 +21,7 @@ let parseNode = (s, parent) => {
   return node;
 };
 
-let getValues = input => {
+const getValues = input => {
   return input.map(i => parseNode(i, null));
 };
 
@@ -165,7 +165,7 @@ let getMagnitude = node => {
   return 3 * getMagnitude(node.left) + 2 * getMagnitude(node.right);
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     do {
       let newNode = {

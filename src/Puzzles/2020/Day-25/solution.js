@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return {
     cardPublicKey: parseInt(input[0]),
     doorPublicKey: parseInt(input[1]),
@@ -26,7 +26,7 @@ let getLoopCount = (val, target) => {
   return loops;
 }
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   input.cardLoopSize = getLoopCount(config.subject, input.cardPublicKey);
   input.doorLoopSize = getLoopCount(config.subject, input.doorPublicKey);
   input.encryptionKey = transform(input.doorPublicKey, input.cardLoopSize);

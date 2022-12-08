@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return _.map(input, i => {
     let g = i.match(/(?<x1>\d+),(?<y1>\d+) -> (?<x2>\d+),(?<y2>\d+)/).groups;
     return { x1: parseInt(g.x1), x2: parseInt(g.x2), y1: parseInt(g.y1), y2: parseInt(g.y2) };
@@ -18,7 +18,7 @@ let isBetween = (point, p1, p2) => {
   return Math.abs(getDistance(point, p1) + getDistance(point, p2) - getDistance(p1, p2)) < 0.0000001;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     values = values.filter(v => v.x1 === v.x2 || v.y1 === v.y2);
   }

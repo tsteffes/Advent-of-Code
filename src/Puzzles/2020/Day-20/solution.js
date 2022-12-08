@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return input.map(i => {
     let vals = i.split('\r\n');
     let title = vals.shift().match(/^Tile (?<num>\d+):$/);
@@ -19,7 +19,7 @@ let mapBorders = vals => {
   ];
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   input.forEach(i => {
     i.missing = _.filter(i.borders, b => !_.some(input, x => {
       return x.id !== i.id && _.some(x.borders, b2 => b2 === b || b2 === b.split('').reverse().join(''));

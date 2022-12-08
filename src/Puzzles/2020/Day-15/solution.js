@@ -3,9 +3,9 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 const HashMap = require('../../../helpers/hashMap').HashMap;
 
-let getValues = input => _.map(input[0].split(','), i => parseInt(i));
+const getValues = input => _.map(input[0].split(','), i => parseInt(i));
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let indexes = new HashMap(32768);
   input.slice(0, input.length - 1).forEach(i => indexes.set(i, input.lastIndexOf(i)));
   let num = input[input.length - 1];

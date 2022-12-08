@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return _.map(input, i => {
     let mask = i.match(/mask = (?<mask>[X01]+)/);
     if (mask) {
@@ -43,7 +43,7 @@ let runProgram = (input, memory, version) => {
   input.forEach(i => cmds[i.op](i));
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let memory = {};
   runProgram(input, memory, config.part);
   return _.sum(_.map(Object.entries(memory), v => v[1]));

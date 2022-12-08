@@ -2,13 +2,13 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return _.map(input, i => {
     return _.sum([...Array(10).keys()].map(j => i[j] === 'B' || i[j] === 'R' ? Math.pow(2, 9-j) : 0));
   });
 }
 
-let getSolution = (v, config) => {
+const getSolution = (v, config) => {
   if (config.part === 1) {
     return _.max(v);
   }

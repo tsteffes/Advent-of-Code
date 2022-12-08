@@ -2,11 +2,10 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
-};
+const getValues = input => input;
 
-let getSolution = (input, config) => {
-  return
+const getSolution = (input, config) => {
+  return input;
 };
 
 Solver.solve(io.readLines, getValues, getSolution);

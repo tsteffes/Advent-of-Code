@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let res = {};
   input.map(y => y.split('-')).forEach(v => {
     res[v[0]] = res[v[0]] || [];
@@ -56,7 +56,7 @@ let canVisit = (path, val, config) => {
   return !_.values(_.countBy(path.filter(p => !isCap(p)))).find(x => x > 1);
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let paths = [];
   let completePaths = [];
   paths.push(['start']);

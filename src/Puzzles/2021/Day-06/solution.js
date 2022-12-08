@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let vals = input[0].split(',').map(v => parseInt(v, 10));
   let res = [];
   for (let i = 0; i < 9; i++) {
@@ -12,7 +12,7 @@ let getValues = input => {
   return res;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   for (let i = 0; i < config.days; i++) {
     let zeroCount = values.shift();
     values[6] += zeroCount;

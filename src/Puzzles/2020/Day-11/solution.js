@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return input.map(y => y.split(''));
 };
 
@@ -46,7 +46,7 @@ let getNextState = (curState, config) => {
   return nextState;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let nextState = values, curState;
   do {
     curState = nextState;

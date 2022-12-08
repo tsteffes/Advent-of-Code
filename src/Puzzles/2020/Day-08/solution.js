@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let res = _.map(input, i => i.match(/(?<op>\w+)\s(?<num>[\-\+\d]+)/).groups);
   res.forEach(j => j.num = parseInt(j.num));
   return res;
@@ -18,7 +18,7 @@ let execute = (values, state) => {
   }
 }
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     let state = { sum: 0, visited: [], nextIndex: 0 };
     execute(values, state);

@@ -3,7 +3,7 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 const regex = /^target area: x=(?<xmin>[\d]+)\.\.(?<xmax>[\d]+), y=(?<ymin>-?[\d]+)\.\.(?<ymax>-?[\d]+)/;
 
-let getValues = input => {
+const getValues = input => {
   let c = input[0].match(regex);
   return {
     xmin: parseInt(c.groups.xmin, 10),
@@ -17,7 +17,7 @@ let checkHit = (map, loc) => map.xmin <= loc[0] && loc[0] <= map.xmax && map.ymi
 
 let checkOvershot = (map, loc) => loc[0] > map.xmax || loc[1] < map.ymin;
 
-let getSolution = (map, config) => {
+const getSolution = (map, config) => {
   let validPaths = [];
   for (let i = 1; i <= map.xmax; i++) {
     for (let j = map.ymin; j <= Math.abs(map.ymin); j++) {

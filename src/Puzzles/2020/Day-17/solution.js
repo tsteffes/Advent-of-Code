@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => input;
+const getValues = input => input;
 
 let getBlankState = (size) => {
   let state = [];
@@ -62,7 +62,7 @@ let getCubeCount = state => {
   return count;
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let size = { x: (config.cycles * 2) + input[0].length, y: (config.cycles * 2) + input.length, z: (config.cycles * 2) + 1, w: config.d === 4 ? (config.cycles * 2) + 1 : 1 };
   let state = getBlankState(size);
   for (let y = 0; y < input.length; y++) {

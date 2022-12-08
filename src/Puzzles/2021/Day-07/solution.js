@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return input[0].split(',').map(v => parseInt(v, 10));
 };
 
@@ -15,7 +15,7 @@ let getCost = (i, val, config) => {
   return (dist * (dist + 1)) / 2;
 }
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let max = _.max(values);
   let res = null;
   for (let i = 0; i < max; i++) {

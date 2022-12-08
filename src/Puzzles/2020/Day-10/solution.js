@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let res = _.sortBy(input.map(v => parseInt(v)));
   res.unshift(0);
   res.push(_.max(res) + 3);
@@ -22,7 +22,7 @@ let getPathCount = values => {
   return pathAccum[0];
 }
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     let m = values.map((v, i) => i == 0 ? v : v - values[i-1]);
     return (d => _.filter(d, v1 => v1 == 3).length * _.filter(d, v2 => v2 == 1).length)(m);

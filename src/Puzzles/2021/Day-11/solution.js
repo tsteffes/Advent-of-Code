@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return input.map(y => y.split('').map(v => parseInt(v, 10)));
 };
 
@@ -17,7 +17,7 @@ let incrementNeighbors = (values, x, y) => {
   }
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let res = 0;
   let step = 0;
   while(true) {

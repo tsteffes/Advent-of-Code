@@ -4,7 +4,7 @@ const Solver = require('../../../helpers/solver');
 const fields = require('./fields');
 const requiredFields = 7;
 
-let getValues = input => _.map(_.map(input, i => i.split(/\s+/)), mapPassport);
+const getValues = input => _.map(_.map(input, i => i.split(/\s+/)), mapPassport);
 
 let mapPassport = collection => {
   let result = {};
@@ -12,7 +12,7 @@ let mapPassport = collection => {
   return result;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   return _.filter(values, passport => {
     return _.filter(Object.keys(passport), key => {
       let field = _.find(fields, f => f.name === key);

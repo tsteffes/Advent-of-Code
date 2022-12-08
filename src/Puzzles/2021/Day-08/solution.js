@@ -12,7 +12,7 @@ const maps = ['abcefg', 'cf', 'acdeg', 'acdfg', 'bcdf', 'abdfg', 'abdefg', 'acf'
   g - 7 - remaining letter
 */
 
-let getValues = input => {
+const getValues = input => {
   return input.map(i => {
     let g = i.match(/(?<ins>(\S+\s?)+) \| (?<outs>(\S+\s?)+)/).groups;
     return { ins: g.ins.split(/\s/), outs: g.outs.split(/\s/) };
@@ -45,7 +45,7 @@ let getDigit = (val, translations) => {
   return digit;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     return _.sum(values.map(v => v.outs.filter(o => [2, 3, 4, 7].includes(o.length)).length));
   }

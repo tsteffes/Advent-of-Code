@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let res = { map: { }, template: null };
   for (line of input) {
     let a = line.match(/(?<x>[A-Z]+) -> (?<y>[A-Z]+)/);
@@ -18,7 +18,7 @@ let getValues = input => {
   return res;
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let vals = {};
   for (let i = 0; i < input.template.length - 1; i++) {
     let key = input.template[i] + input.template[i + 1];

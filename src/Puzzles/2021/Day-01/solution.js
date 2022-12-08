@@ -2,9 +2,9 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => _.map(input, d => parseInt(d, 10));
+const getValues = input => _.map(input, d => parseInt(d, 10));
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let res = 0;
   let prev = 0;
   for (let i = config.window; i < values.length; i++) {

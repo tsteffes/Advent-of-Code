@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let results = { rules: [], mine: null, others: [] };
   input[0].split('\r\n').forEach(r => {
     let g = r.match(/(?<field>[a-z\s]+): (?<min1>\d+)-(?<max1>\d+) or (?<min2>\d+)-(?<max2>\d+)/).groups;
@@ -21,7 +21,7 @@ let filterColumns = (rules, col) => {
   rules.forEach(r => _.remove(r.possibleColumns, c => c === col));
 }
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let failsAllRules = v => !_.some(input.rules, r => checkRule(r, v));
   if (config.part === 1) {
     return _.sum(_.map(input.others, other => _.sum(_.filter(other, failsAllRules))));

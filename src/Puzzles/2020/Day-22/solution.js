@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return input.map(i => {
     let rows = i.split('\r\n');
     return { cards: rows.slice(1).map(i => parseInt(i)) };
@@ -36,7 +36,7 @@ let playRecursive = (players) => {
   return cheatWin || players[0].cards.length > 0 ? 0 : 1;
 };
 
-let getSolution = (players, config) => {
+const getSolution = (players, config) => {
   if (config.part === 1) {
     do {
       resolveGame(players, players[0].cards[0] > players[1].cards[0] ? 0 : 1);

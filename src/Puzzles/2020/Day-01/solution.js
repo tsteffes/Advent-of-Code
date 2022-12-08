@@ -3,9 +3,9 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 const target = 2020;
 
-let getValues = input => _.map(input, d => parseInt(d, 10));
+const getValues = input => _.map(input, d => parseInt(d, 10));
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   const sorted = _.sortBy(values);
   let indices = _.reverse([...Array(config.operands).keys()]);
 

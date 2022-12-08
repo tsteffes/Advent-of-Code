@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let res = { coords: [], folds: [] };
   for (line of input) {
     let c = line.match(/(?<x>[\d]+),(?<y>[\d]+)/);
@@ -18,7 +18,7 @@ let getValues = input => {
   return res;
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   for (let fold of _.take(input.folds, config.part === 1 ? 1 : input.folds.length)) {
     for (let coord of input.coords) {
       coord.x = fold.dir === 'x' && coord.x > fold.val ? (fold.val - (coord.x - fold.val)) : coord.x;

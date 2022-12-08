@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return input.map(y => y.split('').map(v => parseInt(v, 10)));
 };
 
@@ -42,7 +42,7 @@ let getBasinPoints = (values, x, y, visited) => {
   return res;
 }
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let lowPoints = [];
   for (let x = 0; x < values[0].length; x++) {
     for (let y = 0; y < values.length; y++) {

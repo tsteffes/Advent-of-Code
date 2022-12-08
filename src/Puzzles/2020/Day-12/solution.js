@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let res = _.map(input, i => i.match(/(?<cmd>[NSEWLRF])(?<val>\d+)/).groups);
   res.forEach(r => r.val = parseInt(r.val));
   return res;
@@ -54,7 +54,7 @@ getFinalState = (values, part) => {
   return state;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let finalState = getFinalState(values, config.part);
   return Math.abs(finalState.pos[0]) + Math.abs(finalState.pos[1]);
 };

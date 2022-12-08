@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   let game = {
     vals: input[0].split(',').map(v => parseInt(v, 10)),
     boards: []
@@ -46,7 +46,7 @@ let checkResults = boards => {
   });
 }
 
-let getSolution = (game, config) => {
+const getSolution = (game, config) => {
   let res;
 
   for (let i = 0; i < game.vals.length; i++) {

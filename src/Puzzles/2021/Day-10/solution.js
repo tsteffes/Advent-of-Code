@@ -8,7 +8,7 @@ const map = {
   '>': '<'
 }
 
-let getValues = input => {
+const getValues = input => {
   return input.map(y => y.split(''));
 };
 
@@ -55,7 +55,7 @@ let getScore = line => {
   return res;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     const scores = {
       ')': 3,

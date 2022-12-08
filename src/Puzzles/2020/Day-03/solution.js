@@ -9,7 +9,7 @@ let countTrees = (map, config) => {
   return _.filter(_.filter(positions, p => p[1] < map.length), p => map[p[1]][p[0]] === '#').length;
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   return config.configs.reduce((a, b) => a * countTrees(values, b), 1);
 };
 

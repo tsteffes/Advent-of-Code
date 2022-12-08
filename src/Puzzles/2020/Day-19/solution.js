@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => input;
+const getValues = input => input;
 
 let parseRules = i => {
   return i.split('\r\n').map(r => {
@@ -49,7 +49,7 @@ let checkRule = (state) => {
   }
 };
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let rules = parseRules(input[0]);
   console.log(rules);
   let messages = parseMessages(input[1]);

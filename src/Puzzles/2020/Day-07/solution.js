@@ -3,7 +3,7 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 const targetBag = 'shiny gold';
 
-let getValues = input => {
+const getValues = input => {
   return _.map(input, i => {
     let parsed = i.match(/(?<d>\w+\s\w+)( bags contain )(?<c>.*)\.$/);
     let contents = parsed.groups.c === 'no other bags' ? [] :
@@ -26,7 +26,7 @@ let countContents = (allBags, bag) => {
   return 1 + _.sum(_.map(bag.contents, c => c.quantity * countContents(allBags, findBag(allBags, c.desc))));
 }
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     return _.filter(values, v => v.desc !== targetBag && containsBag(values, v)).length;
   }

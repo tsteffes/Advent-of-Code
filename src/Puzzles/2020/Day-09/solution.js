@@ -4,7 +4,7 @@ const arrays = require('../../../helpers/arrays');
 const Solver = require('../../../helpers/solver');
 const setSize = 25;
 
-let getValues = input => {
+const getValues = input => {
   return input.map(v => parseInt(v));
 };
 
@@ -22,7 +22,7 @@ let findNonCompliant = (values) => {
   return _.find(values, (val, idx) => idx >= setSize && !findSum(values.slice(idx - setSize, idx), val));
 };
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   let pt1 = findNonCompliant(values);
   if (config.part === 1) {
     return pt1;

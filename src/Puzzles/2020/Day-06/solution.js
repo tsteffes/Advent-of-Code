@@ -2,7 +2,7 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-let getValues = input => {
+const getValues = input => {
   return _.map(input, i => {
     return {
       num: i.split('\r\n').length,
@@ -11,7 +11,7 @@ let getValues = input => {
   });
 }
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     return _.sum(_.map(values, v => _.uniq(v.answers).length));
   }

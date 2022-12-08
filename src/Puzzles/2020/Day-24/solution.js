@@ -4,7 +4,7 @@ const Solver = require('../../../helpers/solver');
 
 const moves = { 'e': [2, 0], 'se': [1, -1], 'sw': [-1, -1], 'w': [-2, 0], 'nw': [-1, 1], 'ne': [1, 1] };
 
-let getValues = input => {
+const getValues = input => {
   return input.map(i => {
     let m, res = [];
     while (m = i.match(/(e|se|sw|w|nw|ne)/)) {
@@ -20,7 +20,7 @@ let isEqual = (a, b) => a[0] === b[0] && a[1] === b[1];
 let takeStep = (prev, cur) => [prev[0] + moves[cur][0], prev[1] + moves[cur][1]];
 let getNeighbors = loc => Object.values(moves).map(v => [loc[0] + v[0], loc[1] + v[1]]);
 
-let getSolution = (input, config) => {
+const getSolution = (input, config) => {
   let result = input.map(i => i.reduce(takeStep, [0, 0]));
   result = result.filter(r => (result.filter(t => isEqual(r, t)).length % 2) === 1);
   if (config.part === 2) {

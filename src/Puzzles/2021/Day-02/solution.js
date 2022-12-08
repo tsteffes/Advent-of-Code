@@ -3,7 +3,7 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
 // [x, y] represents horizontal, vertical positions
-let getValues = input => _.map(input, d => {
+const getValues = input => _.map(input, d => {
   let parts = d.split(' ');
   let v = parseInt(parts[1], 10);
   switch (parts[0][0]) {
@@ -18,7 +18,7 @@ let getValues = input => _.map(input, d => {
   }
 });
 
-let getSolution = (values, config) => {
+const getSolution = (values, config) => {
   if (config.part === 1) {
     let cur = [0, 0];
     for (let i = 0; i < values.length; i++) {

@@ -3,7 +3,7 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 const dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
 
-let getValues = (input, config) => {
+const getValues = (input, config) => {
   let map = [];
   for (let y = 0; y < config.multiplier * input.length; y++) {
     row = [];
@@ -22,7 +22,7 @@ let getValues = (input, config) => {
 
 let checkBoundaries = (map, loc) => loc[0] >= 0 && loc[1] >= 0 && loc[0] < map[0].length && loc[1] < map.length;
 
-let getSolution = (map, config) => {
+const getSolution = (map, config) => {
   let end = map[map.length - 1][map[0].length - 1];
   end.minPath = 0;
   let modified = [end];
