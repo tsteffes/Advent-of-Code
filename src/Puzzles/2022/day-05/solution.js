@@ -19,27 +19,24 @@ const getValues = input => {
     }
   });
 
-  let instructions = _.forEach(input[1].split('\r\n').map(r =>
+  let moves = _.forEach(input[1].split('\r\n').map(r =>
     r.match(/move (?<count>[\d]+) from (?<from>[\d+]) to (?<to>[\d+])/).groups),
-      v => ['count', 'from', 'to'].forEach(x => v[x] = parseInt(v[x], 10)));
+      v => ['count', 'from', 'to'].forEach(x => v[x] = parseInt(v[x])));
 
-  return { stacks, instructions };
+  return { stacks, moves };
 };
 
 const getSolution = (input, config) => {
-  input.instructions.forEach(i => {
+  input.moves.forEach(i => {
     let s = [];
-    for (let j = 0; j < i.count; j++) {
-      s.push(input.stacks[i.from - 1].pop());
-    }
-
+    _.times(i.count, () => s.push(input.stacks[i.from - 1].pop()));
     input.stacks[i.to - 1].push(...config.mutate(s));
   });
 
   return input.stacks.map(s => s[s.length - 1]).join('');
 };
 
-const config = [ { mutate: a => a }, { mutate: a => a.reverse() } ];
+const config = [{ mutate: a => a }, { mutate: a => a.reverse() }];
 Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, config);
 
 // Part 1 solution: LJSVLTWQM
