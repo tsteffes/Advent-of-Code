@@ -3,21 +3,17 @@ const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
 const dirs = { R: [1, 0], L: [-1, 0], U: [0, 1], D: [0, -1] };
-const getValues = input => {
-  return _.forEach(input.map(i => i.match(/(?<dir>[RLUD])\s(?<dist>\d+)/).groups), m => m.dist = parseInt(m.dist));
-};
-
+const getValues = input => input.map(i => i.match(/(?<dir>[RLUD])\s(?<dist>\d+)/).groups);
 const getSolution = (input, config) => {
   const state = { locs: [], segs: [] };
   _.times(config.len + 1, () => state.segs.push([0, 0]));
   input.forEach(move => {
-    _.times(move.dist, () => {
+    _.times(parseInt(move.dist), () => {
       state.segs[0][0] += dirs[move.dir][0];
       state.segs[0][1] += dirs[move.dir][1];
-
-      for (let seg = 0; seg < config.len; seg++) {
-        let seg1 = state.segs[seg];
-        let seg2 = state.segs[seg + 1];
+      for (let i = 0; i < config.len; i++) {
+        const seg1 = state.segs[i];
+        const seg2 = state.segs[i + 1];
         if (Math.abs(seg1[0] - seg2[0]) + Math.abs(seg1[1] - seg2[1]) === 3) {
           seg2[0] += seg2[0] > seg1[0] ? -1 : 1;
           seg2[1] += seg2[1] > seg1[1] ? -1 : 1;
