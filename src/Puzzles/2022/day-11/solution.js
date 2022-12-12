@@ -2,12 +2,12 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-const monkeyReg = /Starting items:\s(?<items>([\d,\s]+))\r\n\s*Operation:\snew\s=\s(?<op1>\S*)\s(?<op>\S*)\s(?<op2>\S*)\r\n\s*Test:\sdivisible\sby\s(?<mod>[\d]+)\s*If true: throw to monkey (?<t>[\d]+)\s*If false: throw to monkey (?<f>[\d]+)/;
+const monkeyReg = /Starting\sitems:\s(?<items>([\d,\s]+))\r\n\s*Operation:\snew\s=\s(?<op1>\S*)\s(?<op>[\+\*])\s(?<op2>\S*)\r\n\s*Test:\sdivisible\sby\s(?<mod>[\d]+)\s*If\strue:\sthrow\sto\smonkey\s(?<t>[\d]+)\s*If\sfalse:\sthrow\sto\smonkey\s(?<f>[\d]+)/;
 const getValues = input => {
   return input.map(i => {
     const monkey = i.match(monkeyReg).groups;
-    monkey.inspected = 0;
     monkey.items = monkey.items.split(', ').map(i => { return { worry: parseInt(i) }; });
+    monkey.inspected = 0;
     return monkey;
   });
 };

@@ -44,14 +44,11 @@ const getSolution = (input, config) => {
     });
   };
 
-  if (config.part === 1) {
-    return input.start.steps;
-  }
-
-  return _.sortBy(input.lowPoints.map(p => p.steps))[0];
+  return config.res(input);
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+const config = [{ res: i => i.start.steps }, { res: i => _.min(i.lowPoints.map(p => p.steps)) }];
+Solver.solve(io.readLines, getValues, getSolution, config);
 
 // Part 1 solution: 456
 // Part 2 solution: 454
