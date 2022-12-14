@@ -11,9 +11,9 @@ const getValues = input => {
       const val = input[y][x].charCodeAt();
       const point = { x: x, y: y, val: val === 69 ? 123 : val === 83 ? 96 : val, steps: null };
       row.push(point);
-      res.end = val === 69 ? point : res.end;
-      res.start = val === 83 ? point : res.start;
-      val === 97 ? res.lowPoints.push(point) : null;
+      val === 69 && (res.end = point);
+      val === 83 && (res.start = point);
+      val === 97 && res.lowPoints.push(point);
     }
 
     res.map.push(row);

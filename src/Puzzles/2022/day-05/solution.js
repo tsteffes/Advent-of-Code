@@ -8,7 +8,7 @@ const getValues = input => {
   rows.forEach(r => {
     for (let i = 0; (i * 4) <= r.length; i++) {
       const letter = r.substring(i * 4).match(/^\[(?<letter>[A-Z])\]/);
-      letter ? (stacks[i] = stacks[i] || []).push(letter.groups.letter) : null;
+      letter && (stacks[i] = stacks[i] || []).push(letter.groups.letter);
     }
   });
 
