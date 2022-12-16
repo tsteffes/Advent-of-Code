@@ -2,12 +2,18 @@ const _ = require('lodash');
 const io = require('../../../helpers/io');
 const Solver = require('../../../helpers/solver');
 
-const getValues = input => {
+const getValues = (input, config) => {
+  config.additionalPackets && input.push(config.additionalPackets.join('\r\n'));
   const parseItem = (item, tokens) => {
     const reg = /(?<inner>\[(?:(?:\$\d+|\d+|,)*)\])/g;
     const inners = [...item.matchAll(reg)].map(x => x.groups.inner);
     inners.forEach(i => {
-      const a = [...i.substring(1, i.length - 1).split(',')];
+      const a = [];
+      let sub = i.substring(1, i.length - 1);
+      if (sub) {
+        a.push(...sub.split(','))
+      }
+
       tokens.push(a);
       item = item.replace(i, '$' + (tokens.length - 1));
     });
@@ -19,63 +25,62 @@ const getValues = input => {
     return parseItem(item, tokens);
   };
   return input.map(i => i.split('\r\n').map(r => {
+    let orig = r;
     let tokens = [];
-    let res = parseItem(r, tokens);
-    return { item: res, cur: res, tokens };
+    parseItem(r, tokens);
+    return { orig, tokens };
   }));
 };
 
-// const getValues2 = input => {
-//   return input.map(i => i.split('\r\n'));
-// };
+const isToken = s => s.startsWith('$');
+const isOrdered = (a, aTokens, b, bTokens) => {
+  for (let i = 0; i < a.length && i < b.length; i++) {
+    if (!isToken(a[i]) && !isToken(b[i])) {
+      if (parseInt(a[i]) < parseInt(b[i])) {
+        return 1;
+      }
+      else if (parseInt(a[i]) > parseInt(b[i])) {
+        return -1;
+      }
 
-// const parseArray2 = s => {
-//   let level = 0;
-//   for (let i = 1; i < s.length; i++) {
-//     if (s[i] === ']' && level === 0) {
-//       return { array: s.substring(1, i), rest: s.substring(i + 1) };
-//     }
+      continue;
+    }
 
-//     level += s[i] === '[' ? 1 : s[i] === ']' ? -1 : 0;
-//   }
-// }
+    let left = isToken(a[i]) ? aTokens[a[i].substring(1)] : [a[i]];
+    let right = isToken(b[i]) ? bTokens[b[i].substring(1)] : [b[i]];
+    let res = isOrdered(left, aTokens, right, bTokens);
+    if (res) return res;
+  }
 
-// const isOrdered2 = (a, b) => {
-//   let reg = /(?<num>\d+)(?:,(?<rest>.*))?/;
-//   if (a.startsWith('[') && b.startsWith('[')) {
-//     let arrayA = parseArray(a);
-//     let arrayB = parseArray(b);
-//     return isOrdered(a.substring(2, arrayA.length), b.substring(2, arrayB.length));
-//   }
-//   else if (a.startsWith('[')) {
-//     let arrayA = parseArray(a);
-//     let regB = b.match(reg).groups;
-//     return isOrdered(a, '[' + b.num + ']');
-//   }
-//   else if (b.startsWith('[')) {
-
-//   }
-//   else {
-//     let regA = a.match(reg).groups;
-//     let regB = b.match(reg).groups;
-//     if (parseInt(regA.num) > parseInt(regB.num)) {
-//       return false;
-//     }
-
-//     return !regA.rest ? true : !regB.rest ? false : isOrdered(regA.rest, regB.rest);
-//   }
-// }
-
-const isOrdered = (a, b) => {
-  return 0;
-}
-
-const getSolution = (input, config) => {
-  //return _.every(input.map(i => isOrdered(i[0].substring(1, i[0].length - 1), i[1].substring(1, i[1].length - 1))));
-  return _.every(input.map(i => isOrdered(i[0], i[1])));
+  return a.length < b.length ? 1 : a.length > b.length ? -1 : 0;
 };
 
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution);
+const getSolution = (input, config) => {
+  if (config.part === 1) {
+    let res = 0;
+    for (let i = 0; i < input.length; i++) {
+      let left = input[i][0];
+      let right = input[i][1];
+      if (isOrdered(left.tokens[left.tokens.length - 1], left.tokens, right.tokens[right.tokens.length - 1], right.tokens) === 1) {
+        res += i + 1;
+      }
+    }
 
-// Part 1 solution:
-// Part 2 solution:
+    return res;
+  }
+
+  let orderedPackets = input.reduce((arr, i) => {
+    arr.push(i[0], i[1]);
+    return arr;
+  }, []).sort((a, b) => {
+    return isOrdered(b.tokens[b.tokens.length - 1], b.tokens, a.tokens[a.tokens.length -1], a.tokens);
+  });
+  let indices = _.keys(_.pickBy(orderedPackets, (p => config.additionalPackets.includes(p.orig))));
+  return indices.reduce((a, b) => (parseInt(a) + 1) * (parseInt(b) + 1));
+};
+
+const config = [{ }, { additionalPackets: ['[[2]]', '[[6]]'] }];
+Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, config);
+
+// Part 1 solution: 5717
+// Part 2 solution: 25935
