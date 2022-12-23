@@ -9,10 +9,10 @@ const getEdges = lava => {
     x: [_.min(lava.map(i => i[0])) - 1, _.max(lava.map(i => i[0])) + 1],
     y: [_.min(lava.map(i => i[1])) - 1, _.max(lava.map(i => i[1])) + 1],
     z: [_.min(lava.map(i => i[2])) - 1, _.max(lava.map(i => i[2])) + 1]
-  }
+  };
 };
 const inCollection = (coll, loc) => {
-  return !!_.find(coll, c => c[0] === loc[0] && c[1] === loc[1] && c[2] === loc[2])
+  return !!_.find(coll, c => c[0] === loc[0] && c[1] === loc[1] && c[2] === loc[2]);
 };
 const inBounds = (edges, side) => {
   return side[0] >= edges.x[0] && side[0] <= edges.x[1]
@@ -50,4 +50,4 @@ const getSolution = (lava, config) => {
 Solver.solve(io.readLines, getValues, getSolution);
 
 // Part 1 solution: 4314
-// Part 2 solution:
+// Part 2 solution: 2444
