@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 
 const getValues = input => {
   const reg = /Valve (?<name>[A-Z]+) has flow rate=(?<rate>\d+); tunnels? leads? to valves? (?<neighbors>.*)/;

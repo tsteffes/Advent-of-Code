@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 const regex = /^target area: x=(?<xmin>[\d]+)\.\.(?<xmax>[\d]+), y=(?<ymin>-?[\d]+)\.\.(?<ymax>-?[\d]+)/;
 
 const getValues = input => {

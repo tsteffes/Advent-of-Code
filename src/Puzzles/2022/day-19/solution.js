@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 
 const reg = /Blueprint (?<idx>\d+): Each ore robot costs (?<oreOre>\d+) ore. Each clay robot costs (?<clayOre>\d+) ore. Each obsidian robot costs (?<obsOre>\d+) ore and (?<obsClay>\d+) clay. Each geode robot costs (?<geoOre>\d+) ore and (?<geoObs>\d+) obsidian./;
 const getValues = input => {

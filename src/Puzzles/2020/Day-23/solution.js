@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 const LoopyList = require('./LoopyList').LoopyList;
 
 const getValues = input => input[0].split('').map(i => parseInt(i));

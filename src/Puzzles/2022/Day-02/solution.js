@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 
 const map1 = { 'X': ['B', 'A', 'C'], 'Y': ['C', 'B', 'A'], 'Z': ['A', 'C', 'B'] };
 const map2 = { 'A': ['Z', 'X', 'Y'], 'B': ['X', 'Y', 'Z'], 'C': ['Y', 'Z', 'X'] };

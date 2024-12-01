@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 
 const getValues = input => {
   let res = _.map(input, i => i.match(/(?<cmd>[NSEWLRF])(?<val>\d+)/).groups);

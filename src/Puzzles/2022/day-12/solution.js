@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 
 const dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
 const getValues = input => {

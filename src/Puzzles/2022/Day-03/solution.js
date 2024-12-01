@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 
 const getValues = (input, config) => config.mapper(input);
 const m1 = input => input.map(i => [ i.substring(0, i.length / 2).split(''), i.substring(i.length / 2).split('') ]);

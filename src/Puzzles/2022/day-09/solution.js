@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 
 const directions = { R: { x: 1, y: 0 }, L: { x: -1, y: 0 }, U: { x: 0, y: 1 }, D: { x: 0, y: -1 } };
 const getValues = input => input.map(i => i.match(/(?<direction>[RLUD])\s(?<distance>\d+)/).groups);

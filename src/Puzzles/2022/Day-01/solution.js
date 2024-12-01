@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 
 const getValues = input => input.map(i => i.split('\r\n').map(v => parseInt(v)));
 const getSolution = (values, config) => _.sum(_.take(_.reverse(_.sortBy(values.map(v => _.sum(v)))), config.top));

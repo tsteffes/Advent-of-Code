@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const io = require('../../../helpers/io');
-const Solver = require('../../../helpers/solver');
+const io = require('../../../Helpers/io');
+const Solver = require('../../../Helpers/solver');
 const HashMap = require('../../../helpers/hashMap').HashMap;
 const shapes = [
   [[3, 0], [4, 0], [5, 0], [6, 0]],
