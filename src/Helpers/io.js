@@ -5,5 +5,5 @@ exports.readLines = (file, separator = '\r\n') => {
     fs.writeFileSync(file, '');
   }
 
-  fs.readFileSync(file, 'utf8').split(separator);
+  return fs.readFileSync(file, 'utf8').split(separator);
 };
