@@ -1,4 +1,4 @@
-const HashMap = require('../../../helpers/hashMap').HashMap;
+const HashMap = require('../../../Helpers/hashMap').HashMap;
 
 const getValues = input => _.map(input[0].split(','), i => parseInt(i));
 

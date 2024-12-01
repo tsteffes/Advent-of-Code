@@ -1,4 +1,4 @@
-const arrays = require('../../../helpers/arrays');
+const arrays = require('../../../Helpers/arrays');
 const setSize = 25;
 
 const getValues = input => {

@@ -1,4 +1,4 @@
-const HashMap = require('../../../helpers/hashMap').HashMap;
+const HashMap = require('../../../Helpers/hashMap').HashMap;
 const shapes = [
   [[3, 0], [4, 0], [5, 0], [6, 0]],
   [[4, 0], [3, 1], [4, 1], [5, 1], [4, 2]],
