@@ -3,25 +3,11 @@ global._ = require('lodash');
 global.io = require('./src/Helpers/io');
 global.Solver = require('./src/Helpers/solver');
 
-const year = process.argv[2] || 2023;
-const day = process.argv[3];
-
-let days;
-if (day) {
-  days = [day];
-}
-else {
-  days = _.range(1, 26);
-}
-
+const year = process.argv[2] || (new Date().getFullYear());
+const days = process.argv[3] ? [process.argv[3]] : _.range(1, 26);
 for (const d of days.map(v => v.toString().padStart(2, '0'))) {
-  const file = `./src/Puzzles/${year}/Day-${d}/solution.js`;
-  if (!fs.existsSync(file)) {
-    fs.writeFileSync(file, fs.readFileSync('./src/Helpers/template.js'));
-  }
-
   try {
-    require(file);
+    require(io.getFile(year, d));
   }
   catch (error) {
     console.log(`Error on puzzle ${year}-${d}: ${error}`);
