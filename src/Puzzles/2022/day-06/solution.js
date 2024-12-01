@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getSolution = (input, config) => {
   return config.n + _.findIndex(_.range(input.length),
     i => _.uniq(input.substring(i, i + config.n).split('')).length === config.n);

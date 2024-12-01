@@ -1,5 +1,7 @@
-const fs = require('file-system');
-const _ = require('lodash');
+global.fs = require('file-system');
+global._ = require('lodash');
+global.io = require('./src/Helpers/io');
+global.Solver = require('./src/Helpers/solver');
 
 const year = process.argv[2] || 2023;
 const day = process.argv[3];

@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => {
   const map = input[0].split('\r\n').map(r => r.split(''));
   const instructions = [...input[1].matchAll(/(?<num>\d+)(?<turn>[LR])?/g)].map(m => m.groups);

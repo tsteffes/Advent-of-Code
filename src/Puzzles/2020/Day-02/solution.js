@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => _.map(input, d => parseInput(d.split(' ')));
 
 let parseInput = parts => {

@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => {
   return _.map(input, i => {
     let g = i.match(/(?<x1>\d+),(?<y1>\d+) -> (?<x2>\d+),(?<y2>\d+)/).groups;

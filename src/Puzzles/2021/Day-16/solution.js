@@ -1,6 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
 const regex = /^(?<version>[01]{3})(?<type>[01]{3})(?<rest>[01]*)/;
 const ops = {
   0: (vals) => _.sum(vals),

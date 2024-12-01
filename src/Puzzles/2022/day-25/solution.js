@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const pows = ['=', '-', '0', '1', '2'];
 const getValues = input => input;
 const fromSnafu = val => _.reverse(val.split('')).map((v, t) => Math.pow(5, t) * (pows.indexOf(v) - 2));

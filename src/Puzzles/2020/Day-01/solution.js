@@ -1,6 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
 const target = 2020;
 
 const getValues = input => _.map(input, d => parseInt(d, 10));

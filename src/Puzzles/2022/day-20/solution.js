@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = (input, config) => {
   const nums = input.map(v => parseInt(v) * config.decryptionKey);
   let cur = { val: nums[0] };

@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => {
   let res = { coords: [], folds: [] };
   for (line of input) {

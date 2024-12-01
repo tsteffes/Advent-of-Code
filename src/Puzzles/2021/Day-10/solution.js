@@ -1,6 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
 const map = {
   ')': '(',
   '}': '{',

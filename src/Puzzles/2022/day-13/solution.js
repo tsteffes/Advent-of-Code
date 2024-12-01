@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = (input, config) => {
   config.additionalPackets && input.push(config.additionalPackets.join('\r\n'));
   return input.map(i => i.split('\r\n').map(r => JSON.parse(r)));

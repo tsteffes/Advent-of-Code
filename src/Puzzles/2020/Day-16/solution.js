@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => {
   let results = { rules: [], mine: null, others: [] };
   input[0].split('\r\n').forEach(r => {

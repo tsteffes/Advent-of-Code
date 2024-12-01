@@ -1,6 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
 const HashMap = require('../../../helpers/hashMap').HashMap;
 
 const getValues = input => _.map(input[0].split(','), i => parseInt(i));

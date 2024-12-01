@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 // [x, y] represents horizontal, vertical positions
 const getValues = input => _.map(input, d => {
   let parts = d.split(' ');

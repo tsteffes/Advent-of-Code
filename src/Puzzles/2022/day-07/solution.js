@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getSize = dir => _.sum(dir.dirs.map(getSize)) + _.sum(dir.files.map(f => f.size));
 const getSolution = (input, config) => {
   const sys = { name: '/', dirs: [], files: [], parent: null };

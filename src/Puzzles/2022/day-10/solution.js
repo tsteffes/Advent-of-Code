@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => input.map(i => i.match(/(?<op>(addx|noop))\s?(?<val>[-\d]+)?/).groups);
 const render = (state) => {
   state.row.push(Math.abs((state.cycle % 40) - state.X) < 2 ? '#' : '.');

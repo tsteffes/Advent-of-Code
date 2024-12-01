@@ -1,6 +1,3 @@
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => input.map(i => i.split('').map(v => parseInt(v)));
 
 const isVisible = (map, x, y) => {

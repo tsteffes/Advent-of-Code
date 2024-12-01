@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = (input, config) => config.mapper(input);
 const m1 = input => input.map(i => [ i.substring(0, i.length / 2).split(''), i.substring(i.length / 2).split('') ]);
 const m2 = input => _.range(input.length / 3).map(i => [3 * i, 3 * i + 1, 3 * i + 2].map(j => input[j].split('')));

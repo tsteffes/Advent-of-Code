@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const monkeyReg = /Starting\sitems:\s(?<items>([\d,\s]+))\r\n\s*Operation:\snew\s=\s(?<op1>\S*)\s(?<op>[\+\*])\s(?<op2>\S*)\r\n\s*Test:\sdivisible\sby\s(?<mod>[\d]+)\s*If\strue:\sthrow\sto\smonkey\s(?<t>[\d]+)\s*If\sfalse:\sthrow\sto\smonkey\s(?<f>[\d]+)/;
 const getValues = input => {
   return input.map(i => {

@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => {
   const rows = _.reverse(input[0].split('\r\n')).splice(1);
   const stacks = [];

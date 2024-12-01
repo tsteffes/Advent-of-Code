@@ -1,7 +1,4 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
 const arrays = require('../../../helpers/arrays');
-const Solver = require('../../../Helpers/solver');
 const setSize = 25;
 
 const getValues = input => {

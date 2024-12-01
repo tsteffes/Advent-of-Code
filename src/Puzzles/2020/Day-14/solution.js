@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => {
   return _.map(input, i => {
     let mask = i.match(/mask = (?<mask>[X01]+)/);

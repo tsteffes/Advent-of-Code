@@ -1,7 +1,3 @@
-const _ = require('lodash');
-const io = require('../../../Helpers/io');
-const Solver = require('../../../Helpers/solver');
-
 const getValues = input => _.map(input, d => parseInt(d, 10));
 
 const getSolution = (values, config) => {

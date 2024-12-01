@@ -1,9 +1,12 @@
-const fs = require('file-system');
-
 exports.readLines = (file, separator = '\r\n') => {
   if (!fs.existsSync(file)) {
     fs.writeFileSync(file, '');
   }
 
-  return fs.readFileSync(file, 'utf8').split(separator);
+  let content = fs.readFileSync(file, 'utf8');
+  if (content) {
+    return content.split(separator);
+  }
+
+  return null;
 };
