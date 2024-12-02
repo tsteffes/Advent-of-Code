@@ -1,7 +1,4 @@
-global.fs = require('file-system');
-global._ = require('lodash');
-global.io = require('./src/Helpers/io');
-global.Solver = require('./src/Helpers/solver');
+require('./src/Helpers/global');
 
 const year = process.argv[2] || (new Date().getFullYear());
 const days = process.argv[3] ? [process.argv[3]] : _.range(1, 26);

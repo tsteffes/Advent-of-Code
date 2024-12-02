@@ -1,4 +1,3 @@
-const arrays = require('../../../Helpers/arrays');
 const setSize = 25;
 
 const getValues = input => {
@@ -11,7 +10,7 @@ let findSum = (set, total) => {
 
 let findContiguousSumSubset = (set, total) => {
   let range = _.range(set.length);
-  let sets = _.filter(arrays.getCrossProduct(range, range), v => v[0] !== v[1]);
+  let sets = _.filter(arrays.crossProduct(range, range), v => v[0] !== v[1]);
   return (s => set.slice(s[0], s[1]))(sets.find(s => _.sum(set.slice(s[0], s[1])) === total));
 };
 
