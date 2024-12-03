@@ -1,5 +1,5 @@
 const dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
-const getValues = input => {
+const parseInput = input => {
   const res = { start: null, map: [], lowPoints: [] };
   for (let y = 0; y < input.length; y++) {
     const row = [];
@@ -44,7 +44,7 @@ const getSolution = (input, config) => {
 };
 
 const config = [{ res: i => i.start.steps }, { res: i => _.min(i.lowPoints.map(p => p.steps)) }];
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution: 456
 // Part 2 solution: 454

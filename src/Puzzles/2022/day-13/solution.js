@@ -1,4 +1,4 @@
-const getValues = (input, config) => {
+const parseInput = (input, config) => {
   config.additionalPackets && input.push(config.additionalPackets.join('\r\n'));
   return input.map(i => i.split('\r\n').map(r => JSON.parse(r)));
 };
@@ -48,7 +48,7 @@ const getSolution = (input, config) => {
 };
 
 const config = [{ }, { additionalPackets: ['[[2]]', '[[6]]'] }];
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config, i => io.readLines(i, '\r\n\r\n'));
 
 // Part 1 solution: 5717
 // Part 2 solution: 25935

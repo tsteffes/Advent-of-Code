@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let res = _.sortBy(input.map(v => parseInt(v)));
   res.unshift(0);
   res.push(_.max(res) + 3);
@@ -27,7 +27,7 @@ const getSolution = (values, config) => {
   return getPathCount(values);
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 1917
 // Part 2 solution: 113387824750592

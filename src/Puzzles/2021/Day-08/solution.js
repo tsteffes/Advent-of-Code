@@ -9,7 +9,7 @@ const maps = ['abcefg', 'cf', 'acdeg', 'acdfg', 'bcdf', 'abdfg', 'abdefg', 'acf'
   g - 7 - remaining letter
 */
 
-const getValues = input => {
+const parseInput = input => {
   return input.map(i => {
     let g = i.match(/(?<ins>(\S+\s?)+) \| (?<outs>(\S+\s?)+)/).groups;
     return { ins: g.ins.split(/\s/), outs: g.outs.split(/\s/) };
@@ -61,7 +61,7 @@ const getSolution = (values, config) => {
   }, 0);
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 519
 // Part 2 solution: 1027483

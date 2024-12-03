@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let res = _.map(input, i => i.match(/(?<cmd>[NSEWLRF])(?<val>\d+)/).groups);
   res.forEach(r => r.val = parseInt(r.val));
   return res;
@@ -55,7 +55,7 @@ const getSolution = (values, config) => {
   return Math.abs(finalState.pos[0]) + Math.abs(finalState.pos[1]);
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 2270
 // Part 2 solution: 138669

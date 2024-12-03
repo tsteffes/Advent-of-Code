@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let results = { rules: [], mine: null, others: [] };
   input[0].split('\r\n').forEach(r => {
     let g = r.match(/(?<field>[a-z\s]+): (?<min1>\d+)-(?<max1>\d+) or (?<min2>\d+)-(?<max2>\d+)/).groups;
@@ -9,11 +9,11 @@ const getValues = input => {
   return results;
 };
 
-let checkRule = (rule, val) => {
+const checkRule = (rule, val) => {
   return (rule.min1 <= val && val <= rule.max1) || (rule.min2 <= val && val <= rule.max2);
 }
 
-let filterColumns = (rules, col) => {
+const filterColumns = (rules, col) => {
   rules.forEach(r => _.remove(r.possibleColumns, c => c === col));
 }
 
@@ -41,7 +41,7 @@ const getSolution = (input, config) => {
   return _.map(_.filter(input.rules, r => r.field.indexOf('departure') === 0), r => input.mine[r.column]).reduce((a, b) => a * b);
 };
 
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution);
+Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
 
 // Part 1 solution: 24021
 // Part 2 solution: 1289178686687

@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return input.map(y => y.split(''));
 };
 
@@ -52,7 +52,7 @@ const getSolution = (values, config) => {
   return _.sum(curState.map(c => _.filter(c, c1 => c1 === '#').length));
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ adjacentMin: 4, adjacentRule: 1 }, { adjacentMin: 5, adjacentRule: 2 }]);
+Solver.solve(parseInput, getSolution, [{ adjacentMin: 4, adjacentRule: 1 }, { adjacentMin: 5, adjacentRule: 2 }]);
 
 // Part 1 solution: 2418
 // Part 2 solution: 2144

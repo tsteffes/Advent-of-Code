@@ -1,4 +1,4 @@
-const getValues = input => input;
+const parseInput = input => input;
 
 let parseRules = i => {
   return i.split('\r\n').map(r => {
@@ -52,7 +52,7 @@ const getSolution = (input, config) => {
   return messages.filter(m => checkRule({ message: m, idx: 0, rule: 0, rules: rules })).length;
 };
 
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution);
+Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
 
 // Part 1 solution:
 // Part 2 solution:

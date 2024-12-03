@@ -1,5 +1,5 @@
 const directions = { R: { x: 1, y: 0 }, L: { x: -1, y: 0 }, U: { x: 0, y: 1 }, D: { x: 0, y: -1 } };
-const getValues = input => input.map(i => i.match(/(?<direction>[RLUD])\s(?<distance>\d+)/).groups);
+const parseInput = input => input.map(i => i.match(/(?<direction>[RLUD])\s(?<distance>\d+)/).groups);
 const getSolution = (input, config) => {
   const rope = [], visited = [];
   _.times(config.knots, () => rope.push({ x: 0, y: 0 }));
@@ -20,7 +20,7 @@ const getSolution = (input, config) => {
   return _.uniq(visited).length;
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ knots: 2 }, { knots: 10 }]);
+Solver.solve(parseInput, getSolution, [{ knots: 2 }, { knots: 10 }]);
 
 // Part 1 solution: 5695
 // Part 2 solution: 2434

@@ -50,7 +50,7 @@ let parsePacket = bin => {
   return { packet: packet, rest: rest };
 };
 
-const getValues = input => {
+const parseInput = input => {
   let bin = '';
   for (let hex of input[0]) {
     bin += parseInt(hex, 16).toString(2).padStart(4, '0');
@@ -79,7 +79,7 @@ const getSolution = (input, config) => {
   return getValue(input.packet);
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 999
 // Part 2 solution: 3408662834145

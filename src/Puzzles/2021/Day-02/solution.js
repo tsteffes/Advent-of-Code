@@ -1,5 +1,5 @@
 // [x, y] represents horizontal, vertical positions
-const getValues = input => _.map(input, d => {
+const parseInput = input => _.map(input, d => {
   let parts = d.split(' ');
   let v = parseInt(parts[1], 10);
   switch (parts[0][0]) {
@@ -36,7 +36,7 @@ const getSolution = (values, config) => {
   return cur[0] * cur[1];
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 2120749
 // Part 2 solution: 2138382217

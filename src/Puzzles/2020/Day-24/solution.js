@@ -1,6 +1,6 @@
 const moves = { 'e': [2, 0], 'se': [1, -1], 'sw': [-1, -1], 'w': [-2, 0], 'nw': [-1, 1], 'ne': [1, 1] };
 
-const getValues = input => {
+const parseInput = input => {
   return input.map(i => {
     let m, res = [];
     while (m = i.match(/(e|se|sw|w|nw|ne)/)) {
@@ -32,7 +32,7 @@ const getSolution = (input, config) => {
   return result.length;
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ }, { days: 100 }]);
+Solver.solve(parseInput, getSolution, [{ }, { days: 100 }]);
 
 // Part 1 solution: 427
 // Part 2 solution: 3837

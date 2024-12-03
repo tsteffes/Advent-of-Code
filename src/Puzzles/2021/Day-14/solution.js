@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let res = { map: { }, template: null };
   for (line of input) {
     let a = line.match(/(?<x>[A-Z]+) -> (?<y>[A-Z]+)/);
@@ -56,7 +56,7 @@ const getSolution = (input, config) => {
   return sorted[sorted.length - 1] - sorted[0];
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ steps: 10 }, { steps: 40 }]);
+Solver.solve(parseInput, getSolution, [{ steps: 10 }, { steps: 40 }]);
 
 // Part 1 solution: 2851
 // Part 2 solution: 10002813279338

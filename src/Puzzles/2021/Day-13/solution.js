@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let res = { coords: [], folds: [] };
   for (line of input) {
     let c = line.match(/(?<x>[\d]+),(?<y>[\d]+)/);
@@ -39,7 +39,7 @@ const getSolution = (input, config) => {
   return 'Read the output';
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 669
 // Part 2 solution: UEFZCUCJ

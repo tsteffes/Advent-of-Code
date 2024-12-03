@@ -1,4 +1,4 @@
-const getValues = input => input;
+const parseInput = input => input;
 
 let calculate = (i, part) => {
   let val = i.match(/^\d+$/);
@@ -39,7 +39,7 @@ const getSolution = (input, config) => {
   return _.sum(results);
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 69490582260
 // Part 2 solution: 362464596624526

@@ -1,6 +1,6 @@
 const targetBag = 'shiny gold';
 
-const getValues = input => {
+const parseInput = input => {
   return _.map(input, i => {
     let parsed = i.match(/(?<d>\w+\s\w+)( bags contain )(?<c>.*)\.$/);
     let contents = parsed.groups.c === 'no other bags' ? [] :
@@ -32,7 +32,7 @@ const getSolution = (values, config) => {
   }
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 268
 // Part 2 solution: 7867

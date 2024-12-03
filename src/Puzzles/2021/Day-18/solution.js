@@ -17,7 +17,7 @@ let parseNode = (s, parent) => {
   return node;
 };
 
-const getValues = input => {
+const parseInput = input => {
   return input.map(i => parseNode(i, null));
 };
 
@@ -194,7 +194,7 @@ const getSolution = (values, config) => {
   return max;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 4137
 // Part 2 solution: 4573

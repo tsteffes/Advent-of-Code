@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let pairs = [];
   input.forEach(i => {
     let row = i.split('->');
@@ -75,7 +75,7 @@ const getSolution = (pairs, config) => {
   return state.sand.length;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 696
 // Part 2 solution: 23610 (takes about 8 minutes to run...)

@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   const rows = _.reverse(input[0].split('\r\n')).splice(1);
   const stacks = [];
   rows.forEach(r => {
@@ -26,7 +26,7 @@ const getSolution = (input, config) => {
 };
 
 const config = [{ mutate: a => a }, { mutate: a => a.reverse() }];
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config, i => io.readLines(i, '\r\n\r\n'));
 
 // Part 1 solution: LJSVLTWQM
 // Part 2 solution: BRQWDBBJM

@@ -5,7 +5,7 @@ const map = {
   '>': '<'
 }
 
-const getValues = input => {
+const parseInput = input => {
   return input.map(y => y.split(''));
 };
 
@@ -68,7 +68,7 @@ const getSolution = (values, config) => {
   return valid.map(v => getScore(v)).sort((a, b) => a - b)[Math.floor(valid.length / 2)];
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 318099
 // Part 2 solution: 2389738699

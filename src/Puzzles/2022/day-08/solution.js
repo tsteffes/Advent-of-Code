@@ -1,4 +1,4 @@
-const getValues = input => input.map(i => i.split('').map(v => parseInt(v)));
+const parseInput = input => input.map(i => i.split('').map(v => parseInt(v)));
 
 const isVisible = (map, x, y) => {
   return [[0, 1], [0, -1], [1, 0], [-1, 0]].filter(dir => {
@@ -45,7 +45,7 @@ const getSolution = (input, config) => {
   return config.part == 1 ? visCount + 2 * input.length + 2 * input[0].length - 4 : scenicMax;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 1827
 // Part 2 solution: 335580

@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return input.map(i => {
     let m = i.match(/^([a-z\s,]+)\(contains ([a-z\s,]+)\)$/);
     return { allergens: m[2].replace(/,/g, '').split(' '), ingredients: m[1].trim().split(' ') };
@@ -33,7 +33,7 @@ const getSolution = (input, config) => {
   return _.sortBy(results, r => r.name).map(r => r.actual).join(',');
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 2517
 // Part 2 solution: rhvbn,mmcpg,kjf,fvk,lbmt,jgtb,hcbdb,zrb

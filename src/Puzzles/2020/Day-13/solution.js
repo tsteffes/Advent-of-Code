@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return {
     earliest: parseInt(input[0]),
     schedule: _.filter(_.map(input[1].split(','), (v, i) => { return { interval: parseInt(v == 'x' ? -1 : v), index: i }; }), v => v.interval > 0)
@@ -38,7 +38,7 @@ const getSolution = (input, config) => {
   // return schedule[0].interval * l;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 3215
 // Part 2 solution:

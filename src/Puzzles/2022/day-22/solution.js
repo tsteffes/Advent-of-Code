@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   const map = input[0].split('\r\n').map(r => r.split(''));
   const instructions = [...input[1].matchAll(/(?<num>\d+)(?<turn>[LR])?/g)].map(m => m.groups);
   instructions.forEach(i => i.num = parseInt(i.num));
@@ -65,7 +65,7 @@ const getSolution = (input, config) => {
 };
 
 const config = [{}, {}];
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config, i => io.readLines(i, '\r\n\r\n'));
 
 // Part 1 solution:
 // Part 2 solution:

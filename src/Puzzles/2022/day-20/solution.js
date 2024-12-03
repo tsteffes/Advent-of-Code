@@ -1,4 +1,4 @@
-const getValues = (input, config) => {
+const parseInput = (input, config) => {
   const nums = input.map(v => parseInt(v) * config.decryptionKey);
   let cur = { val: nums[0] };
   const result = [cur];
@@ -55,7 +55,7 @@ const getSolution = (input, config) => {
 };
 
 const config = [{ decryptionKey: 1, iterations: 1 }, {decryptionKey: 811589153, iterations: 10 }]
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution: 13183
 // Part 2 solution: 6676132372578

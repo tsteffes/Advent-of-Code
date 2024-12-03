@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return _.map(input, i => {
     let mask = i.match(/mask = (?<mask>[X01]+)/);
     if (mask) {
@@ -45,7 +45,7 @@ const getSolution = (input, config) => {
   return _.sum(_.map(Object.entries(memory), v => v[1]));
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 11884151942312
 // Part 2 solution: 2625449018811

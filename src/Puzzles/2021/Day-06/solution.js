@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let vals = input[0].split(',').map(v => parseInt(v, 10));
   let res = [];
   for (let i = 0; i < 9; i++) {
@@ -18,7 +18,7 @@ const getSolution = (values, config) => {
   return _.sum(values);
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ days: 80 }, { days: 256 }]);
+Solver.solve(parseInput, getSolution, [{ days: 80 }, { days: 256 }]);
 
 // Part 1 solution: 351188
 // Part 2 solution:

@@ -1,6 +1,6 @@
 const setSize = 25;
 
-const getValues = input => {
+const parseInput = input => {
   return input.map(v => parseInt(v));
 };
 
@@ -27,7 +27,7 @@ const getSolution = (values, config) => {
   return (res => _.min(res) + _.max(res))(findContiguousSumSubset(values, pt1));
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 25918798
 // Part 2 solution: 3340942

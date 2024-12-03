@@ -1,6 +1,6 @@
 const LoopyList = require('./LoopyList').LoopyList;
 
-const getValues = input => input[0].split('').map(i => parseInt(i));
+const parseInput = input => input[0].split('').map(i => parseInt(i));
 
 const getSolution = (input, config) => {
   let count = input.length;
@@ -22,7 +22,7 @@ const getSolution = (input, config) => {
   return list.slice(2).reduce((a, b) => a.val * b.val);
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ moves: 100, max: 9 }, { moves: 10000000, max: 1000000 } ]);
+Solver.solve(parseInput, getSolution, [{ moves: 100, max: 9 }, { moves: 10000000, max: 1000000 } ]);
 
 // Part 1 solution: 149725386
 // Part 2 solution: 538935646702

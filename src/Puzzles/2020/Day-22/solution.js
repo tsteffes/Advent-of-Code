@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return input.map(i => {
     let rows = i.split('\r\n');
     return { cards: rows.slice(1).map(i => parseInt(i)) };
@@ -45,7 +45,7 @@ const getSolution = (players, config) => {
   return _.sum(_.map(players, p => _.sum(_.map(p.cards, (c, i) => c * (p.cards.length - i)))));
 };
 
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution);
+Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
 
 // Part 1 solution: 32401
 // Part 2 solution: 31436

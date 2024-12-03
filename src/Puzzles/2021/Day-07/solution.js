@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return input[0].split(',').map(v => parseInt(v, 10));
 };
 
@@ -24,7 +24,7 @@ const getSolution = (values, config) => {
   return res;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 329389
 // Part 2 solution: 86397080

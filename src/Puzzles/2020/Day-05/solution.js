@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return _.map(input, i => {
     return _.sum([...Array(10).keys()].map(j => i[j] === 'B' || i[j] === 'R' ? Math.pow(2, 9-j) : 0));
   });
@@ -13,7 +13,7 @@ const getSolution = (v, config) => {
   return _.find([...Array(_.max(v) - min).keys()], i => !_.includes(v, i + min)) + min;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 888
 // Part 2 solution: 522

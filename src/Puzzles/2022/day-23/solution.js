@@ -1,5 +1,5 @@
 const dirs = [[[-1, -1], [0, -1], [1, -1]], [[-1, 1], [0, 1], [1, 1]], [[-1, -1], [-1, 0], [-1, 1]], [[1, -1], [1, 0], [1, 1]]];
-const getValues = input => {
+const parseInput = input => {
   let map = input.map(r => r.split(''));
   let res = [];
   for (let y = 0; y < map.length; y++) {
@@ -61,7 +61,7 @@ const getSolution = (elves, config) => {
 };
 
 const config = [{ steps: 10 }, { }];
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution: 4218
 // Part 2 solution: 976

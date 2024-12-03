@@ -1,4 +1,4 @@
-const getValues = input => input;
+const parseInput = input => input;
 
 let getBlankState = (size) => {
   let state = [];
@@ -85,7 +85,7 @@ const getSolution = (input, config) => {
   return getCubeCount(state);
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ cycles: 6, d: 3 }, { cycles: 6, d: 4 }]);
+Solver.solve(parseInput, getSolution, [{ cycles: 6, d: 3 }, { cycles: 6, d: 4 }]);
 
 // Part 1 solution: 317
 // Part 2 solution: 1692

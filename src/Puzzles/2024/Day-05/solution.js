@@ -1,9 +1,9 @@
-const getValues = i => i;
+const parseInput = i => i;
 const getSolution = (values, config) => {
   return 0;
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ }, { }]);
+Solver.solve(parseInput, getSolution, [{ }, { }]);
 
 // Part 1 solution:
 // Part 2 solution:

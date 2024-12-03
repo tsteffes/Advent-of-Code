@@ -1,5 +1,5 @@
 const pows = ['=', '-', '0', '1', '2'];
-const getValues = input => input;
+const parseInput = input => input;
 const fromSnafu = val => _.reverse(val.split('')).map((v, t) => Math.pow(5, t) * (pows.indexOf(v) - 2));
 const toSnafu = val => {
   let base5 = val.toString(5).split('').map(v => parseInt(v));
@@ -16,7 +16,7 @@ const getSolution = (input, config) => {
   return toSnafu(_.sum(input.map(i => _.sum(fromSnafu(i)))));
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution:
 // Part 2 solution:

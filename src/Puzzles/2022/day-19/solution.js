@@ -1,5 +1,5 @@
 const reg = /Blueprint (?<idx>\d+): Each ore robot costs (?<oreOre>\d+) ore. Each clay robot costs (?<clayOre>\d+) ore. Each obsidian robot costs (?<obsOre>\d+) ore and (?<obsClay>\d+) clay. Each geode robot costs (?<geoOre>\d+) ore and (?<geoObs>\d+) obsidian./;
-const getValues = input => {
+const parseInput = input => {
   return input.map(m => {
     let res = m.match(reg).groups;
     ['oreOre', 'clayOre', 'obsOre', 'obsClay', 'geoOre', 'geoObs'].forEach(m => res[m] = parseInt(res[m]));
@@ -88,7 +88,7 @@ const getSolution = (blueprints, config) => {
 };
 
 const config = [{ mins: 12 }, { mins: 24 }];
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution:
 // Part 2 solution:

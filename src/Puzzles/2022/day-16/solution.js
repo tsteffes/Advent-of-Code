@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   const reg = /Valve (?<name>[A-Z]+) has flow rate=(?<rate>\d+); tunnels? leads? to valves? (?<neighbors>.*)/;
   const map = input.map(i => i.match(reg).groups);
   return _.forEach(map, valve => {
@@ -79,7 +79,7 @@ const getSolution = (map, config) => {
 };
 
 const config = [{ learningCost: 0 }, { learningCost: 4 }];
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution: 1923
 // Part 2 solution: 2594

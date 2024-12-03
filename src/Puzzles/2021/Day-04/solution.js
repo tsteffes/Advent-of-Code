@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let game = {
     vals: input[0].split(',').map(v => parseInt(v, 10)),
     boards: []
@@ -69,7 +69,7 @@ const getSolution = (game, config) => {
   return res;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 38913
 // Part 2 solution: 16836

@@ -1,4 +1,4 @@
-const getValues = input => _.map(input, d => parseInput(d.split(' ')));
+const parseInput = input => _.map(input, d => parseInput(d.split(' ')));
 
 let parseInput = parts => {
   return {
@@ -22,7 +22,7 @@ const getSolution = (values, config) => {
   return _.filter(values, config.filter).length;
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]);
+Solver.solve(parseInput, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]);
 
 // Part 1 solution: 418
 // Part 2 solution: 616

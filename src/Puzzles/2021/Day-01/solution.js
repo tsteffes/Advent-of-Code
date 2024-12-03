@@ -1,4 +1,4 @@
-const getValues = input => _.map(input, d => parseInt(d, 10));
+const parseInput = input => _.map(input, d => parseInt(d, 10));
 
 const getSolution = (values, config) => {
   let res = 0;
@@ -16,7 +16,7 @@ const getSolution = (values, config) => {
   return res;
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ window: 1 }, { window: 3 }]);
+Solver.solve(parseInput, getSolution, [{ window: 1 }, { window: 3 }]);
 
 // Part 1 solution: 1752
 // Part 2 solution: 1781

@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return _.map(input, i => {
     return {
       num: i.split('\r\n').length,
@@ -19,7 +19,7 @@ const getSolution = (values, config) => {
   }));
 };
 
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution);
+Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
 
 // Part 1 solution: 6911
 // Part 2 solution: 3473

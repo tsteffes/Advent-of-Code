@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return input.map(i => {
     let reg = /(?<name>[a-z]+): (?<sub1>[a-z]+) (?<op>[\+\-\*\/]) (?<sub2>[a-z]+)/;
     if (i.match(reg)) {
@@ -124,7 +124,7 @@ const getSolution = (monkeys, config) => {
 };
 
 const config = [{}, { rootOp: '-', goalVal: 0 }];
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution: 291425799367130
 // Part 2 solution: 3219579395609

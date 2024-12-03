@@ -1,4 +1,4 @@
-const getValues = input => input.map(i => i.match(/(?<op>(addx|noop))\s?(?<val>[-\d]+)?/).groups);
+const parseInput = input => input.map(i => i.match(/(?<op>(addx|noop))\s?(?<val>[-\d]+)?/).groups);
 const render = (state) => {
   state.row.push(Math.abs((state.cycle % 40) - state.X) < 2 ? '#' : '.');
   if (state.cycle % 40 === 39) {
@@ -24,7 +24,7 @@ const getSolution = (input, config) => {
   return state.result;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 15680
 // Part 2 solution: ZFBFHGUP

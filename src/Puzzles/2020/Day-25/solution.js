@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return {
     cardPublicKey: parseInt(input[0]),
     doorPublicKey: parseInt(input[1]),
@@ -29,7 +29,7 @@ const getSolution = (input, config) => {
   return input.encryptionKey;
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ subject: 7 }]);
+Solver.solve(parseInput, getSolution, [{ subject: 7 }]);
 
 // Part 1 solution: 15217943
 // Part 2 solution:

@@ -1,28 +1,29 @@
+require('./global');
 const getCallerFile = require('get-caller-file');
 
-const log = (test, results) => results.forEach((r, i) => {
+const logResult = (test, results) => results.forEach((r, i) => {
   console.log(`Part ${i + 1} ${test ? 'test ' : ''}solution: ${r}`);
 });
 
 // this method must be called from within a solution.js file
-exports.solve = (inputter, mapper, method, configs = []) => {
+exports.solve = (parser, method, configs = [], reader = io.readLines) => {
   const file = getCallerFile();
   const year = file.match(/.*\\(?<y>.*)\\Day-.*\\.*/).groups.y;
   const day = file.match(/.*\\Day-(?<d>.*)\\.*/).groups.d;
   const path = file.match(/(?<f>.*)solution\.js/).groups.f;
-  const testInput = inputter(path + 'testInput.txt');
-  const input = inputter(path + 'input.txt');
+  const testInput = reader(path + 'testInput.txt');
+  const input = reader(path + 'input.txt');
   configs = [{ part: 1, ...configs[0] }, { part: 2, ...configs[1] }];
 
   if (testInput || input) {
     console.log(`${year}-${day} solutions:`);
 
     if (testInput) {
-      log(true, configs.map(c => method(mapper(testInput, c), c)));
+      logResult(true, configs.map(conf => method(parser(testInput, conf), conf)));
     }
 
     if (input) {
-      log(false, configs.map(c => method(mapper(input, c), c)));
+      logResult(false, configs.map(conf => method(parser(input, conf), conf)));
     }
 
     console.log();

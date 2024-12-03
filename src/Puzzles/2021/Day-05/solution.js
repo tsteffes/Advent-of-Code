@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return _.map(input, i => {
     let g = i.match(/(?<x1>\d+),(?<y1>\d+) -> (?<x2>\d+),(?<y2>\d+)/).groups;
     return { x1: parseInt(g.x1), x2: parseInt(g.x2), y1: parseInt(g.y1), y2: parseInt(g.y2) };
@@ -34,7 +34,7 @@ const getSolution = (values, config) => {
   return tot;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 4728
 // Part 2 solution: 17717

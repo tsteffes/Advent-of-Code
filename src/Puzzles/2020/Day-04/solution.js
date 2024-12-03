@@ -1,7 +1,7 @@
 const fields = require('./fields');
 const requiredFields = 7;
 
-const getValues = input => _.map(_.map(input, i => i.split(/\s+/)), mapPassport);
+const parseInput = input => _.map(_.map(input, i => i.split(/\s+/)), mapPassport);
 
 let mapPassport = collection => {
   let result = {};
@@ -18,7 +18,7 @@ const getSolution = (values, config) => {
   }).length;
 };
 
-Solver.solve(i => io.readLines(i, '\r\n\r\n'), getValues, getSolution, [{ validate: false }, { validate: true }]);
+Solver.solve(parseInput, getSolution, [{ validate: false }, { validate: true }], i => io.readLines(i, '\r\n\r\n'));
 
 // Part 1 solution: 254
 // Part 2 solution: 184

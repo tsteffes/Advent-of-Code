@@ -1,6 +1,6 @@
 const dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
 
-const getValues = (input, config) => {
+const parseInput = (input, config) => {
   let map = [];
   for (let y = 0; y < config.multiplier * input.length; y++) {
     row = [];
@@ -44,7 +44,7 @@ const getSolution = (map, config) => {
   return map[0][0].minPath;
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ multiplier: 1 }, { multiplier: 5 }]);
+Solver.solve(parseInput, getSolution, [{ multiplier: 1 }, { multiplier: 5 }]);
 
 // Part 1 solution: 393
 // Part 2 solution: 2823

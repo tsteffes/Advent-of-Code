@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let res = {};
   input.map(y => y.split('-')).forEach(v => {
     res[v[0]] = res[v[0]] || [];
@@ -85,7 +85,7 @@ const getSolution = (values, config) => {
   return completePaths.length;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 3679
 // Part 2 solution: 107395

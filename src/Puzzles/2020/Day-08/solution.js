@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   let res = _.map(input, i => i.match(/(?<op>\w+)\s(?<num>[\-\+\d]+)/).groups);
   res.forEach(j => j.num = parseInt(j.num));
   return res;
@@ -31,7 +31,7 @@ const getSolution = (values, config) => {
   }));
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 1832
 // Part 2 solution: 662

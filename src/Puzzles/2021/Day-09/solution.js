@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return input.map(y => y.split('').map(v => parseInt(v, 10)));
 };
 
@@ -60,7 +60,7 @@ const getSolution = (values, config) => {
   return _.take(basins.sort((a, b) => b.length - a.length), 3).reduce((cur, x) => cur * x.length, 1);
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 550
 // Part 2 solution: 1100682

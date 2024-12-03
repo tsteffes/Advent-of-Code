@@ -1,4 +1,4 @@
-const getValues = input => _.map(input, d => d);
+const parseInput = input => _.map(input, d => d);
 
 let convertToDecimal = v => {
   let res = 0;
@@ -49,7 +49,7 @@ const getSolution = (values, config) => {
   return convertToDecimal(ox) * convertToDecimal(co2);
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 4001724
 // Part 2 solution: 587895

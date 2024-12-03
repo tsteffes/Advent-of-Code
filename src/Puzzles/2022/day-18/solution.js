@@ -1,6 +1,6 @@
 const sides = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
 
-const getValues = input => input.map(i => i.split(',').map(v => parseInt(v)));
+const parseInput = input => input.map(i => i.split(',').map(v => parseInt(v)));
 const getEdges = lava => {
   return {
     x: [_.min(lava.map(i => i[0])) - 1, _.max(lava.map(i => i[0])) + 1],
@@ -44,7 +44,7 @@ const getSolution = (lava, config) => {
   }));
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 4314
 // Part 2 solution: 2444

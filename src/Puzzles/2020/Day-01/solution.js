@@ -1,6 +1,6 @@
 const target = 2020;
 
-const getValues = input => _.map(input, d => parseInt(d, 10));
+const parseInput = input => _.map(input, d => parseInt(d, 10));
 
 const getSolution = (values, config) => {
   const sorted = _.sortBy(values);
@@ -25,7 +25,7 @@ const getSolution = (values, config) => {
   }
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ operands: 2 }, { operands: 3}]);
+Solver.solve(parseInput, getSolution, [{ operands: 2 }, { operands: 3}]);
 
 // Part 1 solution: 910539
 // Part 2 solution: 116724144

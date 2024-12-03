@@ -7,7 +7,7 @@ const shapes = [
   [[3, 0], [4, 0], [3, 1], [4, 1]],
 ];
 
-const getValues = input => input[0].split('');
+const parseInput = input => input[0].split('');
 const getHeight = piece => _.max(piece.map(p => p[1])) - _.min(piece.map(p => p[1]));
 const checkCollision = (state, piece) => {
   return _.find(piece, p => [0, 8].includes(p[0]) || p[1] === 0
@@ -76,7 +76,7 @@ const getSolution = (jets, config) => {
 };
 
 const config = [{ iterations: 2022 }, { iterations: 1000000000000 }];
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution: 3193
 // Part 2 solution: 1577650429835

@@ -1,5 +1,5 @@
 const dirs = { '>': [1, 0], '<': [-1, 0], '^': [0, -1], 'v': [0, 1] };
-const getValues = input => {
+const parseInput = input => {
   let map = input.map(r => r.split(''));
   let res = { time: 0, blizz: [], width: input[0].length, height: input.length, visits: {} };
   const gcd = (a, b) => !b ? a : gcd(b, a % b);
@@ -80,7 +80,7 @@ const getSolution = (state, config) => {
 };
 
 const config = [{ caps: 1 }, { caps: 3 }];
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution:
 // Part 2 solution:

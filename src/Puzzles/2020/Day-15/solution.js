@@ -1,6 +1,6 @@
 const HashMap = require('../../../Helpers/hashMap').HashMap;
 
-const getValues = input => _.map(input[0].split(','), i => parseInt(i));
+const parseInput = input => _.map(input[0].split(','), i => parseInt(i));
 
 const getSolution = (input, config) => {
   let indexes = new HashMap(32768);
@@ -15,7 +15,7 @@ const getSolution = (input, config) => {
   return num;
 };
 
-Solver.solve(io.readLines, getValues, getSolution, [{ target: 2020 }, { target: 30000000 }]);
+Solver.solve(parseInput, getSolution, [{ target: 2020 }, { target: 30000000 }]);
 
 // Part 1 solution: 249
 // Part 2 solution: 41687

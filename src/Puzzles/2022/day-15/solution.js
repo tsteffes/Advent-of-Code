@@ -1,4 +1,4 @@
-const getValues = input => {
+const parseInput = input => {
   return input.map(i => {
     const reg = /Sensor at x=(?<sX>-?\d+), y=(?<sY>-?\d+): closest beacon is at x=(?<bX>-?\d+), y=(?<bY>-?\d+)/;
     const g = i.match(reg).groups;
@@ -43,7 +43,7 @@ const getSolution = (map, config) => {
 };
 
 config = [{ y: 2000000 }, { max: 4000000 }];
-Solver.solve(io.readLines, getValues, getSolution, config);
+Solver.solve(parseInput, getSolution, config);
 
 // Part 1 solution: 4961647
 // Part 2 solution: 12274327017867

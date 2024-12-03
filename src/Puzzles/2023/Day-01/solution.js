@@ -2,7 +2,7 @@ const ints = [
   ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
   ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 ];
-const getValues = i => i;
+const parseInput = i => i;
 const getSolution = (values, config) => {
   return _.sum(values.map(v => {
     let firstIdx = v.length, lastIdx = -1;
@@ -27,7 +27,7 @@ const getSolution = (values, config) => {
   }));
 };
 
-Solver.solve(i => io.readLines(i), getValues, getSolution, [{ }, { }]);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 55447
 // Part 2 solution: 54706

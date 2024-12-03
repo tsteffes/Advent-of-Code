@@ -1,6 +1,6 @@
 const regex = /^target area: x=(?<xmin>[\d]+)\.\.(?<xmax>[\d]+), y=(?<ymin>-?[\d]+)\.\.(?<ymax>-?[\d]+)/;
 
-const getValues = input => {
+const parseInput = input => {
   let c = input[0].match(regex);
   return {
     xmin: parseInt(c.groups.xmin, 10),
@@ -47,7 +47,7 @@ const getSolution = (map, config) => {
   return validPaths.length;
 };
 
-Solver.solve(io.readLines, getValues, getSolution);
+Solver.solve(parseInput, getSolution);
 
 // Part 1 solution: 9180
 // Part 2 solution: 3767

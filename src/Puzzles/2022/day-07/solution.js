@@ -33,7 +33,7 @@ const config = [
   { formula: sizes => _.sum(sizes.filter(s => s < 100000)) },
   { formula: (sizes, sysSize) => _.sortBy(sizes.filter(s => s > sysSize - 40000000))[0] }
 ];
-Solver.solve(io.readLines, i => i, getSolution, config);
+Solver.solve(i => i, getSolution, config);
 
 // Part 1 solution: 1084134
 // Part 2 solution: 6183184
