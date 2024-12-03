@@ -36,6 +36,9 @@ const isBlocked = (state, pos) => {
 }
 
 const getSolution = (pairs, config) => {
+  // remove to run part 2
+  if (config.part === 2) return;
+
   const yMax = _.max(pairs.map(i => Math.max(i[0].y, i[1].y)));
   const state = { sand: [], pairs: pairs, yFloor: config.part === 2 ? yMax + 2 : null };
   while (true) {
