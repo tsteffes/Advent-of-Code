@@ -16,7 +16,9 @@ exports.readLines = (file, separator = '\r\n') => {
 exports.getFile = (year, day) => {
   const file = `./src/Puzzles/${year}/Day-${day}/solution.js`;
   if (!fs.existsSync(file)) {
-    fs.writeFileSync(file, fs.readFileSync('./src/Helpers/template.js'));
+    let solution = fs.readFileSync('./src/Helpers/template.js', 'utf8');
+    solution = solution.replace('YYYY', parseInt(year)).replace('DD', parseInt(day));
+    fs.writeFileSync(file, solution);
   }
 
   return file;

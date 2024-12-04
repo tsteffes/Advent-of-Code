@@ -16,6 +16,6 @@ Array.prototype.getAllCoordinates = function() {
   return coords;
 };
 
-Array.prototype.checkBoundaries = function(x, y) {
+Array.prototype.isInBounds = function(x, y) {
   return x >= 0 && y >= 0 && x < this[0].length && y < this.length;
 }

@@ -17,8 +17,6 @@ const parseInput = (input, config) => {
   return map;
 };
 
-let checkBoundaries = (map, loc) => loc[0] >= 0 && loc[1] >= 0 && loc[0] < map[0].length && loc[1] < map.length;
-
 const getSolution = (map, config) => {
   let end = map[map.length - 1][map[0].length - 1];
   end.minPath = 0;
@@ -28,7 +26,7 @@ const getSolution = (map, config) => {
     for (let m of modified) {
       for (let dir of dirs) {
         let x = m.x + dir[0], y = m.y + dir[1];
-        if (checkBoundaries(map, [x, y])) {
+        if (map.isInBounds(x, y)) {
           let cur = map[y][x];
           if (cur.minPath === -1 || cur.minPath > (m.minPath + m.cost)) {
             cur.minPath = m.minPath + m.cost;

@@ -4,10 +4,9 @@ const parseInput = input => {
 
 let incrementNeighbors = (values, x, y) => {
   let dirs = [[0, -1], [-1, 0], [1, 0], [0, 1], [-1, 1], [-1, -1], [1, -1], [1, 1]];
-  let checkBoundaries = (vals, x, y) => x >= 0 && y >= 0 && x < vals[0].length && y < vals.length;
   for (let dir of dirs) {
     let a = x + dir[0], b = y + dir[1];
-    if (checkBoundaries(values, a, b) && values[b][a] > -1) {
+    if (values.isInBounds(a, b) && values[b][a] > -1) {
       values[b][a]++;
     }
   }

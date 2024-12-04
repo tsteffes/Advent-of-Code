@@ -6,10 +6,9 @@ let lowPoint = (values, x, y) => {
   let higherNeighbors = 0;
   let borders = 0;
   let dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
-  let checkBoundaries = (values, x, y) => x >= 0 && y >= 0 && x < values[0].length && y < values.length;
   for (let dir of dirs) {
     let a = x + dir[0], b = y + dir[1];
-    if (checkBoundaries(values, a, b)) {
+    if (values.isInBounds(a, b)) {
       borders++;
       if (values[b][a] > values[y][x]) {
         higherNeighbors++;
@@ -24,11 +23,10 @@ let getBasinPoints = (values, x, y, visited) => {
   visited.push([x, y]);
   let res = [[x, y]];
   let dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
-  let checkBoundaries = (vals, x, y) => x >= 0 && y >= 0 && x < vals[0].length && y < vals.length;
   let checkVisited = (vals, x, y) => vals.filter(v => v[0] === x && v[1] === y).length > 0;
   for (let dir of dirs) {
     let a = x + dir[0], b = y + dir[1];
-    if (checkBoundaries(values, a, b) && !checkVisited(visited, a, b)) {
+    if (values.isInBounds(a, b) && !checkVisited(visited, a, b)) {
       if (values[b][a] !== 9 && values[b][a] > values[y][x]) {
         res = res.concat(getBasinPoints(values, a, b, visited));
       }

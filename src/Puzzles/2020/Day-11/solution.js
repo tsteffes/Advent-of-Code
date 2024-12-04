@@ -7,14 +7,13 @@ let countOccupiedNeighbors = (values, x, y, config) => {
   let dirs = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]];
   for (let dir of dirs) {
     let a = x + dir[0], b = y + dir[1];
-    let checkBoundaries = (values, x, y) => x >= 0 && y >= 0 && x < values[0].length && y < values.length;
     if (config.adjacentRule === 2) {
-      while (checkBoundaries(values, a, b) && values[b][a] === '.') {
+      while (values.isInBounds(a, b) && values[b][a] === '.') {
         a += dir[0], b += dir[1];
       };
     }
 
-    neighbors += checkBoundaries(values, a, b) && values[b][a] === '#' ? 1 : 0;
+    neighbors += values.isInBounds(a, b) && values[b][a] === '#' ? 1 : 0;
   }
 
   return neighbors;
