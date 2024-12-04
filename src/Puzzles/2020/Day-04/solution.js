@@ -18,7 +18,7 @@ const getSolution = (values, config) => {
   }).length;
 };
 
-Solver.solve(parseInput, getSolution, [{ validate: false }, { validate: true }], i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, [{ validate: false }, { validate: true }], '\r\n\r\n');
 
 // Part 1 solution: 254
 // Part 2 solution: 184

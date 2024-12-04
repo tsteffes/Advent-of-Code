@@ -26,7 +26,7 @@ const getSolution = (input, config) => {
 };
 
 const config = [{ mutate: a => a }, { mutate: a => a.reverse() }];
-Solver.solve(parseInput, getSolution, config, i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, config, '\r\n\r\n');
 
 // Part 1 solution: LJSVLTWQM
 // Part 2 solution: BRQWDBBJM

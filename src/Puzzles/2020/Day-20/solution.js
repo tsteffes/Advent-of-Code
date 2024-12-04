@@ -25,7 +25,7 @@ const getSolution = (input, config) => {
   return _.filter(input, i => i.missing.length === 2).map(i => i.id).reduce((a, b) => a * b);
 };
 
-Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, [], '\r\n\r\n');
 
 // Part 1 solution: 15670959891893
 // Part 2 solution:

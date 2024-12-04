@@ -41,7 +41,7 @@ const getSolution = (input, config) => {
   return _.map(_.filter(input.rules, r => r.field.indexOf('departure') === 0), r => input.mine[r.column]).reduce((a, b) => a * b);
 };
 
-Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, [], '\r\n\r\n');
 
 // Part 1 solution: 24021
 // Part 2 solution: 1289178686687

@@ -48,7 +48,7 @@ const getSolution = (input, config) => {
 };
 
 const config = [{ }, { additionalPackets: ['[[2]]', '[[6]]'] }];
-Solver.solve(parseInput, getSolution, config, i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, config, '\r\n\r\n');
 
 // Part 1 solution: 5717
 // Part 2 solution: 25935

@@ -52,7 +52,7 @@ const getSolution = (input, config) => {
   return messages.filter(m => checkRule({ message: m, idx: 0, rule: 0, rules: rules })).length;
 };
 
-Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, [], '\r\n\r\n');
 
 // Part 1 solution:
 // Part 2 solution:

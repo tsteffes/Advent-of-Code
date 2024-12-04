@@ -19,7 +19,7 @@ const getSolution = (values, config) => {
   }));
 };
 
-Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, [], '\r\n\r\n');
 
 // Part 1 solution: 6911
 // Part 2 solution: 3473

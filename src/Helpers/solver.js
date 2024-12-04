@@ -6,7 +6,8 @@ const logResult = (test, results) => results.forEach((r, i) => {
 });
 
 // this method must be called from within a solution.js file
-exports.solve = (parser, method, configs = [], reader = io.readLines) => {
+exports.solve = (parser, method, configs = [], separator = '\r\n') => {
+  const reader = i => io.readLines(i, separator);
   const file = getCallerFile();
   const year = file.match(/.*\\(?<y>.*)\\Day-.*\\.*/).groups.y;
   const day = file.match(/.*\\Day-(?<d>.*)\\.*/).groups.d;

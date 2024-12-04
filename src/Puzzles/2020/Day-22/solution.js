@@ -45,7 +45,7 @@ const getSolution = (players, config) => {
   return _.sum(_.map(players, p => _.sum(_.map(p.cards, (c, i) => c * (p.cards.length - i)))));
 };
 
-Solver.solve(parseInput, getSolution, [], i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, [], '\r\n\r\n');
 
 // Part 1 solution: 32401
 // Part 2 solution: 31436

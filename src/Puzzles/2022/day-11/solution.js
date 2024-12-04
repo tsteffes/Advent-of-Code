@@ -27,7 +27,7 @@ const getSolution = (monkeys, config) => {
 };
 
 const config = [ { rounds: 20, div: 3 }, { rounds: 10000, div: 1 } ];
-Solver.solve(parseInput, getSolution, config, i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, config, '\r\n\r\n');
 
 // Part 1 solution: 99840
 // Part 2 solution: 20683044837

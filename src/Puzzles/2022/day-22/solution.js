@@ -65,7 +65,7 @@ const getSolution = (input, config) => {
 };
 
 const config = [{}, {}];
-Solver.solve(parseInput, getSolution, config, i => io.readLines(i, '\r\n\r\n'));
+Solver.solve(parseInput, getSolution, config, '\r\n\r\n');
 
 // Part 1 solution:
 // Part 2 solution:
