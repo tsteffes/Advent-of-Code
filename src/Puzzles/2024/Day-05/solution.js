@@ -3,20 +3,18 @@ require('../../../Helpers/global');
 const breaksRule = (update, rule) => update.includes(rule[0]) && update.includes(rule[1]) && update.indexOf(rule[1]) < update.indexOf(rule[0]);
 const middlePageSum = updates => _.sum(updates.map(v => v[Math.floor(v.length / 2)]));
 const partitionPuz = (updates, rules) => _.partition(updates, u => !rules.some(r => breaksRule(u, r)));
-const fixBad = (bad, rules) => bad.map(b => {
+const fixBad = (updates, rules) => updates.map(bad => {
   while(true) {
-    let rule = rules.find(r => breaksRule(b, r));
-    if (!rule) {
+    const r = rules.find(rule => breaksRule(bad, rule));
+    if (!r) {
       break;
     }
 
-    let i1 = b.indexOf(rule[1]);
-    b.splice(i1, 1);
-    let i0 = b.indexOf(rule[0]);
-    b.splice(i0 + 1, 0, rule[1]);
+    bad.splice(bad.indexOf(r[1]), 1);
+    bad.splice(bad.indexOf(r[0]) + 1, 0, r[1]);
   }
 
-  return b;
+  return bad;
 });
 new Puzzle(2024, 5)
   .withSeparator('\r\n\r\n')
