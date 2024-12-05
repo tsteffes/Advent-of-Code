@@ -23,3 +23,7 @@ exports.getFile = (year, day) => {
 
   return file;
 };
+
+exports.getPath = (year, day) => {
+  return appRoot + `\\src\\Puzzles\\${year}\\Day-${day.toString().padStart(2, '0')}\\`;
+}

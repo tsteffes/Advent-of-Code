@@ -28,23 +28,19 @@ class Puzzle {
   }
 
   solve(configs = []) {
-    const path = appRoot + `\\src\\Puzzles\\${this.year}\\Day-${this.day.toString().padStart(2, '0')}\\`;
-    const testInput = this.reader(path + 'testInput.txt');
-    const input = this.reader(path + 'input.txt');
     const conf = [{ part: 1, ...configs[0] }, { part: 2, ...configs[1] }];
     const logResult = (test, results) => {
       console.log(`${this.year}-${this.day.toString().padStart(2, '0')} ${test ? 'test solutions' : 'solutions'}:`);
       results.forEach((r, i) => console.log(`Part ${i + 1}: ${r}`));
       console.log();
-    }
-
-    if (testInput) {
-      logResult(true, conf.map(c => this.solver(this.parser(testInput, c), c)));
-    }
-
-    if (input) {
-      logResult(false, conf.map(c => this.solver(this.parser(input, c), c)));
-    }
+    };
+    const execute = test => {
+      let input = this.reader(io.getPath(this.year, this.day) + `${test ? 'testInput' : 'input'}.txt`);
+      if (input) {
+        logResult(test, conf.map(c => this.solver(this.parser(input, c), c)));
+      }
+    };
+    [true, false].forEach(v => execute(v));
   };
 }
 
