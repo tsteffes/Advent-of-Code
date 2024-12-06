@@ -1,5 +1,4 @@
-const HashMap = require('../../../Helpers/hashMap').HashMap;
-
+require('../../../Helpers/global');
 const parseInput = input => _.map(input[0].split(','), i => parseInt(i));
 
 const getSolution = (input, config) => {

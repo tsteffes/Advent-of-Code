@@ -1,8 +1,28 @@
-// returns the cross product of two arrays
-exports.crossProduct = (a, b) => a.flatMap(v1 => b.map(v2 => [v1, v2]));
+// returns the cross product of an array
+Array.prototype.crossProduct = function() {
+  return this.flatMap(v1 => this.map(v2 => [v1, v2]));
+}
 
 // returns a new array with the item at the index removed
-exports.removeAt = (arr, i) => _.concat(arr.slice(0, i), arr.slice(i + 1));
+Array.prototype.removeAt = function(i) {
+  return _.concat(this.slice(0, i), this.slice(i + 1));
+}
 
 // counts the array elements that meet the predicate
-exports.count = (arr, pred) => _.filter(arr, pred).length;
+Array.prototype.count = function(pred) {
+  return _.filter(this, pred).length;
+}
+
+Array.prototype.equals = function(other) {
+  if (this.length !== other.length) {
+    return false;
+  }
+
+  for (let i = 0; i < this.length; i++) {
+    if (this[i] !== other[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}

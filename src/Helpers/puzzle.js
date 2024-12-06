@@ -1,4 +1,4 @@
-class Puzzle {
+exports.Puzzle = class {
   constructor(year, day) {
     this.year = year;
     this.day = day;
@@ -43,5 +43,3 @@ class Puzzle {
     [true, false].forEach(v => execute(v));
   };
 }
-
-module.exports = Puzzle;
