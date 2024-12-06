@@ -1,9 +1,12 @@
-const parseInput = i => i;
-const getSolution = (values, config) => {
-  return 0;
-};
+require('../../../Helpers/global');
 
-Solver.solve(parseInput, getSolution, [{ }, { }]);
+const configs = [{}, {}];
+new Puzzle(2024, 20)
+  .withParser(i => i)
+  .withSolver((values, config) => {
+    return 0;
+  })
+  .solve(configs);
 
 // Part 1 solution:
 // Part 2 solution:
