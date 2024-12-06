@@ -12,44 +12,46 @@ const moveGuard = puz => {
     puz.guard.visited.push(puz.guard.pos);
   }
 };
+const simulate = puz => {
+  while(true) {
+    moveGuard(puz);
+
+    if (exitingBounds(puz)) {
+      return;
+    }
+
+    if (colliding(puz)) {
+      if (hasCycle(puz)) {
+        puz.cycle = true;
+        return;
+      }
+
+      puz.guard.collisions.push({ pos: puz.guard.pos, dir: puz.guard.dir });
+      turnGuard(puz);
+    }
+  }
+};
 new Puzzle(2024, 6)
   .withParser(map => map)
   .withSolver((map, config) => {
     const blocks = map.findAll('#');
-    let cycles = 0;
-    for (let extraBlock of config.extraBlocks(map)) {
-      const puz = {
-        map: map,
-        blocks: _.concat(blocks, [extraBlock]),
-        guard: { visited: [map.findElement('^')], collisions: [], pos: map.findElement('^'), dir: [0, -1] }
-      };
-
-      while(true) {
-        moveGuard(puz);
-
-        if (exitingBounds(puz)) {
-          break;
-        }
-
-        if (colliding(puz)) {
-          if (hasCycle(puz)) {
-            cycles++;
-            break;
-          }
-
-          puz.guard.collisions.push({ pos: puz.guard.pos, dir: puz.guard.dir });
-          turnGuard(puz);
-        }
-      }
-
-      if (config.part === 1) {
-        return _.uniqWith(puz.guard.visited, (a, b) => a[0] === b[0] && a[1] === b[1]).length;
-      }
+    const start = map.findElement('^');
+    const initGuard = () => { return { pos: start, dir: [0, -1], visited: [start], collisions: [] }; };
+    const initPuz = (map, blocks) => { return { map, blocks, guard: initGuard() } };
+    let puz = initPuz(map, blocks);
+    simulate(puz);
+    let visited = _.uniqWith(puz.guard.visited, (a, b) => a[0] === b[0] && a[1] === b[1]);
+    if (config.part === 1) {
+      return visited.length;
     }
 
-    return cycles;
+    return _.sum(_.filter(visited, v => !v.equals(start)).map(v => {
+      puz = initPuz(map, _.concat(blocks, [v]));
+      simulate(puz);
+      return puz.cycle ? 1 : 0;
+    }));
   })
-  .solve([{ extraBlocks: () => [[-1, -1]]}, { extraBlocks: map => map.findAll('.') }]);
+  .solve();
 
 // Part 1 solution: 5086
-// Part 2 solution: 1770 - runs in ~6min
+// Part 2 solution: 1770 - runs in ~60s
