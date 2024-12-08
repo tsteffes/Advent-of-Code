@@ -20,10 +20,10 @@ const filterColumns = (rules, col) => {
 const getSolution = (input, config) => {
   let failsAllRules = v => !_.some(input.rules, r => checkRule(r, v));
   if (config.part === 1) {
-    return _.sum(_.map(input.others, other => _.sum(_.filter(other, failsAllRules))));
+    return _.sum(_.map(input.others, other => _.sum(other.filter(failsAllRules))));
   }
 
-  let tickets = _.filter(input.others, other => !_.some(other, failsAllRules));
+  let tickets = input.others.filter(other => !_.some(other, failsAllRules));
   for (let rule of input.rules) {
     for (let i = 0; i < input.mine.length; i++) {
       if (_.every(tickets, t => checkRule(rule, t[i]))) {
@@ -38,7 +38,7 @@ const getSolution = (input, config) => {
     filterColumns(input.rules, r.column);
   }
 
-  return _.map(_.filter(input.rules, r => r.field.indexOf('departure') === 0), r => input.mine[r.column]).reduce((a, b) => a * b);
+  return _.map(input.rules.filter(r => r.field.indexOf('departure') === 0), r => input.mine[r.column]).reduce((a, b) => a * b);
 };
 
 Solver.solve(parseInput, getSolution, [], '\r\n\r\n');

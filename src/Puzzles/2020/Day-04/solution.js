@@ -10,8 +10,8 @@ let mapPassport = collection => {
 };
 
 const getSolution = (values, config) => {
-  return _.filter(values, passport => {
-    return _.filter(Object.keys(passport), key => {
+  return values.filter(passport => {
+    return Object.keys(passport).filter(key => {
       let field = _.find(fields, f => f.name === key);
       return !!field && (!config.validate || field.validator.validate(passport[key]));
     }).length >= requiredFields;

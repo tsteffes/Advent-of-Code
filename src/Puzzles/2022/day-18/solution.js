@@ -37,7 +37,7 @@ const getSolution = (lava, config) => {
   }
 
   return (6 * lava.length) - _.sum(lava.map(i => {
-    return _.filter(sides, s => {
+    return sides.filter(s => {
       let side = [i[0] + s[0], i[1] + s[1], i[2] + s[2]];
         return config.part === 1 ? inCollection(lava, side) : !inCollection(water, side);
     }).length;

@@ -8,11 +8,6 @@ Array.prototype.removeAt = function(i) {
   return _.concat(this.slice(0, i), this.slice(i + 1));
 }
 
-// counts the array elements that meet the predicate
-Array.prototype.count = function(pred) {
-  return _.filter(this, pred).length;
-}
-
 Array.prototype.equals = function(other) {
   if (this.length !== other.length) {
     return false;

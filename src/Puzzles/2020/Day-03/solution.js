@@ -3,7 +3,7 @@ const partTwoConfigs = [{ rise: 1, run: 1 }, { rise: 1, run: 3 }, { rise: 1, run
 
 let countTrees = (map, config) => {
   let positions = _.map([...Array(map.length).keys()], y => [(y * config.run) % map[0].length, (y * config.rise)]);
-  return _.filter(_.filter(positions, p => p[1] < map.length), p => map[p[1]][p[0]] === '#').length;
+  return positions.filter(p => p[1] < map.length).filter(p => map[p[1]][p[0]] === '#').length;
 };
 
 const getSolution = (values, config) => {

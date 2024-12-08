@@ -1,6 +1,6 @@
-const parseInput = input => _.map(input, d => parseInput(d.split(' ')));
+const parseInput = input => _.map(input, d => getParts(d.split(' ')));
 
-let parseInput = parts => {
+let getParts = parts => {
   return {
     firstNum: parseInt(parts[0].split('-')[0]),
     lastNum: parseInt(parts[0].split('-')[1]),
@@ -10,7 +10,7 @@ let parseInput = parts => {
 };
 
 let partOneFilter = r => {
-  let count = _.filter([...r.password], l => l === r.letter).length;
+  let count = [...r.password].filter(l => l === r.letter).length;
   return r.firstNum <= count && count <= r.lastNum;
 };
 
@@ -19,7 +19,7 @@ let partTwoFilter = r => {
 };
 
 const getSolution = (values, config) => {
-  return _.filter(values, config.filter).length;
+  return values.filter(config.filter).length;
 };
 
 Solver.solve(parseInput, getSolution, [{ filter: partOneFilter }, { filter: partTwoFilter }]);

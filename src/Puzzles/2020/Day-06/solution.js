@@ -14,7 +14,7 @@ const getSolution = (values, config) => {
 
   return _.sum(_.map(values, v => {
     return _.sum(_.map(_.uniq(v.answers), a => {
-      return _.filter(v.answers, b => b === a).length === v.num ? 1 : 0;
+      return v.answers.filter(b => b === a).length === v.num ? 1 : 0;
     }));
   }));
 };

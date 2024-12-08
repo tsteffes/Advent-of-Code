@@ -17,12 +17,12 @@ let mapBorders = vals => {
 
 const getSolution = (input, config) => {
   input.forEach(i => {
-    i.missing = _.filter(i.borders, b => !_.some(input, x => {
+    i.missing = i.borders.filter(b => !_.some(input, x => {
       return x.id !== i.id && _.some(x.borders, b2 => b2 === b || b2 === b.split('').reverse().join(''));
     }));
   });
 
-  return _.filter(input, i => i.missing.length === 2).map(i => i.id).reduce((a, b) => a * b);
+  return input.filter(i => i.missing.length === 2).map(i => i.id).reduce((a, b) => a * b);
 };
 
 Solver.solve(parseInput, getSolution, [], '\r\n\r\n');

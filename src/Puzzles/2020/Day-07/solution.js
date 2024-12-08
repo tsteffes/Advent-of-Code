@@ -25,7 +25,7 @@ let countContents = (allBags, bag) => {
 
 const getSolution = (values, config) => {
   if (config.part === 1) {
-    return _.filter(values, v => v.desc !== targetBag && containsBag(values, v)).length;
+    return values.filter(v => v.desc !== targetBag && containsBag(values, v)).length;
   }
   else {
     return countContents(values, _.find(values, b => b.desc === targetBag)) - 1;

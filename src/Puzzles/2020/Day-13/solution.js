@@ -1,7 +1,7 @@
 const parseInput = input => {
   return {
     earliest: parseInt(input[0]),
-    schedule: _.filter(_.map(input[1].split(','), (v, i) => { return { interval: parseInt(v == 'x' ? -1 : v), index: i }; }), v => v.interval > 0)
+    schedule: _.map(input[1].split(','), (v, i) => { return { interval: parseInt(v == 'x' ? -1 : v), index: i }; }).filter(v => v.interval > 0)
   };
 };
 

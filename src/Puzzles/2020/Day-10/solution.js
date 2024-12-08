@@ -21,7 +21,7 @@ let getPathCount = values => {
 const getSolution = (values, config) => {
   if (config.part === 1) {
     let m = values.map((v, i) => i == 0 ? v : v - values[i-1]);
-    return (d => _.filter(d, v1 => v1 == 3).length * _.filter(d, v2 => v2 == 1).length)(m);
+    return (d => d.filter(v1 => v1 == 3).length * d.filter(v2 => v2 == 1).length)(m);
   }
 
   return getPathCount(values);

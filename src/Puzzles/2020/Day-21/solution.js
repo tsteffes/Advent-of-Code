@@ -27,7 +27,7 @@ const getSolution = (input, config) => {
   }
 
   if (config.part === 1) {
-    return _.sum(input.map(i => _.filter(i.ingredients, g => results.map(r => r.actual).indexOf(g) === -1).length));
+    return _.sum(input.map(i => i.ingredients.filter(g => results.map(r => r.actual).indexOf(g) === -1).length));
   }
 
   return _.sortBy(results, r => r.name).map(r => r.actual).join(',');

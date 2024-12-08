@@ -29,7 +29,7 @@ const getSolution = (input, config) => {
   for (let j = 0; j <= _.max(input.coords.map(c => c.y)); j++) {
     let line = '';
     for (let i = 0; i <= _.max(input.coords.map(c => c.x)); i++) {
-      let f = _.filter(input.coords, c => c.x === i && c.y === j);
+      let f = input.coords.filter(c => c.x === i && c.y === j);
       line += f.length > 0 ? '#' : '.';
     }
 

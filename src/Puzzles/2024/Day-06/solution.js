@@ -45,7 +45,7 @@ new Puzzle(2024, 6)
       return visited.length;
     }
 
-    return _.sum(_.filter(visited, v => !v.equals(start)).map(v => {
+    return _.sum(visited.filter(v => !v.equals(start)).map(v => {
       puz = initPuz(map, _.concat(blocks, [v]));
       simulate(puz);
       return puz.cycle ? 1 : 0;

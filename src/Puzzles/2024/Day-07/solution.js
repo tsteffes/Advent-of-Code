@@ -16,10 +16,10 @@ const parse = input => input.map(v => [...v.matchAll(reg)].map(g => {
 })[0]);
 const solve = (values, config) => {
   const solvable = v => doMath(config.ops, v.terms, v.ans).includes(v.ans);
-  return _.sum(_.filter(values, solvable).map(v => v.ans));
+  return _.sum(values.filter(solvable).map(v => v.ans));
 };
 const doMath = (numOps, terms, ans) => {
-  const secondOperands = terms.length === 2 ? [terms[1]] : _.filter(doMath(numOps, terms.slice(1), ans), v => v <= ans);
+  const secondOperands = terms.length === 2 ? [terms[1]] : doMath(numOps, terms.slice(1), ans).filter(v => v <= ans);
   return secondOperands.reduce((prev, operand) => {
     prev.push(...ops.slice(0, numOps).map(op => op(terms[0], operand)));
     return prev;

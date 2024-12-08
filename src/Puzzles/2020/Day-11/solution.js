@@ -48,7 +48,7 @@ const getSolution = (values, config) => {
     nextState = getNextState(curState, config);
   } while (!compareState(curState, nextState))
 
-  return _.sum(curState.map(c => _.filter(c, c1 => c1 === '#').length));
+  return _.sum(curState.map(c => c.filter(c1 => c1 === '#').length));
 };
 
 Solver.solve(parseInput, getSolution, [{ adjacentMin: 4, adjacentRule: 1 }, { adjacentMin: 5, adjacentRule: 2 }]);
