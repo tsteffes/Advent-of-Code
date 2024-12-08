@@ -44,3 +44,15 @@ Array.prototype.findAll = function(el) {
 
   return res;
 }
+
+Array.prototype.elementHashMap = function() {
+  let map = {};
+  for (let y = 0; y < this.length; y++) {
+    for (let x = 0; x < this[0].length; x++) {
+      map[this[y][x]] = map[this[y][x]] || [];
+      map[this[y][x]].push([x, y]);
+    }
+  }
+
+  return map;
+}

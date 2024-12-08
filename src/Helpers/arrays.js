@@ -26,3 +26,14 @@ Array.prototype.equals = function(other) {
 
   return true;
 }
+
+Array.prototype.getUniquePairs = function() {
+  let result = [];
+  for (let i = 0; i < this.length - 1; i++) {
+    for (let j = i + 1; j < this.length; j++) {
+      result.push([this[i], this[j]]);
+    }
+  }
+
+  return result;
+}

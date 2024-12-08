@@ -2,6 +2,7 @@ var path = require('path');
 
 global._ = require('lodash');
 global.arrays = require('./arrays');
+global.math = require('./math');
 global.io = require('./io');
 global.Solver = require('./solver');
 global.maps = require('./maps');
