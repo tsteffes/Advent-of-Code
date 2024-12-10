@@ -45,6 +45,17 @@ Array.prototype.findAll = function(el) {
   return res;
 }
 
+Array.prototype.findAllWhere = function(pred) {
+  let res = [];
+  this.getAllCoordinates().forEach(c => {
+    if (pred(this[c[1]][c[0]])) {
+      res.push(c);
+    }
+  });
+
+  return res;
+}
+
 Array.prototype.elementHashMap = function() {
   let map = {};
   for (let y = 0; y < this.length; y++) {
