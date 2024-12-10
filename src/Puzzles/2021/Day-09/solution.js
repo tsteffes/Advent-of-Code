@@ -5,10 +5,9 @@ const parseInput = input => {
 let lowPoint = (values, x, y) => {
   let higherNeighbors = 0;
   let borders = 0;
-  let dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
-  for (let dir of dirs) {
+  for (let dir of maps.cardinal4) {
     let a = x + dir[0], b = y + dir[1];
-    if (values.isInBounds(a, b)) {
+    if (values.isInBounds([a, b])) {
       borders++;
       if (values[b][a] > values[y][x]) {
         higherNeighbors++;
@@ -19,16 +18,15 @@ let lowPoint = (values, x, y) => {
   return higherNeighbors === borders;
 };
 
-let getBasinPoints = (values, x, y, visited) => {
-  visited.push([x, y]);
-  let res = [[x, y]];
-  let dirs = [[0, -1], [-1, 0], [1, 0], [0, 1]];
-  let checkVisited = (vals, x, y) => vals.filter(v => v[0] === x && v[1] === y).length > 0;
-  for (let dir of dirs) {
-    let a = x + dir[0], b = y + dir[1];
-    if (values.isInBounds(a, b) && !checkVisited(visited, a, b)) {
-      if (values[b][a] !== 9 && values[b][a] > values[y][x]) {
-        res = res.concat(getBasinPoints(values, a, b, visited));
+let getBasinPoints = (values, loc, visited) => {
+  visited.push(loc);
+  let res = [loc];
+  let checkVisited = (vals, loc) => vals.filter(v => v[0] === loc[0] && v[1] === loc[1]).length > 0;
+  for (let dir of maps.cardinal4) {
+    let newLoc = loc.getNeighbor(dir)
+    if (values.isInBounds(newLoc) && !checkVisited(visited, newLoc)) {
+      if (values.getAt(newLoc) !== 9 && values.getAt(newLoc) > values.getAt(loc)) {
+        res = res.concat(getBasinPoints(values, newLoc, visited));
       }
     }
   }
@@ -52,7 +50,7 @@ const getSolution = (values, config) => {
 
   let basins = [];
   for (let lowPoint of lowPoints) {
-    basins.push(getBasinPoints(values, lowPoint[0], lowPoint[1], []));
+    basins.push(getBasinPoints(values, lowPoint, []));
   }
 
   return _.take(basins.sort((a, b) => b.length - a.length), 3).reduce((cur, x) => cur * x.length, 1);

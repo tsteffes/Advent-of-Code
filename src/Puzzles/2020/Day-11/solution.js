@@ -2,18 +2,17 @@ const parseInput = input => {
   return input.map(y => y.split(''));
 };
 
-let countOccupiedNeighbors = (values, x, y, config) => {
+let countOccupiedNeighbors = (values, loc, config) => {
   let neighbors = 0;
-  let dirs = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]];
-  for (let dir of dirs) {
-    let a = x + dir[0], b = y + dir[1];
+  for (let dir of maps.cardinal8) {
+    let newLoc = loc.getNeighbor(dir);
     if (config.adjacentRule === 2) {
-      while (values.isInBounds(a, b) && values[b][a] === '.') {
-        a += dir[0], b += dir[1];
+      while (values.isInBounds(newLoc) && values.getAt(newLoc) === '.') {
+        newLoc = newLoc.getNeighbor(dir);
       };
     }
 
-    neighbors += values.isInBounds(a, b) && values[b][a] === '#' ? 1 : 0;
+    neighbors += values.isInBounds(newLoc) && values.getAt(newLoc) === '#' ? 1 : 0;
   }
 
   return neighbors;
@@ -29,8 +28,8 @@ let getNextState = (curState, config) => {
     let row = [];
     nextState.push(row);
     for (let x = 0; x < curState[0].length; x++) {
-      let cur = curState[y][x];
-      let neighbors = countOccupiedNeighbors(curState, x, y, config);
+      let cur = curState.getAt([x, y]);
+      let neighbors = countOccupiedNeighbors(curState, [x, y], config);
       row.push(cur === '.' ? '.' :
         cur === 'L' && neighbors == 0 ? '#' :
         cur === '#' && neighbors >= config.adjacentMin ? 'L' :

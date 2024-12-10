@@ -1,18 +1,17 @@
 require('../../../Helpers/global');
 
 new Puzzle(2024, 4)
-  .withParser(i => i.map(v => v.split('')))
+  .withParser(i => maps.parse(i))
   .withSolver((map, config) => {
     let res = 0;
     map.getAllCoordinates().forEach(loc => {
       if (config.part === 1) {
         for (const dir of maps.cardinal8) {
-          let word = map[loc[1]][loc[0]];
+          let word = map.getAt(loc);
           for (let i = 1; i < 4; i++) {
-            const x0 = loc[0] + (dir[0] * i);
-            const y0 = loc[1] + (dir[1] * i);
-            if (map.isInBounds(x0, y0)) {
-              word += map[y0][x0];
+            const cur = loc.getNeighbor([dir[0] * i, dir[1] * i]);
+            if (map.isInBounds(cur)) {
+              word += map.getAt(cur);
             }
           }
 
@@ -20,21 +19,19 @@ new Puzzle(2024, 4)
         }
       }
       else {
-        if (map[loc[1]][loc[0]] !== 'A') {
+        if (map.getAt(loc) !== 'A') {
           return;
         }
 
         const xVals = [null, null, null, null];
         for (let i = 0; i < maps.xDirs.length; i++) {
-          const dir = maps.xDirs[i];
-          const x0 = loc[0] + dir[0];
-          const y0 = loc[1] + dir[1];
-          if (map.isInBounds(x0, y0) && ['M', 'S'].includes(map[y0][x0])) {
-            xVals[i] = map[y0][x0];
+          const cur = loc.getNeighbor(maps.xDirs[i]);
+          if (map.isInBounds(cur) && ['M', 'S'].includes(map.getAt(cur))) {
+            xVals[i] = map.getAt(cur);
           }
         }
 
-        res += !_.some(xVals, x => !x) && xVals[0] != xVals[1] && xVals[2] != xVals[3];
+        res += _.some(xVals, x => !x) || xVals[0] === xVals[1] || xVals[2] === xVals[3] ? 0 : 1;
       }
     });
 

@@ -4,7 +4,6 @@ const solver = (map, config) => {
   const elems = map.elementHashMap();
   const coords = map.getAllCoordinates();
   const antinodes = [];
-  const inLine = (a, b, c) => a[0] === b[0] === c[0] || ((c[1] - a[1]) / (c[0] - a[0])) === ((c[1] - b[1]) / (c[0] - b[0]));
   Object.keys(elems).filter(e => e !== '.').forEach(v => {
     const locs = elems[v].getUniquePairs();
     locs.forEach(v => {
@@ -15,13 +14,13 @@ const solver = (map, config) => {
         antinodes.push([v[1][0] - xDiff, v[1][1] - yDiff]);
       }
       else {
-        antinodes.push(v[0], v[1], ...coords.filter(c => inLine(v[0], v[1], c)));
+        antinodes.push(v[0], v[1], ...coords.filter(c => geometry.colinear(v[0], v[1], c)));
       }
     });
   });
 
-  const inBounds = antinodes.filter(a => map.isInBounds(a[0], a[1]));
-  return _.uniqWith(inBounds, (a, b) => a[0] === b[0] && a[1] === b[1]).length;
+  const inBounds = antinodes.filter(a => map.isInBounds(a));
+  return _.uniqWith(inBounds, maps.isSameLocation).length;
 };
 new Puzzle(2024, 8)
   .withSolver(solver)

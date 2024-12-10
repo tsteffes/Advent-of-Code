@@ -3,10 +3,9 @@ const parseInput = input => {
 };
 
 let incrementNeighbors = (values, x, y) => {
-  let dirs = [[0, -1], [-1, 0], [1, 0], [0, 1], [-1, 1], [-1, -1], [1, -1], [1, 1]];
-  for (let dir of dirs) {
+  for (let dir of maps.cardinal8) {
     let a = x + dir[0], b = y + dir[1];
-    if (values.isInBounds(a, b) && values[b][a] > -1) {
+    if (values.isInBounds([a, b]) && values[b][a] > -1) {
       values[b][a]++;
     }
   }

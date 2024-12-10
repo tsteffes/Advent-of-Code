@@ -1,28 +1,26 @@
 require('../../../Helpers/global');
 
-const parser = i =>  i.map(r => r.split('').map(v => { return { val: parseInt(v), reachables: [] }; }));
+const parser = i => maps.parse(i, '', v => { return { val: parseInt(v), reachables: [] }; });
 const solver = (map, config) => {
-  for (let i of _.range(9, -1, -1)) {
-    let locs = map.findAllWhere(l => l.val === i);
-    locs.forEach(l => {
-      let cur = map[l[1]][l[0]];
-      if (i === 9) {
-        cur.reachables.push(l);
-        return;
+  for (let num of _.reverse(_.range(10))) {
+    for (let loc of map.findAllWhere(loc => loc.val === num)) {
+      if (num === 9) {
+        map.getAt(loc).reachables.push(loc);
       }
-
-      maps.cardinal4.filter(c => map.isInBounds(l[0] + c[0], l[1] + c[1])).forEach(c => {
-        let neighbor = map[l[1] + c[1]][l[0] + c[0]];
-        if (neighbor.val === i + 1) {
-          cur.reachables.push(...neighbor.reachables);
+      else {
+        for (let dir of maps.cardinal4.filter(dir => map.isInBounds(loc.getNeighbor(dir)))) {
+          let neighbor = map.getAt(loc.getNeighbor(dir));
+          if (neighbor.val === num + 1) {
+            map.getAt(loc).reachables.push(...neighbor.reachables);
+          }
         }
-      });
-    });
+      }
+    }
   }
 
-  return _.sum(map.findAllWhere(l => l.val === 0).map(l => {
-    let cur = map[l[1]][l[0]];
-    return config.part === 1 ? _.uniqWith(cur.reachables, (a, b) => a[0] === b[0] && a[1] === b[1]).length : cur.reachables.length;
+  return _.sum(map.findAllWhere(loc => loc.val === 0).map(loc => {
+    let r = map.getAt(loc).reachables;
+    return config.part === 1 ? _.uniqWith(r, maps.isSameLocation).length : r.length;
   }));
 };
 new Puzzle(2024, 10)

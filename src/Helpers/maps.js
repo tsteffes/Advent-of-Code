@@ -5,6 +5,16 @@ exports.xDirs = [[1, -1], [-1, 1], [1, 1], [-1, -1]];
 
 exports.cardinal8 = [[0, -1], [-1, 0], [1, 0], [0, 1], [-1, 1], [-1, -1], [1, 1], [1, -1]];
 
+exports.isSameLocation = (a, b) => a[0] === b[0] && a[1] === b[1];
+
+exports.parse = (input, split = '', mapper = v => v) => {
+  return input.map(i => i.split(split).map(mapper));
+};
+
+Array.prototype.getNeighbor = function(dir) {
+  return [this[0] + dir[0], this[1] + dir[1]];
+};
+
 Array.prototype.getAllCoordinates = function() {
   let coords = [];
   for (let y = 0; y < this.length; y++) {
@@ -16,7 +26,7 @@ Array.prototype.getAllCoordinates = function() {
   return coords;
 };
 
-Array.prototype.isInBounds = function(x, y) {
+Array.prototype.isInBounds = function([x, y]) {
   return x >= 0 && y >= 0 && x < this[0].length && y < this.length;
 }
 
@@ -54,6 +64,10 @@ Array.prototype.findAllWhere = function(pred) {
   });
 
   return res;
+}
+
+Array.prototype.getAt = function([x, y]) {
+  return this[y][x];
 }
 
 Array.prototype.elementHashMap = function() {
