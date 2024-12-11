@@ -1,11 +1,48 @@
 require('../../../Helpers/global');
 
-const configs = [{}, {}];
-const parser = i => {
-  return i;
+const configs = [{ blinks: 25 }, { blinks: 75 }];
+let state;
+const parser = i => i[0].split(' ');
+const updateState = (val, blink, num) => {
+  state.stoneHash[val] = state.stoneHash[val] || { blinks: {} };
+  state.stoneHash[val].blinks[blink] = (state.stoneHash[val].blinks[blink] || 0) + num;
+  state.blinkHash[blink] = state.blinkHash[blink] || { vals: {} };
+  state.blinkHash[blink].vals[val] = (state.blinkHash[blink].vals[val] || 0) + num;
 };
-const solver = (values, config) => {
-  return 0;
+const doBlink = (val, blink, num) => {
+  vals = [];
+  if (val === 0) {
+    vals.push(1);
+  }
+  else if (val.toString().length % 2 === 0)
+  {
+    let v = val.toString();
+    vals.push(parseInt(v.slice(0, v.length / 2), 10));
+    vals.push(parseInt(v.slice(v.length / 2), 10));
+  }
+  else {
+    vals.push(val * 2024);
+  }
+
+  vals.forEach(val => updateState(val, blink, num));
+};
+const solver = (input, config) => {
+  state = { stoneHash: {}, blinkHash: {} };
+  input.forEach(v => updateState(parseInt(v, 10), 0, 1));
+  for (let blink = 0; blink < config.blinks; blink++) {
+    const vals = state.blinkHash[blink].vals;
+    Object.keys(vals).map(v => parseInt(v)).forEach(val => {
+      doBlink(val, blink + 1, state.stoneHash[val].blinks[blink]);
+    });
+  }
+
+  const vals = state.blinkHash[config.blinks].vals;
+  let res = 0;
+  for (const [key, value] of Object.entries(vals)) {
+    res += value;
+  }
+
+  return res;
 };
 new Puzzle(2024, 11)
   .withParser(parser)

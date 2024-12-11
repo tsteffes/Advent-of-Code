@@ -20,7 +20,7 @@ const solver = (map, config) => {
 
   return _.sum(map.findAllWhere(loc => loc.val === 0).map(loc => {
     let r = map.getAt(loc).reachables;
-    return config.part === 1 ? _.uniqWith(r, maps.isSameLocation).length : r.length;
+    return config.part === 1 ? r.uniqueLocations().length : r.length;
   }));
 };
 new Puzzle(2024, 10)

@@ -40,7 +40,7 @@ new Puzzle(2024, 6)
     const initPuz = (map, blocks) => { return { map, blocks, guard: initGuard() } };
     let puz = initPuz(map, blocks);
     simulate(puz);
-    let visited = _.uniqWith(puz.guard.visited, maps.isSameLocation);
+    let visited = puz.guard.visited.uniqueLocations();
     if (config.part === 1) {
       return visited.length;
     }

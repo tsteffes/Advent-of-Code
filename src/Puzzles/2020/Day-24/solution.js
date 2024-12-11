@@ -23,7 +23,7 @@ const getSolution = (input, config) => {
       let neighbors = [];
       result.forEach(r => neighbors.push(...getNeighbors(r)));
       let counts = _.countBy(neighbors);
-      let allTiles = _.uniqWith(result.concat(neighbors), maps.isSameLocation);
+      let allTiles = result.concat(neighbors).uniqueLocations();
       result = allTiles.filter(t => _.some(result, r => maps.isSameLocation(r, t)) ? counts[t] > 0 && counts[t] <= 2 : counts[t] === 2);
     }
   }

@@ -20,7 +20,7 @@ const solver = (map, config) => {
   });
 
   const inBounds = antinodes.filter(a => map.isInBounds(a));
-  return _.uniqWith(inBounds, maps.isSameLocation).length;
+  return inBounds.uniqueLocations().length;
 };
 new Puzzle(2024, 8)
   .withSolver(solver)

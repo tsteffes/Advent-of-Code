@@ -81,3 +81,7 @@ Array.prototype.elementHashMap = function() {
 
   return map;
 }
+
+Array.prototype.uniqueLocations = function() {
+  return _.uniqWith(this, maps.isSameLocation);
+}
