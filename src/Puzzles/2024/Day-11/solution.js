@@ -30,19 +30,14 @@ const solver = (input, config) => {
   state = { stoneHash: {}, blinkHash: {} };
   input.forEach(v => updateState(parseInt(v, 10), 0, 1));
   for (let blink = 0; blink < config.blinks; blink++) {
-    const vals = state.blinkHash[blink].vals;
-    Object.keys(vals).map(v => parseInt(v)).forEach(val => {
-      doBlink(val, blink + 1, state.stoneHash[val].blinks[blink]);
-    });
+    Object.keys(state.blinkHash[blink].vals)
+      .map(v => parseInt(v))
+      .forEach(val => {
+        doBlink(val, blink + 1, state.stoneHash[val].blinks[blink]);
+      });
   }
 
-  const vals = state.blinkHash[config.blinks].vals;
-  let res = 0;
-  for (const [key, value] of Object.entries(vals)) {
-    res += value;
-  }
-
-  return res;
+  return _.sum(Object.entries(state.blinkHash[config.blinks].vals).map(([key, val]) => val))
 };
 new Puzzle(2024, 11)
   .withParser(parser)
