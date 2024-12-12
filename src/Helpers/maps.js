@@ -1,5 +1,5 @@
 
-exports.cardinal4 = [[0, -1], [-1, 0], [1, 0], [0, 1]];
+exports.cardinal4 = [[0, -1], [1, 0], [0, 1], [-1, 0]];
 
 exports.xDirs = [[1, -1], [-1, 1], [1, 1], [-1, -1]];
 
@@ -68,6 +68,10 @@ Array.prototype.findAllWhere = function(pred) {
 
 Array.prototype.getAt = function([x, y]) {
   return this[y][x];
+}
+
+Array.prototype.getAtOrNull = function([x, y]) {
+  return this.isInBounds([x, y]) ? this[y][x] : null;
 }
 
 Array.prototype.elementHashMap = function() {

@@ -44,5 +44,5 @@ new Puzzle(2024, 11)
   .withSolver(solver)
   .solve(configs);
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 189167
+// Part 2 solution: 225253278506288
