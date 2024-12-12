@@ -3,11 +3,10 @@ require('../../../Helpers/global');
 const parser = i => {
   return {
     a: _.sortBy(i.map(v => parseInt(v.split('   ')[0]))),
-    b: _.sortBy(i.map(v => parseInt(v.split('   ')[1]))),
-    idxs: _.range(0, i.length)
+    b: _.sortBy(i.map(v => parseInt(v.split('   ')[1])))
   };
 };
-const solver = (o, config) => _.sum(o.idxs.map(i => config.algo(o.a, o.b, i)));
+const solver = (o, config) => _.sum(_.range(0, o.a.length).map(i => config.algo(o.a, o.b, i)));
 new Puzzle(2024, 1)
   .withParser(parser)
   .withSolver(solver)

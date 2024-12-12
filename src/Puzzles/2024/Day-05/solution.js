@@ -30,5 +30,5 @@ new Puzzle(2024, 5)
   })
   .solve();
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 2573
+// Part 2 solution: 1850
