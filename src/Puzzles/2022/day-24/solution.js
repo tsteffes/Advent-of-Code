@@ -2,9 +2,7 @@ const dirs = { '>': [1, 0], '<': [-1, 0], '^': [0, -1], 'v': [0, 1] };
 const parseInput = input => {
   let map = input.map(r => r.split(''));
   let res = { time: 0, blizz: [], width: input[0].length, height: input.length, visits: {} };
-  const gcd = (a, b) => !b ? a : gcd(b, a % b);
-  const lcm = (a, b) => (a * b) / gcd(a, b);
-  res.mod = lcm(res.width - 2, res.height - 2);
+  res.mod = math.lcm(res.width - 2, res.height - 2);
   res.target = { x: res.width - 2, y: res.height - 1 };
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[0].length; x++) {
@@ -82,5 +80,5 @@ const getSolution = (state, config) => {
 const config = [{ caps: 1 }, { caps: 3 }];
 Solver.solve(parseInput, getSolution, config);
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 373
+// Part 2 solution: 997
