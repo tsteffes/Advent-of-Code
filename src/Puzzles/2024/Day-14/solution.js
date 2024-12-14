@@ -27,10 +27,7 @@ const countQuads = (robots, dims) => {
 };
 const variance = (arr = []) => {
   const median = _.sum(arr) / arr.length;
-  let variance = 0;
-  arr.forEach(a => variance += (a - median) * (a - median));
-  variance = variance / arr.length;
-  return variance;
+  return _.sum(_.map(arr, a => (a - median) * (a - median))) / arr.length;
 };
 const solver = (robots, config) => {
   if (config.part === 1) {
@@ -43,7 +40,6 @@ const solver = (robots, config) => {
   while (true) {
     treeIdx++;
     simulate(robots, config.dimensions, 1);
-    // if most of the robots fit into a small square, assume it's a tree
     xVar = variance(robots.map(r => r.pos[0]));
     vars[0].push(xVar);
     yVar = variance(robots.map(r => r.pos[1]));
