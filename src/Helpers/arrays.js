@@ -38,3 +38,14 @@ Array.prototype.pushIf = function(el, pred = v => v)  {
     this.push(el);
   }
 }
+
+Array.prototype.findAllIndexes = function(pred) {
+  let res = [];
+  for (let i = 0; i < this.length; i++) {
+    if (pred(this[i])) {
+      res.push(i);
+    }
+  }
+
+  return res;
+}

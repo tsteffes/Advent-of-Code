@@ -15,18 +15,6 @@ const parser = i => {
 
   return map;
 };
-const drawMap = map => {
-  for (let y = 0; y < map.length; y++) {
-    const row = [];
-    for (let x = 0; x < map[0].length; x++) {
-      const cur = map[y][x];
-      row.push(['#' ,'S', 'E'].includes(cur.type) ? cur.type : cur.dir ?? '.');
-    }
-
-    console.log(row.join(''));
-  }
-};
-const isSameDir = (d1, d2) => d1[0] === d2[0] && d1[1] === d2[1];
 const getNeighbors = (map, el) => {
   let neighbors = [null, null, null, null];
   maps.cardinal4.forEach((c, i) => {
@@ -70,19 +58,37 @@ const mapCosts = map => {
   }
 };
 const solver = (map, config) => {
-  if (config.part === 2) return;
   mapCosts(map);
-  drawMap(map);
   const start = map.findElementWhere(v => v.type === 'S');
-  start.costs[0] = start.costs[0] === null ? null : start.costs[0] + 1000;
-  start.costs[2] = start.costs[2] === null ? null : start.costs[2] + 1000;
-  start.costs[3] = start.costs[3] === null ? null : start.costs[3] + 2000;
-  return _.min(start.costs);
+  if (config.part === 1) {
+    start.costs[0] = start.costs[0] === null ? null : start.costs[0] + 1000;
+    return _.min(start.costs);
+  }
+
+  let locations = [];
+  const addChildLocations = (cur, dir) => {
+    locations.push(cur);
+    let costs = [null, null, null, null];
+    costs[dir] = cur.costs[dir] === null ? null : cur.costs[dir];
+    costs[(dir + 1) % 4] = cur.costs[(dir + 1) % 4] === null ? null : cur.costs[(dir + 1) % 4] + 1000;
+    costs[(dir + 3) % 4] = cur.costs[(dir + 3) % 4] === null ? null : cur.costs[(dir + 3) % 4] + 1000;
+    let min = _.min(costs.filter(c => c));
+    let idxs = costs.findAllIndexes(v => v === min);
+    idxs.forEach(i => {
+      let neighbor = map.getAt(cur.pos.getNeighbor(maps.cardinal4[i]));
+      if (!locations.includes(neighbor)) {
+        addChildLocations(neighbor, i);
+      }
+    });
+  };
+
+  addChildLocations(start, 1);
+  return _.uniqWith(locations, (a, b) => maps.isSameLocation(a.pos, b.pos)).length - 1;
 };
 new Puzzle(2024, 16)
   .withParser(parser)
   .withSolver(solver)
   .solve(configs);
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 111480
+// Part 2 solution: 529
