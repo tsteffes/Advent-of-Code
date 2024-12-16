@@ -32,3 +32,9 @@ Array.prototype.getUniquePairs = function() {
 
   return result;
 }
+
+Array.prototype.pushIf = function(el, pred = v => v)  {
+  if (pred(el)) {
+    this.push(el);
+  }
+}

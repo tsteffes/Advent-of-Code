@@ -11,8 +11,8 @@ exports.parse = (input, split = '', mapper = v => v) => {
   return input.map(i => i.split(split).map(mapper));
 };
 
-Array.prototype.getNeighbor = function(dir) {
-  return [this[0] + dir[0], this[1] + dir[1]];
+Array.prototype.getNeighbor = function(dir, mult = 1) {
+  return [this[0] + (dir[0] * mult), this[1] + (dir[1] * mult)];
 };
 
 Array.prototype.getAllCoordinates = function() {
