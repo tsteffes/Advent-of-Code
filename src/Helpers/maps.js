@@ -42,6 +42,17 @@ Array.prototype.findElement = function(el) {
   return null;
 }
 
+Array.prototype.findElementWhere = function(pred) {
+  for (let c of this.getAllCoordinates()) {
+    let el = this[c[1]][c[0]];
+    if (pred(el)) {
+      return el;
+    }
+  }
+
+  return null;
+}
+
 Array.prototype.findAll = function(el) {
   let res = [];
   for (let y = 0; y < this.length; y++) {
