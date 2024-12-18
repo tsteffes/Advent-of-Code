@@ -1,7 +1,6 @@
 require('../../../Helpers/global');
 
 const reg = /(?<x>\d+),(?<y>\d+)/g;
-const configs = [{}, {}];
 const parser = i => {
   return i.map(v => {
     const m = [...v.matchAll(reg)].map(g => g.groups)[0];
@@ -13,17 +12,17 @@ const getPathLength = map => {
   locs[0].min = 1;
   while (locs.length > 0) {
     const cur = locs.shift();
-    const neighbors = maps.cardinal4
+    maps.cardinal4
       .map(c => cur.pos.getNeighbor(c))
       .filter(v => map.isInBounds(v))
       .map(n => map.getAt(n))
-      .filter(n => n.type !== '#');
-    neighbors.forEach(n => {
-      if (!n.min || (n.min > (cur.min + 1))) {
-        n.min = cur.min + 1;
-        locs.push(n);
-      }
-    });
+      .filter(n => n.type !== '#')
+      .forEach(n => {
+        if (!n.min || (n.min > (cur.min + 1))) {
+          n.min = cur.min + 1;
+          locs.push(n);
+        }
+      });
   }
 
   let end = map.getAt([map.length - 1, map.length - 1]);
@@ -54,7 +53,6 @@ const solver = (bytes, config) => {
     const map = buildMap(size, bytes, i);
     const minSteps = getPathLength(map);
     if (!minSteps) {
-      // return bytes[i - 1][0] + ',' + bytes[i - 1][1];
       return bytes[i - 1];
     }
   }
@@ -62,7 +60,7 @@ const solver = (bytes, config) => {
 new Puzzle(2024, 18)
   .withParser(parser)
   .withSolver(solver)
-  .solve(configs);
+  .solve();
 
 // Part 1 solution:
 // Part 2 solution:
