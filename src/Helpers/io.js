@@ -7,7 +7,11 @@ exports.readLines = (file, separator = '\r\n') => {
 
   let content = fs.readFileSync(file, 'utf8');
   if (content) {
-    return content.split(separator);
+    if (separator) {
+      return content.split(separator);
+    }
+
+    return content;
   }
 
   return null;
