@@ -37,7 +37,8 @@ exports.Puzzle = class {
     const execute = test => {
       let input = this.reader(io.getPath(this.year, this.day) + `${test ? 'testInput' : 'input'}.txt`);
       if (input) {
-        logResult(test, conf.map(c => this.solver(this.parser(input, c), c)));
+        conf.test = test;
+        logResult(test, conf.map(c => this.solver(this.parser(input, c), { ...c, test })));
       }
     };
     [true, false].forEach(v => execute(v));
