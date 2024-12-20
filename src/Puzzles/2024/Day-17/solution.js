@@ -18,6 +18,7 @@ const combo = (p, o) => {
   let regsMap = [p.A, p.B, p.C];
   return BigInt(o >= 0 && o <= 3 ? o : regsMap[o - 4]);
 };
+// Program: 2,4,1,2,7,5,4,3,0,3,1,7,5,5,3,0
 const ops = [
   /* 0 adv */ (p, o) => p.A = BigInt(p.A) >> BigInt(combo(p, o)),
   /* 1 bxl */ (p, o) => p.B = Number(BigInt(p.B) ^ BigInt(o)),
@@ -39,16 +40,9 @@ const getOutput = v => {
   // What the program is doing:
   //   - Set B = final 3 bits of A, with second bit flipped
   //   - Set C = A / (2 ^ B) (set C to the bits B through B+2 of A)
-  //   - Set B = B xor C
-  //   - Flip bits of B
-  //   - Output B
+  //   - Output B xor C xor 7
   //   - Shift A to the right by 3 bits
   //   - loop until A = 0
-  // Reduced:
-  //   - B = A[2] !A[1] A[0]
-  //   - C = A[B+2] A[B+1] A[B+0]
-  //   - Output !(B[2] xor C[2]) !(B[1] xor C[1]) !(B[0] xor C[0])
-  //   - Loop
   let A = v.toString(2).padStart(10, '0').split('');
   let B = parseInt(A[A.length - 3] + (A[A.length - 2] ^ 1) + A[A.length - 1], 2);
   let C = parseInt(A[A.length - B - 3] + A[A.length - B - 2] + A[A.length - B - 1], 2);

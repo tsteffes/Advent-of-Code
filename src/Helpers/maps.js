@@ -11,6 +11,10 @@ exports.parse = (input, split = '', mapper = v => v) => {
   return input.map(i => i.split(split).map(mapper));
 };
 
+Array.prototype.getAllElements = function() {
+  return this.getAllCoordinates().map(c => this[c[1]][c[0]]);
+}
+
 Array.prototype.getNeighbor = function(dir, mult = 1) {
   return [this[0] + (dir[0] * mult), this[1] + (dir[1] * mult)];
 };
@@ -51,6 +55,18 @@ Array.prototype.findElementWhere = function(pred) {
   }
 
   return null;
+}
+
+Array.prototype.findElementsWhere = function(pred) {
+  let res = [];
+  for (let c of this.getAllCoordinates()) {
+    let el = this[c[1]][c[0]];
+    if (pred(el)) {
+      res.push(el);
+    }
+  }
+
+  return res;
 }
 
 Array.prototype.findAll = function(el) {
