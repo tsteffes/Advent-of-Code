@@ -6,12 +6,11 @@ const parser = i => i.map(v => {
   let vals = [...v.matchAll(reg)].map(m => m.groups)[0];
   return { pos: [parseInt(vals.px), parseInt(vals.py)], vel: [parseInt(vals.vx), parseInt(vals.vy)] };
 });
-const mod = (val, div) => ((val % div) + div) % div;
 const simulate = (robots, dims, ticks) => {
   robots.forEach(r => {
     r.pos = r.pos.getNeighbor([r.vel[0] * ticks, r.vel[1] * ticks]);
-    r.pos[0] = mod(r.pos[0], dims[0]);
-    r.pos[1] = mod(r.pos[1], dims[1]);
+    r.pos[0] = math.mod(r.pos[0], dims[0]);
+    r.pos[1] = math.mod(r.pos[1], dims[1]);
   });
 };
 const getQuad = (pos, dims) => {

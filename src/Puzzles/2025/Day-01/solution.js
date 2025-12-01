@@ -9,7 +9,7 @@ const solver = (o, config) => {
 
   for (let cmd of o) {
     if (config.part === 1) {
-      pos = math.absMod(pos + (cmd.mag * cmd.dir), 100);
+      pos = math.mod(pos + (cmd.mag * cmd.dir), 100);
       count += pos === 0 ? 1 : 0;
     }
     else {
@@ -17,7 +17,7 @@ const solver = (o, config) => {
       let rem = cmd.mag % 100;
       let newPos = pos + (rem * cmd.dir);
       count += revs + (newPos === 0 || (pos !== 0 && (newPos < 1 || newPos > 99)) ? 1 : 0);
-      pos = math.absMod(newPos, 100);
+      pos = math.mod(newPos, 100);
     }
   }
 
@@ -26,10 +26,7 @@ const solver = (o, config) => {
 new Puzzle(2025, 1)
   .withParser(parser)
   .withSolver(solver)
-  .solve([
-    {},
-    {}
-  ]);
+  .solve();
 
-// Part 1 solution:
-// Part 2 solution:
+// Part 1 solution: 1036
+// Part 2 solution: 6228
